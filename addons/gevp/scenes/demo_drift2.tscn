@@ -1,0 +1,238 @@
+[gd_scene load_steps=23 format=3 uid="uid://bvsi0mjnlulyx"]
+
+[ext_resource type="PackedScene" uid="uid://c3ixqkc6k13yi" path="res://addons/gevp/scenes/vehicle_controller.tscn" id="1_x8foh"]
+[ext_resource type="PackedScene" uid="uid://cd3qphnvh8fyv" path="res://addons/gevp/scenes/drift_car.tscn" id="2_6grc4"]
+[ext_resource type="PackedScene" uid="uid://b2hlchrj4h2b7" path="res://addons/gevp/scenes/engine_sound.tscn" id="3_ndtxv"]
+[ext_resource type="PackedScene" uid="uid://h6vdpba71kpr" path="res://addons/gevp/scenes/smoke_effect.tscn" id="4_lfj3g"]
+[ext_resource type="Script" uid="uid://ba7vo2i7d6y4w" path="res://addons/gevp/scripts/gui.gd" id="5_gt5iv"]
+[ext_resource type="Script" uid="uid://cm8hux77qf841" path="res://addons/gevp/scripts/camera.gd" id="6_h0cs5"]
+[ext_resource type="Script" uid="uid://cavg2apdm4jd4" path="res://addons/gevp/scripts/debug.gd" id="7_r4xy1"]
+[ext_resource type="Script" uid="uid://b3x2sv0t72127" path="res://addons/gevp/scripts/debug_ui.gd" id="8_kjj14"]
+[ext_resource type="Texture2D" uid="uid://c0qbidyvjphf4" path="res://resources/textures/test_track_a.png" id="9_ohuo7"]
+[ext_resource type="Script" uid="uid://ivpfhh447vsu" path="res://resources/scripts/manager.gd" id="10_6grc4"]
+[ext_resource type="Script" uid="uid://dryxkqundec26" path="res://addons/gevp/scenes/road_path.gd" id="11_ndtxv"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_cgl6g"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ne54f"]
+albedo_texture = ExtResource("9_ohuo7")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ndtxv"]
+size = Vector3(410.283, 1, 210.822)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6grc4"]
+sky_top_color = Color(0.553833, 0.419379, 0.270819, 1)
+ground_bottom_color = Color(0.42, 0.42, 0.42, 1)
+
+[sub_resource type="Sky" id="Sky_ndtxv"]
+sky_material = SubResource("ProceduralSkyMaterial_6grc4")
+
+[sub_resource type="Environment" id="Environment_x8foh"]
+background_mode = 1
+background_color = Color(0.252999, 0.350747, 0.448726, 1)
+sky = SubResource("Sky_ndtxv")
+ambient_light_source = 1
+ambient_light_energy = 0.0
+fog_mode = 1
+fog_density = 1.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_6grc4"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ndtxv"]
+
+[sub_resource type="Curve3D" id="Curve3D_6grc4"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 14.3235, 199.57, -179.159, -73.7886, 0, -0.393524, 73.7886, 0, 0.393524, 149.796, 200, -176.417, -47.1719, 0, 1.03297, 47.1719, 0, -1.03297, 225.069, 180, -113.267, 28.2343, 0, -3.09888, -28.2343, 0, 3.09888, 244.695, 170, -45.092, 64.388, 0, -0.344322, -64.388, 0, 0.344322, 82.864, 150, -42.681, -56.2262, 0, 20.0808, 56.2262, 0, -20.0808, 86.808, 130, 21.893, -16.5398, 0, -31.4973, 16.5398, 0, 31.4973, 212.842, 110, 9.271, 36.547, 0, -6.426, -36.5471, 0, 6.42587, 157.492, 100, 62.857, -15.663, 0, -33.7357, 15.663, 0, 33.7357, 135.002, 100, 125.108, 52.2867, 0, 25.5819, -52.2867, 0, -25.5819, 86.987, 90, 169.446, 35.6018, 0, -32.3227, -35.6018, 0, 32.3227, -25.44, 80, 121.196, -43.0969, 0, -14.5218, 43.0969, 0, 14.5218, 9.225, 70, 186.31, 6.4389, 0, -38.8487, -6.4389, 0, 38.8487, 81.428, 50, 243.088, 38.794, 0, 3.82477, -38.794, 0, -3.82477, -4.238, 50, 264.452, 46.4435, 0, -14.7526, -46.4435, 0, 14.7526, -92.207, 40, 201.07, -38.794, 0, -29.5053, 38.794, 0, 29.5053, -70.351, 30, 292.864, 7.99864, 0, -60.0482, -7.99864, 0, 60.0482, 99.5771, -3.43323e-05, 359.524, 18.2083, 0, -75.4341, -18.2083, 0, 75.4341, 161.333, -8.861, 448.61, 48.5552, 0, 61.5612, -48.5552, 0, -61.5612, 19.136, -20, 422.598, 2.6012, 0, -54.6247, -2.6012, 0, 54.6247, -131.733, -10, 385.315, 3.4682, 0, -57.2259, -3.4682, 0, 57.2259, -33.755, -20, 470.287, 39.8847, 0, 18.2082, -39.8847, 0, -18.2082, -128.264, -30, 504.102, 16.2909, 0, 48.6151, -16.2909, 0, -48.6151, -219.305, -40, 390.517, 42.4859, 0, -26.8788, -42.4859, 0, 26.8788, -310.347, -50, 358.436, 60.7271, 0, 7.19321, -60.7271, 0, -7.19321, -501.555, -60, 480.643, -1.9826, 0, -41.1956, 1.9826, 0, 41.1956, -583.426, -70, 541.437, -16.4589, 0, 11.3194, 16.4589, 0, -11.3194, -505.89, -80, 589.025, -32.5258, 0, 2.32916, 32.5258, 0, -2.32916, -445.382, -90, 560.399, -34.0868, 0, 27.8431, 34.0868, 0, -27.8431, -357.623, -100, 564.747, 18.2447, 0, -42.5615, -18.2447, 0, 42.5615, -289.992, -110, 621.106, 18.5774, 0, -31.1445, -18.5774, 0, 31.1445, -279.825, -120, 729.781, 37.5984, 0, 21.4088, -37.5984, 0, -21.4088, -370.629, -130, 721.685, 19.312, 0, -51.5104, -19.312, 0, 51.5104, -485.081, -140, 712.147, 34.5153, 0, -7.80609, -34.5153, 0, 7.80609, -570.052, -150, 767.639, 0, 0, 0, 0, 0, 0, -623.81, -150, 823.998),
+"tilts": PackedFloat32Array(0, 0, -0.01, 0.225, 0.241, -0.252, -0.04, 0.14, 0.17, 0.485, 0.41, 0.08, 0.45, 0.42, 0.375, 0.15, 0.325, 0.33, 0.545, 0.655, 0.66, 0.825, 0.945, 0.67, 0.695, 0.535, 0.37, 0.455, 0.385, 0.515, 0.58, 0.795, 0.685, 0.765, 0.74)
+}
+point_count = 35
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_lfj3g"]
+top_radius = 0.1
+bottom_radius = 0.1
+height = 6.0
+
+[sub_resource type="MultiMesh" id="MultiMesh_gt5iv"]
+transform_format = 1
+instance_count = 106
+mesh = SubResource("CylinderMesh_lfj3g")
+buffer = PackedFloat32Array(1, 0, 0, 34.3121, 0, 1, 0, 199.688, 0, 0, 1, -178.497, 1, 0, 0, 74.2983, 0, 1, 0, 199.863, 0, 0, 1, -177.462, 1, 0, 0, 114.292, 0, 1, 0, 199.968, 0, 0, 1, -176.755, 1, 0, 0, 154.289, 0, 1, 0, 199.974, 0, 0, 1, -176.31, 1, 0, 0, 189.934, 0, 1, 0, 195.578, 0, 0, 1, -162.082, 1, 0, 0, 202.101, 0, 1, 0, 184.204, 0, 0, 1, -126.016, 1, 0, 0, 236.254, 0, 1, 0, 179.789, 0, 0, 1, -112.118, 1, 0, 0, 262.339, 0, 1, 0, 175.616, 0, 0, 1, -84.8552, 1, 0, 0, 253.159, 0, 1, 0, 170.357, 0, 0, 1, -48.3872, 1, 0, 0, 214.181, 0, 1, 0, 166.483, 0, 0, 1, -43.3883, 1, 0, 0, 174.789, 0, 1, 0, 159.561, 0, 0, 1, -42.8393, 1, 0, 0, 135.24, 0, 1, 0, 153.595, 0, 0, 1, -42.7673, 1, 0, 0, 95.3937, 0, 1, 0, 150.24, 0, 0, 1, -42.732, 1, 0, 0, 56.566, 0, 1, 0, 148.472, 0, 0, 1, -36.1907, 1, 0, 0, 39.5477, 0, 1, 0, 140.157, 0, 0, 1, -3.31927, 1, 0, 0, 63.1981, 0, 1, 0, 131.391, 0, 0, 1, 24.2564, 1, 0, 0, 101.758, 0, 1, 0, 129.551, 0, 0, 1, 16.4676, 1, 0, 0, 139.208, 0, 1, 0, 125.091, 0, 0, 1, 3.20696, 1, 0, 0, 177.295, 0, 1, 0, 117.095, 0, 0, 1, -5.6564, 1, 0, 0, 211.913, 0, 1, 0, 110.019, 0, 0, 1, 7.62276, 1, 0, 0, 207.562, 0, 1, 0, 105.574, 0, 0, 1, 43.419, 1, 0, 0, 171.837, 0, 1, 0, 100.48, 0, 0, 1, 59.8012, 1, 0, 0, 134.245, 0, 1, 0, 100, 0, 0, 1, 72.1621, 1, 0, 0, 128.698, 0, 1, 0, 100, 0, 0, 1, 109.25, 1, 0, 0, 141.26, 0, 1, 0, 98.7654, 0, 0, 1, 147.005, 1, 0, 0, 123.204, 0, 1, 0, 92.1351, 0, 0, 1, 177.56, 1, 0, 0, 85.0217, 0, 1, 0, 89.9953, 0, 0, 1, 168.464, 1, 0, 0, 51.9228, 0, 1, 0, 88.3963, 0, 0, 1, 146.209, 1, 0, 0, 21.06, 0, 1, 0, 84.4921, 0, 0, 1, 121.085, 1, 0, 0, -15.8907, 0, 1, 0, 80.2371, 0, 0, 1, 114.414, 1, 0, 0, -41.352, 0, 1, 0, 78.2917, 0, 0, 1, 143.951, 1, 0, 0, -20.5176, 0, 1, 0, 71.6985, 0, 0, 1, 173.944, 1, 0, 0, 16.5306, 0, 1, 0, 69.8117, 0, 0, 1, 188.699, 1, 0, 0, 53.9632, 0, 1, 0, 63.3052, 0, 0, 1, 200.911, 1, 0, 0, 81.1253, 0, 1, 0, 51.6314, 0, 0, 1, 225.659, 1, 0, 0, 71.6463, 0, 1, 0, 50, 0, 0, 1, 262.648, 1, 0, 0, 33.2498, 0, 1, 0, 50, 0, 0, 1, 269.194, 1, 0, 0, -6.42749, 0, 1, 0, 49.9891, 0, 0, 1, 264.156, 1, 0, 0, -36.3711, 0, 1, 0, 46.938, 0, 0, 1, 239.574, 1, 0, 0, -59.8733, 0, 1, 0, 42.1881, 0, 0, 1, 207.695, 1, 0, 0, -97.0225, 0, 1, 0, 39.9605, 0, 0, 1, 202.827, 1, 0, 0, -115.324, 0, 1, 0, 36.0691, 0, 0, 1, 234.068, 1, 0, 0, -96.3566, 0, 1, 0, 31.5244, 0, 0, 1, 268.509, 1, 0, 0, -66.8205, 0, 1, 0, 29.9292, 0, 0, 1, 295.247, 1, 0, 0, -29.0115, 0, 1, 0, 25.722, 0, 0, 1, 306.839, 1, 0, 0, 10.1043, 0, 1, 0, 19.1533, 0, 0, 1, 311.964, 1, 0, 0, 48.9931, 0, 1, 0, 11.661, 0, 0, 1, 317.507, 1, 0, 0, 85.8189, 0, 1, 0, 3.78807, 0, 0, 1, 330.288, 1, 0, 0, 99.1002, 0, 1, 0, -0.0259371, 0, 0, 1, 364.897, 1, 0, 0, 120.637, 0, 1, 0, -2.831, 0, 0, 1, 394.29, 1, 0, 0, 156.805, 0, 1, 0, -7.26683, 0, 0, 1, 409.621, 1, 0, 0, 161.552, 0, 1, 0, -8.86055, 0, 0, 1, 447.686, 1, 0, 0, 142.671, 0, 1, 0, -10.1667, 0, 0, 1, 482.062, 1, 0, 0, 104.758, 0, 1, 0, -14.1071, 0, 0, 1, 487.857, 1, 0, 0, 69.0985, 0, 1, 0, -17.4887, 0, 0, 1, 470.51, 1, 0, 0, 38.6701, 0, 1, 0, -19.5109, 0, 0, 1, 444.717, 1, 0, 0, 12.3875, 0, 1, 0, -19.9427, 0, 0, 1, 414.597, 1, 0, 0, -17.4014, 0, 1, 0, -18.8332, 0, 0, 1, 388.042, 1, 0, 0, -51.9402, 0, 1, 0, -16.6437, 0, 0, 1, 368.128, 1, 0, 0, -90.1424, 0, 1, 0, -13.6339, 0, 0, 1, 357.235, 1, 0, 0, -126.455, 0, 1, 0, -10.4332, 0, 0, 1, 368.654, 1, 0, 0, -125.517, 0, 1, 0, -10.7017, 0, 0, 1, 406.142, 1, 0, 0, -90.7545, 0, 1, 0, -14.175, 0, 0, 1, 424.403, 1, 0, 0, -53.1795, 0, 1, 0, -17.9105, 0, 0, 1, 437.39, 1, 0, 0, -33.7117, 0, 1, 0, -19.9993, 0, 0, 1, 469.452, 1, 0, 0, -47.665, 0, 1, 0, -22.0822, 0, 0, 1, 505.812, 1, 0, 0, -84.7246, 0, 1, 0, -27.1773, 0, 0, 1, 516.326, 1, 0, 0, -123.17, 0, 1, 0, -29.9483, 0, 0, 1, 506.33, 1, 0, 0, -157.056, 0, 1, 0, -31.5658, 0, 0, 1, 485.482, 1, 0, 0, -184.31, 0, 1, 0, -35.2681, 0, 0, 1, 456.547, 1, 0, 0, -205.565, 0, 1, 0, -38.6978, 0, 0, 1, 422.896, 1, 0, 0, -220.895, 0, 1, 0, -40.0293, 0, 0, 1, 386.028, 1, 0, 0, -242.521, 0, 1, 0, -42.9003, 0, 0, 1, 353.097, 1, 0, 0, -279.94, 0, 1, 0, -48.3815, 0, 0, 1, 345.154, 1, 0, 0, -315.813, 0, 1, 0, -50.0493, 0, 0, 1, 362.122, 1, 0, 0, -346.765, 0, 1, 0, -51.3894, 0, 0, 1, 387.399, 1, 0, 0, -376.84, 0, 1, 0, -53.4005, 0, 0, 1, 413.694, 1, 0, 0, -407.668, 0, 1, 0, -55.6088, 0, 0, 1, 439.075, 1, 0, 0, -440.442, 0, 1, 0, -57.7765, 0, 0, 1, 461.864, 1, 0, 0, -476.725, 0, 1, 0, -59.5395, 0, 0, 1, 478.314, 1, 0, 0, -516.408, 0, 1, 0, -60.2095, 0, 0, 1, 479.528, 1, 0, 0, -555.357, 0, 1, 0, -63.2591, 0, 0, 1, 486.173, 1, 0, 0, -580.554, 0, 1, 0, -68.6207, 0, 0, 1, 515.201, 1, 0, 0, -580.701, 0, 1, 0, -70.3555, 0, 0, 1, 554.518, 1, 0, 0, -554.013, 0, 1, 0, -74.4209, 0, 0, 1, 582.912, 1, 0, 0, -515.966, 0, 1, 0, -79.3804, 0, 0, 1, 592.191, 1, 0, 0, -482.649, 0, 1, 0, -84.7235, 0, 0, 1, 571.948, 1, 0, 0, -445.274, 0, 1, 0, -90.0001, 0, 0, 1, 560.391, 1, 0, 0, -407.17, 0, 1, 0, -94.071, 0, 0, 1, 570.201, 1, 0, 0, -368.926, 0, 1, 0, -99.6324, 0, 0, 1, 572.039, 1, 0, 0, -333.283, 0, 1, 0, -101.258, 0, 0, 1, 555.727, 1, 0, 0, -298.392, 0, 1, 0, -106.031, 0, 0, 1, 572.093, 1, 0, 0, -286.583, 0, 1, 0, -109.737, 0, 0, 1, 608.839, 1, 0, 0, -293.998, 0, 1, 0, -111.201, 0, 0, 1, 647.699, 1, 0, 0, -282.463, 0, 1, 0, -115.817, 0, 0, 1, 685.564, 1, 0, 0, -277.147, 0, 1, 0, -119.895, 0, 0, 1, 724.092, 1, 0, 0, -306.994, 0, 1, 0, -123.195, 0, 0, 1, 746.556, 1, 0, 0, -344.716, 0, 1, 0, -128.596, 0, 0, 1, 735.629, 1, 0, 0, -379.734, 0, 1, 0, -130.172, 0, 0, 1, 716.412, 1, 0, 0, -414.744, 0, 1, 0, -132.797, 0, 0, 1, 697.289, 1, 0, 0, -452.778, 0, 1, 0, -137.128, 0, 0, 1, 686.858, 1, 0, 0, -483.514, 0, 1, 0, -139.98, 0, 0, 1, 708.347, 1, 0, 0, -502.983, 0, 1, 0, -141.768, 0, 0, 1, 742.915, 1, 0, 0, -537.339, 0, 1, 0, -147.459, 0, 0, 1, 761.316, 1, 0, 0, -576.315, 0, 1, 0, -150, 0, 0, 1, 769.547, 1, 0, 0, -606.858, 0, 1, 0, -150, 0, 0, 1, 794.596)
+
+[node name="ArcadeDemo" type="Node3D"]
+
+[node name="VehicleController" parent="." node_paths=PackedStringArray("vehicle_node") instance=ExtResource("1_x8foh")]
+transform = Transform3D(-0.0531377, 0, -0.998587, 0, 1, 0, 0.998587, 0, -0.0531377, -43.2996, 263.176, -192.848)
+vehicle_node = NodePath("VehicleRigidBody")
+
+[node name="VehicleRigidBody" parent="VehicleController" instance=ExtResource("2_6grc4")]
+steering_slip_assist = 0.3
+throttle_speed = 10.0
+traction_control_max_slip = -1.0
+front_camber = 0.136
+rear_camber = 0.136
+
+[node name="EngineSound" parent="VehicleController/VehicleRigidBody" node_paths=PackedStringArray("vehicle") instance=ExtResource("3_ndtxv")]
+vehicle = NodePath("..")
+
+[node name="Smoke" parent="VehicleController/VehicleRigidBody" node_paths=PackedStringArray("vehicle") instance=ExtResource("4_lfj3g")]
+vehicle = NodePath("..")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="VehicleController/VehicleRigidBody"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.562378, 0.355042, -2.52979)
+light_energy = 3.73
+shadow_enabled = true
+spot_range = 150.0
+spot_attenuation = 0.0
+spot_angle = 15.0
+spot_angle_attenuation = 0.196146
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="VehicleController/VehicleRigidBody"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.570358, 0.355042, -2.59007)
+light_energy = 3.73
+shadow_enabled = true
+spot_range = 150.0
+spot_attenuation = 0.0
+spot_angle = 15.0
+spot_angle_attenuation = 0.196146
+
+[node name="GUI" type="Control" parent="." node_paths=PackedStringArray("vehicle")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("5_gt5iv")
+vehicle = NodePath("../VehicleController/VehicleRigidBody")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Speed" type="Label" parent="GUI/VBoxContainer"]
+layout_mode = 2
+
+[node name="RPM" type="Label" parent="GUI/VBoxContainer"]
+layout_mode = 2
+
+[node name="Gear" type="Label" parent="GUI/VBoxContainer"]
+layout_mode = 2
+
+[node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("follow_this")]
+transform = Transform3D(1, 0, 0, 0, 0.430873, 0.902412, 0, -0.902412, 0.430873, 4.05282, 66.6965, 5.80061)
+script = ExtResource("6_h0cs5")
+follow_distance = 8
+follow_height = 4
+follow_this = NodePath("../VehicleController/VehicleRigidBody")
+
+[node name="Debug" type="Node" parent="." node_paths=PackedStringArray("vehicle")]
+script = ExtResource("7_r4xy1")
+vehicle = NodePath("../VehicleController/VehicleRigidBody")
+
+[node name="DebugUI" type="Control" parent="Debug"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("8_kjj14")
+metadata/_edit_use_anchors_ = true
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." groups=["Road"]]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(200, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0)
+mesh = SubResource("PlaneMesh_cgl6g")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_ne54f")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.773071, -0.5, 0.943573)
+shape = SubResource("BoxShape3D_ndtxv")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_x8foh")
+
+[node name="Node" type="Node" parent="." node_paths=PackedStringArray("player")]
+script = ExtResource("10_6grc4")
+player = NodePath("../VehicleController")
+
+[node name="block" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.0991, 0, -19.411)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="block"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.995592, 0)
+mesh = SubResource("CylinderMesh_6grc4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="block"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CylinderShape3D_ndtxv")
+
+[node name="Path3D" type="Path3D" parent="." groups=["Road"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -86.5392, 62.5319, -19.5458)
+curve = SubResource("Curve3D_6grc4")
+script = ExtResource("11_ndtxv")
+lamp_distance = 40.0
+lamp_z = 7.0
+
+[node name="mesh_road" type="CSGPolygon3D" parent="Path3D" groups=["Road"]]
+use_collision = true
+polygon = PackedVector2Array(-7.5, -1, -7.5, 0, 7.5, 0, 7.5, -1)
+mode = 2
+path_node = NodePath("..")
+path_interval_type = 0
+path_interval = 2.0
+path_simplify_angle = 0.0
+path_rotation = 2
+path_rotation_accurate = false
+path_local = true
+path_continuous_u = true
+path_u_distance = 1.0
+path_joined = false
+
+[node name="mesh_wall_right" type="CSGPolygon3D" parent="Path3D"]
+use_collision = true
+polygon = PackedVector2Array(8.5, 0, 12.5, 9, 11.5, 9, 7.5, 0)
+mode = 2
+path_node = NodePath("..")
+path_interval_type = 0
+path_interval = 2.0
+path_simplify_angle = 0.0
+path_rotation = 2
+path_rotation_accurate = false
+path_local = true
+path_continuous_u = true
+path_u_distance = 1.0
+path_joined = false
+
+[node name="mesh_wall_left" type="CSGPolygon3D" parent="Path3D"]
+use_collision = true
+polygon = PackedVector2Array(-7.5, 0, -11.5, 9, -12.5, 9, -8.5, 0)
+mode = 2
+path_node = NodePath("..")
+path_interval_type = 0
+path_interval = 2.0
+path_simplify_angle = 0.0
+path_rotation = 2
+path_rotation_accurate = false
+path_local = true
+path_continuous_u = true
+path_u_distance = 1.0
+path_joined = false
+
+[node name="MultiMeshInstance3D" type="MultiMeshInstance3D" parent="Path3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+multimesh = SubResource("MultiMesh_gt5iv")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.374202, -0.7759, 0.50789, 0, 0.54768, 0.836688, -0.927347, -0.31309, 0.204943, 0, 107.839, 0)
+light_color = Color(0.3075, 0.310917, 0.41, 1)
+shadow_enabled = true
+sky_mode = 1
+
+[connection signal="curve_changed" from="Path3D" to="Path3D" method="_on_curve_changed"]
