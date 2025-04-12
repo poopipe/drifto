@@ -2,7 +2,7 @@
 extends Path3D
 
 @export var lamp_distance := 5.0
-@export var lamp_z := 10.0
+@export var lamp_offset := 5.0
 var is_dirty := false
 
 func _process(_delta):
@@ -13,6 +13,8 @@ func _process(_delta):
 func _update_multimesh():
 	var path_length := curve.get_baked_length()
 	var lamp_count := floor(path_length/lamp_distance)
+	var look_ahead_distance := 0.5
+	
 	
 	var lamp_mesh: MultiMesh = $MultiMeshInstance3D.multimesh
 	lamp_mesh.instance_count = lamp_count 
@@ -20,16 +22,12 @@ func _update_multimesh():
 	
 	for i in range(0, lamp_count):
 		var lamp_distance = lamp_offset + lamp_distance * i
-		var lamp_position = curve.sample_baked(lamp_distance, true)
-		
-		var z = lamp_z if i % 2 == 0 else 0.0-lamp_z
-		
-		
-		
-		lamp_position = lamp_position 
-		
-		var lamp_basis = Basis()
-		var transform = Transform3D(lamp_basis, lamp_position)
+		# get transform at point on curve
+		var t := curve.sample_baked_with_rotation(lamp_distance)
+			
+		var offset = lamp_offset if i % 2 == 0 else 0.0-lamp_offset
+
+		var transform = t.translated_local(Vector3(offset, 0.0, 0.0))
 		lamp_mesh.set_instance_transform(i, transform)
 		
 
