@@ -16,15 +16,14 @@ func _update_multimesh():
 	var look_ahead_distance := 0.5
 	
 	
-	var lamp_mesh: MultiMesh = $MultiMeshInstance3D.multimesh
+	var lamp_mesh: MultiMesh = $street_lamps.multimesh
 	lamp_mesh.instance_count = lamp_count 
-	var lamp_offset = lamp_distance / 2.0
 	
 	for i in range(0, lamp_count):
 		var lamp_distance = lamp_offset + lamp_distance * i
 		# get transform at point on curve
-		var t := curve.sample_baked_with_rotation(lamp_distance)
-			
+		var t := curve.sample_baked_with_rotation(lamp_distance, true, true)
+
 		var offset = lamp_offset if i % 2 == 0 else 0.0-lamp_offset
 
 		var transform = t.translated_local(Vector3(offset, 0.0, 0.0))
