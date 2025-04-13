@@ -15,6 +15,10 @@ run/main_scene="uid://bvsi0mjnlulyx"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
+[debug]
+
+shader_language/warnings/treat_warnings_as_errors=true
+
 [input]
 
 Throttle={
