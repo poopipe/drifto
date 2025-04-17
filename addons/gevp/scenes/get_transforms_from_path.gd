@@ -10,6 +10,8 @@ extends MultiMeshInstance3D
 @export var v_offset: float
 @export var h_offset_random: float
 @export var v_offset_random: float
+@export var scaling: Vector3 = Vector3(1.0, 1.0, 1.0)
+@export var scale_random: Vector3 = Vector3(0.0, 0.0, 0.0)
 @export var alternate_sides: bool
 @export var force_up: bool
 @export var seed: int = 69
@@ -68,6 +70,8 @@ func _update_multimesh():
 			t.origin = transform.origin
 			transform = t
 			
+		var s = scaling
+		transform = transform.scaled_local(s)			
 		
 		instance_mesh.set_instance_transform(i, transform)
 

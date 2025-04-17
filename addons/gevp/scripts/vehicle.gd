@@ -648,7 +648,6 @@ func process_braking(delta : float) -> void:
 			brake_amount = brake_input
 	
 	if brake_amount > 0.0:
-		prints('ass brake')
 		is_braking = true
 	else:
 		is_braking = false

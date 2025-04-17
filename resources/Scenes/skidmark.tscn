@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://wxwpnv43sr71"]
+
+[ext_resource type="Texture2D" uid="uid://cktn635oy6enu" path="res://addons/gevp/icon.png" id="1_kts21"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_kts21"]
+
+[node name="Skidmark" type="Node3D"]
+
+[node name="Decal" type="Decal" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01, 0)
+texture_albedo = ExtResource("1_kts21")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PrismMesh_kts21")

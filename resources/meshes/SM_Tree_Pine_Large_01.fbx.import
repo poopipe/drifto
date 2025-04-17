@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dsk8fprtcyyvd"
-path="res://.godot/imported/track_one_mountain.fbx-a439d18e873320c8fd83b631805d676e.scn"
+uid="uid://cojnt13jrfkpd"
+path="res://.godot/imported/SM_Tree_Pine_Large_01.fbx-7665bbc71eb41a9ba257c8ee9e381d15.scn"
 
 [deps]
 
-source_file="res://resources/meshes/track_one_mountain.fbx"
-dest_files=["res://.godot/imported/track_one_mountain.fbx-a439d18e873320c8fd83b631805d676e.scn"]
+source_file="res://resources/meshes/SM_Tree_Pine_Large_01.fbx"
+dest_files=["res://.godot/imported/SM_Tree_Pine_Large_01.fbx-7665bbc71eb41a9ba257c8ee9e381d15.scn"]
 
 [params]
 
@@ -26,7 +26,7 @@ meshes/light_baking=1
 meshes/lightmap_texel_size=0.2
 meshes/force_disable_compression=false
 skins/use_named_skins=true
-animation/import=true
+animation/import=false
 animation/fps=30
 animation/trimming=true
 animation/remove_immutable_tracks=true
@@ -34,13 +34,13 @@ animation/import_rest_as_RESET=false
 import_script/path=""
 _subresources={
 "meshes": {
-"Plane001": {
+"SM_Tree_Pine_Large_01": {
 "generate/lightmap_uv": 0,
 "generate/lods": 0,
 "generate/shadow_meshes": 0,
 "lods/normal_merge_angle": 60.0,
 "save_to_file/enabled": true,
-"save_to_file/path": "res://resources/gd_meshes/SM_Mountain.res"
+"save_to_file/path": "res://resources/gd_meshes/SM_Tree_Pine_Large_01.res"
 }
 }
 }

@@ -19,6 +19,10 @@ config/icon="res://icon.svg"
 
 shader_language/warnings/treat_warnings_as_errors=true
 
+[filesystem]
+
+import/fbx2gltf/enabled=false
+
 [input]
 
 Throttle={

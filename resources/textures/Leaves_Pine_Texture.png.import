@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cktn635oy6enu"
-path.s3tc="res://.godot/imported/icon.png-5c02e577949519db0d433e4823657e79.s3tc.ctex"
+uid="uid://bf5f1a14js6px"
+path.s3tc="res://.godot/imported/Leaves_Pine_Texture.png-14e33ff507ad9c371dc2d29115ddcfcf.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://addons/gevp/icon.png"
-dest_files=["res://.godot/imported/icon.png-5c02e577949519db0d433e4823657e79.s3tc.ctex"]
+source_file="res://resources/textures/Leaves_Pine_Texture.png"
+dest_files=["res://.godot/imported/Leaves_Pine_Texture.png-14e33ff507ad9c371dc2d29115ddcfcf.s3tc.ctex"]
 
 [params]
 
