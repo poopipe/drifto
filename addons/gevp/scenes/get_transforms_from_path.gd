@@ -15,6 +15,8 @@ extends MultiMeshInstance3D
 @export var alternate_sides: bool
 @export var force_up: bool
 @export var seed: int = 69
+@export var instance_rotate: float = 0.0
+
 
 
 var is_dirty := false
@@ -72,6 +74,8 @@ func _update_multimesh():
 			
 		var s = scaling
 		transform = transform.scaled_local(s)			
+		var r = deg_to_rad(instance_rotate)
+		transform = transform.rotated_local(Vector3(0.0, 1.0, 0.0), r)
 		
 		instance_mesh.set_instance_transform(i, transform)
 
