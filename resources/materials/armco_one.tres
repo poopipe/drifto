@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dmuq65dahn5ov"]
+
+[ext_resource type="Shader" uid="uid://ckcemdxgypv2j" path="res://resources/materials/toonlight.gdshader" id="1_tikjv"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_tikjv")
+shader_parameter/basecolor = Vector3(0.8, 0.2, 0.6)
+shader_parameter/world_light_offset = 0.001
+shader_parameter/world_light_shadow_strength = 0.1
