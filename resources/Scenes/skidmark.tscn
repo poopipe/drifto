@@ -1,14 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://wxwpnv43sr71"]
+[gd_scene load_steps=2 format=3 uid="uid://wxwpnv43sr71"]
 
-[ext_resource type="Texture2D" uid="uid://cktn635oy6enu" path="res://addons/gevp/icon.png" id="1_kts21"]
-
-[sub_resource type="PrismMesh" id="PrismMesh_kts21"]
+[ext_resource type="Texture2D" uid="uid://c2cupwi7h74b6" path="res://resources/textures/skidmarks_output.png" id="1_kts21"]
 
 [node name="Skidmark" type="Node3D"]
 
 [node name="Decal" type="Decal" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.225342, 0)
+size = Vector3(0.25, 0.549316, 0.5)
 texture_albedo = ExtResource("1_kts21")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("PrismMesh_kts21")
+distance_fade_enabled = true
