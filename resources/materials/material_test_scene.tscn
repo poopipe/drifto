@@ -1,6 +1,25 @@
-[gd_scene load_steps=2 format=3 uid="uid://dg7c4ysyrb7yn"]
+[gd_scene load_steps=7 format=3 uid="uid://dg7c4ysyrb7yn"]
 
 [ext_resource type="PackedScene" uid="uid://3c0vtybx44g8" path="res://resources/Scenes/car_86.tscn" id="1_p8afq"]
+[ext_resource type="Shader" uid="uid://ckcemdxgypv2j" path="res://resources/materials/toonlight.gdshader" id="2_3xys7"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qmci1"]
+render_priority = 0
+shader = ExtResource("2_3xys7")
+shader_parameter/basecolor = Vector3(0.8, 0.8, 0.8)
+shader_parameter/world_light_strength = 0.2
+
+[sub_resource type="SphereMesh" id="SphereMesh_wec60"]
+material = SubResource("ShaderMaterial_qmci1")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3xys7"]
+render_priority = 0
+shader = ExtResource("2_3xys7")
+shader_parameter/basecolor = Vector3(0.8, 0.8, 0.8)
+shader_parameter/world_light_strength = 0.2
+
+[sub_resource type="TorusMesh" id="TorusMesh_qmci1"]
+material = SubResource("ShaderMaterial_3xys7")
 
 [node name="MaterialTestScene" type="Node3D"]
 
@@ -8,8 +27,16 @@
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.38392, 0, -0.970922)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.865375, 0.199103, -0.459874, 0.492288, -0.166181, 0.854422, 0.0936957, -0.965786, -0.241825, 0, 4.51417, -0.0955789)
+transform = Transform3D(1, 0, 0, 0, 0.237381, 0.971417, 0, -0.971417, 0.237381, 0, 4.51417, -0.0955789)
 shadow_enabled = true
 shadow_opacity = 0.6
 shadow_blur = 0.129
 sky_mode = 1
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 1.63157, -0.12516, -5.2455)
+mesh = SubResource("SphereMesh_wec60")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(2.95939, 0, 0.491941, 0, 3, 0, -0.491941, 0, 2.95939, 1.63157, 2.09017, -10.2035)
+mesh = SubResource("TorusMesh_qmci1")
