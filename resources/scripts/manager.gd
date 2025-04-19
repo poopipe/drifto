@@ -4,6 +4,8 @@ extends Node3D
 @export var longitudinal_slip_threshold := 0.5
 @export var lateral_slip_threshold := 1.0
 
+@export var vignette_material:ShaderMaterial
+
 var skidding: bool = false
 var skids_initiated: int = 0
 var skid_start_time  := Time.get_unix_time_from_system()
@@ -11,6 +13,8 @@ var skid_end_time := Time.get_unix_time_from_system()
 var skid_cooldown: float = 0.5
 var total_skidding: int = 0
 
+var skid_amount:float = 0.0	 # use this for any timed effects that are connected to skiddin
+var effect_fade_rate:float = 0.02
 var skid_score:int = 1
 
 var skid_time_bonus = 1
@@ -47,19 +51,31 @@ func _process(_delta: float) -> void:
 		var skid_end_delta = now - skid_end_time
 		var skid_start_delta = now - skid_start_time
 
+
+		# get skid_amount,. connected to skid cooldown time
+		
+
 		# handle skidding
-		if wheels_spinning and yaw_angle >= 0.05 and speed >= 10.0 :
+		if wheels_spinning and yaw_angle >= 0.025 and speed >= 10.0 :
 			if not skidding:
 				skidding = true
 				skids_initiated += 1
 				skid_start_time = Time.get_unix_time_from_system()
+				
 		else:
 			if skidding:
 				skidding = false
 				skid_end_time = Time.get_unix_time_from_system()
 
-		# get  time multiplier 
+		
 		if skidding:
+			skid_amount += effect_fade_rate
+		else:
+			skid_amount -= effect_fade_rate
+		skid_amount = clamp(skid_amount, 0.0, 1.0)
+
+		# get  time multiplier 
+		if skidding or skid_end_delta <= skid_cooldown:
 			skid_time_bonus = 1 + floor(2.0 * skid_start_delta)
 		else:
 			skid_time_bonus = 1
@@ -76,6 +92,10 @@ func _process(_delta: float) -> void:
 		#if skidding or within grace period, add scoar
 		if skidding or skid_end_delta <= skid_cooldown :
 			total_skidding += skid_score * skid_time_bonus * proximity_bonus
+			# do stuff with shader
+		
+		
+		vignette_material.set_shader_parameter("coverage", skid_amount)
 
 
 func _on_area_3d_front_body_entered(body: Node3D) -> void:

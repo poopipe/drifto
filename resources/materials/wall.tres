@@ -6,5 +6,4 @@
 render_priority = 0
 shader = ExtResource("1_sl6xa")
 shader_parameter/basecolor = Vector3(0.2, 0.2, 0.2)
-shader_parameter/world_light_offset = -0.01
-shader_parameter/world_light_shadow_strength = 0.2
+shader_parameter/world_light_strength = 0.2

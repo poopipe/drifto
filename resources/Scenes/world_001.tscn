@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://bvsi0mjnlulyx"]
+[gd_scene load_steps=35 format=3 uid="uid://bvsi0mjnlulyx"]
 
 [ext_resource type="PackedScene" uid="uid://c3ixqkc6k13yi" path="res://addons/gevp/scenes/vehicle_controller.tscn" id="1_5d8ml"]
 [ext_resource type="PackedScene" uid="uid://3c0vtybx44g8" path="res://resources/Scenes/car_86.tscn" id="2_6g7ee"]
@@ -20,12 +20,17 @@
 [ext_resource type="PackedScene" uid="uid://dsk8fprtcyyvd" path="res://resources/meshes/track_one_mountain.fbx" id="15_jcyjv"]
 [ext_resource type="ArrayMesh" uid="uid://ch5vfbifrrliu" path="res://resources/gd_meshes/SM_Prop_StoneWall_01.res" id="16_oo188"]
 [ext_resource type="Script" uid="uid://ivpfhh447vsu" path="res://resources/scripts/manager.gd" id="16_vmlud"]
+[ext_resource type="Material" uid="uid://bve0pcutdikid" path="res://resources/materials/pp_vignette.tres" id="21_iwa3l"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fccuq"]
 size = Vector3(3, 1, 2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_37yjk"]
 size = Vector3(3, 1, 2)
+
+[sub_resource type="QuadMesh" id="QuadMesh_37yjk"]
+material = ExtResource("21_iwa3l")
+flip_faces = true
 
 [sub_resource type="Shader" id="Shader_lfj3g"]
 code = "
@@ -292,11 +297,18 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("follow_this")]
-transform = Transform3D(1, 0, 0, 0, 0.430873, 0.902412, 0, -0.902412, 0.430873, 4.05282, 66.6965, 5.80061)
+transform = Transform3D(-4.37114e-08, -0.190809, -0.981627, 0, 0.981627, -0.190809, 1, -8.34053e-09, -4.29083e-08, 50.0691, 202.28, -186.551)
 script = ExtResource("8_vwumr")
 follow_distance = 8
 follow_height = 4
 follow_this = NodePath("../VehicleController/VehicleRigidBody")
+
+[node name="PP_Mesh" type="MeshInstance3D" parent="Camera3D"]
+transform = Transform3D(10, 0, 1.13687e-13, -2.13163e-14, 9.81627, 1.90809, -1.42109e-13, -1.90809, 9.81627, 0.743011, -13.3427, -1.14362)
+cast_shadow = 0
+extra_cull_margin = 16384.0
+mesh = SubResource("QuadMesh_37yjk")
+skeleton = NodePath("../..")
 
 [node name="Debug" type="Node" parent="."]
 script = ExtResource("9_51eg1")
@@ -464,6 +476,7 @@ instance_rotate = 90.0
 script = ExtResource("16_vmlud")
 player = NodePath("../VehicleController")
 road = NodePath("../road_path/mesh_road")
+vignette_material = ExtResource("21_iwa3l")
 
 [connection signal="body_entered" from="VehicleController/VehicleRigidBody/Area3DFront" to="manager" method="_on_area_3d_front_body_entered"]
 [connection signal="body_exited" from="VehicleController/VehicleRigidBody/Area3DFront" to="manager" method="_on_area_3d_front_body_exited"]
