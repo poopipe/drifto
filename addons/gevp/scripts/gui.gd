@@ -6,6 +6,8 @@ extends Control
 @onready var rpm_label = $VBoxContainer/RPM
 @onready var gear_label = $VBoxContainer/Gear
 @onready var skidding_label = $VBoxContainer/Skidding
+@onready var time_bonus_label = $VBoxContainer/TimeBonus
+@onready var prox_bonus_label = $VBoxContainer/ProxBonus
 
 
 func _process(delta):
@@ -13,3 +15,5 @@ func _process(delta):
 	rpm_label.text = str(round(vehicle.motor_rpm)) + " rpm"
 	gear_label.text = "Gear: " + str(vehicle.current_gear)
 	skidding_label.text = "Skidding:" + str(game_manager.total_skidding)
+	time_bonus_label.text = "time bonus:" + str(game_manager.skid_time_bonus)
+	prox_bonus_label.text = "prox bonus:" + str(game_manager.proximity_bonus)

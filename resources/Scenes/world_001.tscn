@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://bvsi0mjnlulyx"]
+[gd_scene load_steps=33 format=3 uid="uid://bvsi0mjnlulyx"]
 
 [ext_resource type="PackedScene" uid="uid://c3ixqkc6k13yi" path="res://addons/gevp/scenes/vehicle_controller.tscn" id="1_5d8ml"]
 [ext_resource type="PackedScene" uid="uid://3c0vtybx44g8" path="res://resources/Scenes/car_86.tscn" id="2_6g7ee"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://gr0r6c33424a" path="res://resources/textures/headlight_projection_mask.png" id="5_37yjk"]
 [ext_resource type="Script" uid="uid://1i2a37vp6oay" path="res://resources/scripts/skidmark_generator.gd" id="6_iwa3l"]
 [ext_resource type="Script" uid="uid://ba7vo2i7d6y4w" path="res://addons/gevp/scripts/gui.gd" id="7_1fuwa"]
+[ext_resource type="Script" uid="uid://cu3rydur0l7t1" path="res://resources/scripts/proximity_detector.gd" id="7_37yjk"]
 [ext_resource type="Script" uid="uid://cm8hux77qf841" path="res://addons/gevp/scripts/camera.gd" id="8_vwumr"]
 [ext_resource type="Script" uid="uid://cavg2apdm4jd4" path="res://addons/gevp/scripts/debug.gd" id="9_51eg1"]
 [ext_resource type="Script" uid="uid://b3x2sv0t72127" path="res://addons/gevp/scripts/debug_ui.gd" id="10_ipmle"]
@@ -19,6 +20,12 @@
 [ext_resource type="PackedScene" uid="uid://dsk8fprtcyyvd" path="res://resources/meshes/track_one_mountain.fbx" id="15_jcyjv"]
 [ext_resource type="ArrayMesh" uid="uid://ch5vfbifrrliu" path="res://resources/gd_meshes/SM_Prop_StoneWall_01.res" id="16_oo188"]
 [ext_resource type="Script" uid="uid://ivpfhh447vsu" path="res://resources/scripts/manager.gd" id="16_vmlud"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fccuq"]
+size = Vector3(3, 1, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_37yjk"]
+size = Vector3(3, 1, 2)
 
 [sub_resource type="Shader" id="Shader_lfj3g"]
 code = "
@@ -154,10 +161,6 @@ fog_depth_begin = 0.0
 fog_depth_end = 150.0
 volumetric_fog_density = 0.02
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_6grc4"]
-
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_ndtxv"]
-
 [sub_resource type="Curve3D" id="Curve3D_6grc4"]
 _data = {
 "points": PackedVector3Array(0, 0, 0, 0, 0, 0, 13.5764, 197.979, -188.116, -73.7886, 0, -0.393524, 73.7886, 0, 0.393524, 149.82, 200.619, -183.414, -47.1719, 0, 1.03297, 47.1719, 0, -1.03297, 225.069, 179, -114.267, 28.2343, 0, -3.09888, -28.2343, 0, 3.09888, 244.695, 170, -46.092, 64.388, 0, -0.344322, -64.388, 0, 0.344322, 82.864, 150, -45.681, -56.2262, 0, 20.0808, 56.2262, 0, -20.0808, 86.808, 130, 21.893, -16.5398, 0, -31.4973, 16.5398, 0, 31.4973, 212.842, 110, 9.271, -15.663, 0, -33.7357, 15.663, 0, 33.7357, 135.002, 100, 125.108, 52.2867, 0, 25.5819, -52.2867, 0, -25.5819, 86.987, 90, 169.446, 35.6018, 0, -32.3227, -35.6018, 0, 32.3227, -25.44, 80, 121.196, -43.0969, 0, -14.5218, 43.0969, 0, 14.5218, 9.225, 70, 186.31, 6.4389, 0, -38.8487, -6.4389, 0, 38.8487, 81.428, 50, 243.088, 38.794, 0, 3.82477, -38.794, 0, -3.82477, -4.238, 50, 264.452, 46.4435, 0, -14.7526, -46.4435, 0, 14.7526, -92.207, 40, 201.07, -38.794, 0, -29.5053, 38.794, 0, 29.5053, -70.351, 30, 292.864, 7.99864, 0, -60.0482, -7.99864, 0, 60.0482, 99.5771, -3.43323e-05, 359.524, 18.2083, 0, -75.4341, -18.2083, 0, 75.4341, 161.333, -8.861, 448.61, 48.5552, 0, 61.5612, -48.5552, 0, -61.5612, 19.136, -20, 422.598, 2.6012, 0, -54.6247, -2.6012, 0, 54.6247, -131.733, -10, 385.315, 3.4682, 0, -57.2259, -3.4682, 0, 57.2259, -33.755, -20, 470.287, 39.8847, 0, 18.2082, -39.8847, 0, -18.2082, -128.264, -30, 504.102, 16.2909, 0, 48.6151, -16.2909, 0, -48.6151, -219.305, -40, 390.517, 42.4859, 0, -26.8788, -42.4859, 0, 26.8788, -310.347, -50, 358.436, 60.7271, 0, 7.19321, -60.7271, 0, -7.19321, -501.555, -60, 480.643, -1.9826, 0, -41.1956, 1.9826, 0, 41.1956, -583.426, -70, 541.437, -16.4589, 0, 11.3194, 16.4589, 0, -11.3194, -505.89, -80, 589.025, -32.5258, 0, 2.32916, 32.5258, 0, -2.32916, -445.382, -90, 560.399, -34.0868, 0, 27.8431, 34.0868, 0, -27.8431, -357.623, -100, 564.747, 18.2447, 0, -42.5615, -18.2447, 0, 42.5615, -289.992, -110, 621.106, 18.5774, 0, -31.1445, -18.5774, 0, 31.1445, -279.825, -120, 729.781, 37.5984, 0, 21.4088, -37.5984, 0, -21.4088, -370.629, -130, 721.685, 19.312, 0, -51.5104, -19.312, 0, 51.5104, -485.081, -140, 712.147, 34.5153, 0, -7.80609, -34.5153, 0, 7.80609, -570.052, -150, 767.639, 0, 0, 0, 0, 0, 0, -623.81, -150, 823.998),
@@ -228,6 +231,23 @@ script = ExtResource("6_iwa3l")
 vehicle = NodePath("..")
 drive_wheel_index = 1
 
+[node name="Area3DFront" type="Area3D" parent="VehicleController/VehicleRigidBody" node_paths=PackedStringArray("vehicle")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.09239)
+script = ExtResource("7_37yjk")
+vehicle = NodePath("..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VehicleController/VehicleRigidBody/Area3DFront"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.122066)
+shape = SubResource("BoxShape3D_fccuq")
+
+[node name="Area3DRear" type="Area3D" parent="VehicleController/VehicleRigidBody" node_paths=PackedStringArray("vehicle")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.64306)
+script = ExtResource("7_37yjk")
+vehicle = NodePath("..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VehicleController/VehicleRigidBody/Area3DRear"]
+shape = SubResource("BoxShape3D_37yjk")
+
 [node name="GUI" type="Control" parent="." node_paths=PackedStringArray("vehicle", "game_manager")]
 layout_mode = 3
 anchors_preset = 15
@@ -265,6 +285,12 @@ text = "Gear: 1"
 layout_mode = 2
 text = "Skidding: 123	"
 
+[node name="TimeBonus" type="Label" parent="GUI/VBoxContainer"]
+layout_mode = 2
+
+[node name="ProxBonus" type="Label" parent="GUI/VBoxContainer"]
+layout_mode = 2
+
 [node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("follow_this")]
 transform = Transform3D(1, 0, 0, 0, 0.430873, 0.902412, 0, -0.902412, 0.430873, 4.05282, 66.6965, 5.80061)
 script = ExtResource("8_vwumr")
@@ -289,17 +315,6 @@ metadata/_edit_use_anchors_ = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_x8foh")
 
-[node name="block" type="StaticBody3D" parent="."]
-transform = Transform3D(200, 0, 0, 0, 200, 0, 0, 0, 200, 65.2727, -175.905, -641.492)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="block"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-mesh = SubResource("CylinderMesh_6grc4")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="block"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("CylinderShape3D_ndtxv")
-
 [node name="road_path" type="Path3D" parent="." groups=["Road"]]
 curve = SubResource("Curve3D_6grc4")
 script = ExtResource("11_wp37n")
@@ -321,7 +336,6 @@ path_joined = false
 material = ExtResource("12_6g7ee")
 
 [node name="mesh_road_base" type="CSGPolygon3D" parent="road_path" groups=["Road"]]
-use_collision = true
 polygon = PackedVector2Array(-20, -15, -8, -1, 8, -1, 20, -15)
 mode = 2
 path_node = NodePath("..")
@@ -372,7 +386,6 @@ path_joined = false
 
 [node name="mesh_armco_left" type="CSGPolygon3D" parent="road_path"]
 material_override = ExtResource("14_fccuq")
-use_collision = true
 polygon = PackedVector2Array(-5.52, 0.54, -5.5, 0.56, -5.5, 0.7, -5.55, 0.75, -5.5, 0.8, -5.5, 0.95, -5.52, 0.96, -5.7, 1, -5.7, 0.5)
 mode = 2
 path_node = NodePath("..")
@@ -389,7 +402,6 @@ material = ExtResource("14_fccuq")
 
 [node name="mesh_armco_right" type="CSGPolygon3D" parent="road_path"]
 material_override = ExtResource("14_fccuq")
-use_collision = true
 polygon = PackedVector2Array(5.52, 0.54, 5.5, 0.55, 5.5, 0.7, 5.55, 0.75, 5.5, 0.8, 5.5, 0.95, 5.52, 0.96, 5.7, 1, 5.7, 0.5)
 mode = 2
 path_node = NodePath("..")
@@ -448,10 +460,15 @@ instance_rotate = 90.0
 
 [node name="track_one_mountain" parent="." instance=ExtResource("15_jcyjv")]
 
-[node name="manager" type="Node3D" parent="." node_paths=PackedStringArray("player")]
+[node name="manager" type="Node3D" parent="." node_paths=PackedStringArray("player", "road")]
 script = ExtResource("16_vmlud")
 player = NodePath("../VehicleController")
+road = NodePath("../road_path/mesh_road")
 
+[connection signal="body_entered" from="VehicleController/VehicleRigidBody/Area3DFront" to="manager" method="_on_area_3d_front_body_entered"]
+[connection signal="body_exited" from="VehicleController/VehicleRigidBody/Area3DFront" to="manager" method="_on_area_3d_front_body_exited"]
+[connection signal="body_entered" from="VehicleController/VehicleRigidBody/Area3DRear" to="manager" method="_on_area_3d_rear_body_entered"]
+[connection signal="body_exited" from="VehicleController/VehicleRigidBody/Area3DRear" to="manager" method="_on_area_3d_rear_body_exited"]
 [connection signal="curve_changed" from="road_path" to="road_path" method="_on_curve_changed"]
 [connection signal="path_changed" from="road_path" to="instance_trees" method="_on_road_path_path_changed"]
 [connection signal="path_changed" from="road_path" to="instance_streetlamps" method="_on_road_path_path_changed"]

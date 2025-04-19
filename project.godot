@@ -84,6 +84,7 @@ Clutch={
 
 common/physics_ticks_per_second=120
 3d/physics_engine="Jolt Physics"
+jolt_physics_3d/simulation/areas_detect_static_bodies=true
 
 [rendering]
 
