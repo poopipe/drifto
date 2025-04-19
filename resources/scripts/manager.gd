@@ -1,12 +1,15 @@
 extends Node3D
-
 @export var player: VehicleController
-
-	
 @export var longitudinal_slip_threshold := 0.5
 @export var lateral_slip_threshold := 1.0
 
-var skidding:bool = false
+var skidding: bool = false
+var skids_initiated: int = 0
+var skid_start_time  := Time.get_unix_time_from_system()
+var skid_end_time := Time.get_unix_time_from_system()
+var skid_cooldown: float = 1.0
+var total_skidding: int = 0
+
 
 func _ready() -> void:
 	pass
@@ -29,10 +32,19 @@ func _process(_delta: float) -> void:
 			if absf(wheel.slip_vector.x) > lateral_slip_threshold or absf(wheel.slip_vector.y) > longitudinal_slip_threshold:
 				wheels_spinning = true
 				
-		if wheels_spinning and yaw_angle >= 0.1 and speed >= 20.0 :
+		#  how long has it been since we last stopped  a skid?
+		var skid_end_delta = Time.get_unix_time_from_system() - skid_start_time
+		
+		if wheels_spinning and yaw_angle >= 0.05 and speed >= 10.0 :
 			if not skidding:
 				skidding = true
+				skids_initiated += 1
+				skid_start_time = Time.get_unix_time_from_system()
 		else:
 			if skidding:
 				skidding = false
-	
+				skid_end_time = Time.get_unix_time_from_system()
+				
+		#if skidding or within grace period, add scoar
+		if skidding or skid_end_delta <= skid_cooldown :
+			total_skidding += 1

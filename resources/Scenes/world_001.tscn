@@ -228,7 +228,7 @@ script = ExtResource("6_iwa3l")
 vehicle = NodePath("..")
 drive_wheel_index = 1
 
-[node name="GUI" type="Control" parent="." node_paths=PackedStringArray("vehicle")]
+[node name="GUI" type="Control" parent="." node_paths=PackedStringArray("vehicle", "game_manager")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -237,23 +237,33 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("7_1fuwa")
 vehicle = NodePath("../VehicleController/VehicleRigidBody")
+game_manager = NodePath("../manager")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="GUI"]
+[node name="VBoxContainer" type="HBoxContainer" parent="GUI"]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -157.5
+offset_right = 157.5
+offset_bottom = 23.0
 grow_horizontal = 2
-grow_vertical = 2
 
 [node name="Speed" type="Label" parent="GUI/VBoxContainer"]
 layout_mode = 2
+text = "000 km/h"
 
 [node name="RPM" type="Label" parent="GUI/VBoxContainer"]
 layout_mode = 2
+text = "1234 rpm"
 
 [node name="Gear" type="Label" parent="GUI/VBoxContainer"]
 layout_mode = 2
+text = "Gear: 1"
+
+[node name="Skidding" type="Label" parent="GUI/VBoxContainer"]
+layout_mode = 2
+text = "Skidding: 123	"
 
 [node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("follow_this")]
 transform = Transform3D(1, 0, 0, 0, 0.430873, 0.902412, 0, -0.902412, 0.430873, 4.05282, 66.6965, 5.80061)
@@ -363,7 +373,7 @@ path_joined = false
 [node name="mesh_armco_left" type="CSGPolygon3D" parent="road_path"]
 material_override = ExtResource("14_fccuq")
 use_collision = true
-polygon = PackedVector2Array(-5.5, 0.55, -5.5, 0.95, -5.7, 1, -5.7, 0.5)
+polygon = PackedVector2Array(-5.52, 0.54, -5.5, 0.56, -5.5, 0.7, -5.55, 0.75, -5.5, 0.8, -5.5, 0.95, -5.52, 0.96, -5.7, 1, -5.7, 0.5)
 mode = 2
 path_node = NodePath("..")
 path_interval_type = 0
@@ -380,7 +390,7 @@ material = ExtResource("14_fccuq")
 [node name="mesh_armco_right" type="CSGPolygon3D" parent="road_path"]
 material_override = ExtResource("14_fccuq")
 use_collision = true
-polygon = PackedVector2Array(5.5, 0.55, 5.5, 0.95, 5.7, 1, 5.7, 0.5)
+polygon = PackedVector2Array(5.52, 0.54, 5.5, 0.55, 5.5, 0.7, 5.55, 0.75, 5.5, 0.8, 5.5, 0.95, 5.52, 0.96, 5.7, 1, 5.7, 0.5)
 mode = 2
 path_node = NodePath("..")
 path_interval_type = 0
