@@ -1,21 +1,31 @@
 extends Node3D
 @export var player: VehicleController
 @export var road:CSGPolygon3D
-@export var longitudinal_slip_threshold := 0.5
-@export var lateral_slip_threshold := 1.0
+@export var camera: Camera3D
 
+@export_group("skid thresholds")
+@export var longitudinal_slip_threshold := 0.7
+@export var lateral_slip_threshold := 1.0
+@export var skid_yaw_threshold:float = 0.025
+@export var skid_speed_threshold:float = 15.0	# not in km/h
+
+@export_group("scores and stuff")
+@export var skid_cooldown: float = 0.5
+@export var skid_score:int = 1	# base amount to increase score
+
+@export_group("effects")
 @export var vignette_material:ShaderMaterial
+@export var road_material:ShaderMaterial
+@export var effect_fade_rate:float = 1.25
 
 var skidding: bool = false
 var skids_initiated: int = 0
 var skid_start_time  := Time.get_unix_time_from_system()
 var skid_end_time := Time.get_unix_time_from_system()
-var skid_cooldown: float = 0.5
+
 var total_skidding: int = 0
 
-var skid_amount:float = 0.0	 # use this for any timed effects that are connected to skiddin
-var effect_fade_rate:float = 0.02
-var skid_score:int = 1
+var effect_amount:float = 0.0	 # use this for any timed effects that are connected to skiddin
 
 var skid_time_bonus = 1
 
@@ -29,51 +39,56 @@ func _ready() -> void:
 	pass
 
 
-func _process(_delta: float) -> void:
+func get_wheels_spinning(vehicle_node:Vehicle)-> bool:
+	# are any wheels spinning / sliding
+	# TODO: 
+	#	perhaps we want to check that more than one are slipping
+	#	or perhaps we want to check back wheels only?
+	for wheel in vehicle_node.wheel_array:
+		if absf(wheel.slip_vector.x) > lateral_slip_threshold or absf(wheel.slip_vector.y) > longitudinal_slip_threshold:
+			return true
+	return false
+	
+func get_yaw_angle(vehicle_node:Vehicle)-> float:
+	var plane_xz := Vector2(vehicle_node.local_velocity.x, vehicle_node.local_velocity.z)
+	if plane_xz.y < 0 and plane_xz.length() > 1.0:
+		plane_xz = plane_xz.normalized()
+		return 1.0 - absf(plane_xz.dot(Vector2.UP))
+	return 0.0
+
+func _process(delta: float) -> void:
 	var vehicle_node = player.vehicle_node
 	if is_instance_valid(vehicle_node):	
 		var speed = vehicle_node.speed * 3.6
-	
-		var plane_xz := Vector2(vehicle_node.local_velocity.x, vehicle_node.local_velocity.z)
-		var yaw_angle := 0.0
-		if plane_xz.y < 0 and plane_xz.length() > 1.0:
-			plane_xz = plane_xz.normalized()
-			yaw_angle = 1.0 - absf(plane_xz.dot(Vector2.UP))
-
-		var wheels_spinning := false
-		for wheel in vehicle_node.wheel_array:
-			if absf(wheel.slip_vector.x) > lateral_slip_threshold or absf(wheel.slip_vector.y) > longitudinal_slip_threshold:
-				wheels_spinning = true
-
+		var yaw_angle := get_yaw_angle(vehicle_node)
+		var wheels_spinning := get_wheels_spinning(vehicle_node)
+		
 		# how long has it been since we last started or stopped a skid?
 		# this seems to be in seconds
 		var now = Time.get_unix_time_from_system()
 		var skid_end_delta = now - skid_end_time
 		var skid_start_delta = now - skid_start_time
 
-
-		# get skid_amount,. connected to skid cooldown time
-		
-
-		# handle skidding
-		if wheels_spinning and yaw_angle >= 0.025 and speed >= 10.0 :
+		# check for skidding
+		if wheels_spinning and yaw_angle >= skid_yaw_threshold and speed >= skid_speed_threshold :
 			if not skidding:
 				skidding = true
 				skids_initiated += 1
 				skid_start_time = Time.get_unix_time_from_system()
-				
 		else:
 			if skidding:
 				skidding = false
 				skid_end_time = Time.get_unix_time_from_system()
 
 		
-		if skidding:
-			skid_amount += effect_fade_rate
+		# get effect intensity
+		if skidding or skid_end_delta <= skid_cooldown:
+			effect_amount += effect_fade_rate * delta
 		else:
-			skid_amount -= effect_fade_rate
-		skid_amount = clamp(skid_amount, 0.0, 1.0)
-
+			# slightly slower fade out 
+			effect_amount -= effect_fade_rate * 0.66 * delta
+		effect_amount = clamp(effect_amount, 0.0, 1.0)
+	
 		# get  time multiplier 
 		if skidding or skid_end_delta <= skid_cooldown:
 			skid_time_bonus = 1 + floor(2.0 * skid_start_delta)
@@ -94,9 +109,11 @@ func _process(_delta: float) -> void:
 			total_skidding += skid_score * skid_time_bonus * proximity_bonus
 			# do stuff with shader
 		
+		# anything we pipe into a material should be 0-1 range (or -1:1)
+		vignette_material.set_shader_parameter("coverage", effect_amount)
+		road_material.set_shader_parameter("speed", effect_amount)
 		
-		vignette_material.set_shader_parameter("coverage", skid_amount)
-
+		camera.fov = 75.0 + (effect_amount * 10.0)
 
 func _on_area_3d_front_body_entered(body: Node3D) -> void:
 	if not body == player.vehicle_node and not body == road:

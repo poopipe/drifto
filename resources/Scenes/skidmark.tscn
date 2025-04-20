@@ -8,4 +8,6 @@
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.225342, 0)
 size = Vector3(0.25, 0.549316, 0.5)
 texture_albedo = ExtResource("1_kts21")
+upper_fade = 1e-05
+lower_fade = 1e-05
 distance_fade_enabled = true

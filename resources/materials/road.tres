@@ -1,9 +1,12 @@
-[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://8ybeqagdpx28"]
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://8ybeqagdpx28"]
 
 [ext_resource type="Shader" uid="uid://blbvn8gtir83p" path="res://resources/materials/road.gdshader" id="1_1jonr"]
+[ext_resource type="Texture2D" uid="uid://qdtsuyytors1" path="res://resources/textures/noise.png" id="2_37046"]
 
 [resource]
 render_priority = 0
 shader = ExtResource("1_1jonr")
 shader_parameter/world_light_offset = -0.01
 shader_parameter/basecolor = Vector3(0.1, 0.1, 0.1)
+shader_parameter/speed = 1.0
+shader_parameter/noise = ExtResource("2_37046")

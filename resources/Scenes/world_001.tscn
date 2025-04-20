@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://c3ixqkc6k13yi" path="res://addons/gevp/scenes/vehicle_controller.tscn" id="1_5d8ml"]
 [ext_resource type="PackedScene" uid="uid://3c0vtybx44g8" path="res://resources/Scenes/car_86.tscn" id="2_6g7ee"]
 [ext_resource type="PackedScene" uid="uid://b2hlchrj4h2b7" path="res://addons/gevp/scenes/engine_sound.tscn" id="3_oo188"]
-[ext_resource type="PackedScene" uid="uid://h6vdpba71kpr" path="res://addons/gevp/scenes/smoke_effect.tscn" id="4_fccuq"]
+[ext_resource type="PackedScene" uid="uid://h6vdpba71kpr" path="res://resources/Scenes/smoke_effect.tscn" id="4_fccuq"]
 [ext_resource type="Texture2D" uid="uid://gr0r6c33424a" path="res://resources/textures/headlight_projection_mask.png" id="5_37yjk"]
 [ext_resource type="Script" uid="uid://1i2a37vp6oay" path="res://resources/scripts/skidmark_generator.gd" id="6_iwa3l"]
 [ext_resource type="Script" uid="uid://ba7vo2i7d6y4w" path="res://addons/gevp/scripts/gui.gd" id="7_1fuwa"]
@@ -23,10 +23,10 @@
 [ext_resource type="Material" uid="uid://bve0pcutdikid" path="res://resources/materials/pp_vignette.tres" id="21_iwa3l"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fccuq"]
-size = Vector3(3, 1, 2)
+size = Vector3(3, 1, 3)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_37yjk"]
-size = Vector3(3, 1, 2)
+size = Vector3(3, 1, 3)
 
 [sub_resource type="QuadMesh" id="QuadMesh_37yjk"]
 material = ExtResource("21_iwa3l")
@@ -206,6 +206,7 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 59.610
 vehicle_node = NodePath("VehicleRigidBody")
 
 [node name="VehicleRigidBody" parent="VehicleController" instance=ExtResource("2_6g7ee")]
+brake_force_multiplier = 4.0
 
 [node name="EngineSound" parent="VehicleController/VehicleRigidBody" node_paths=PackedStringArray("vehicle") instance=ExtResource("3_oo188")]
 vehicle = NodePath("..")
@@ -343,7 +344,7 @@ path_rotation = 2
 path_rotation_accurate = false
 path_local = true
 path_continuous_u = true
-path_u_distance = 16.0
+path_u_distance = 64.0
 path_joined = false
 material = ExtResource("12_6g7ee")
 
@@ -472,11 +473,13 @@ instance_rotate = 90.0
 
 [node name="track_one_mountain" parent="." instance=ExtResource("15_jcyjv")]
 
-[node name="manager" type="Node3D" parent="." node_paths=PackedStringArray("player", "road")]
+[node name="manager" type="Node3D" parent="." node_paths=PackedStringArray("player", "road", "camera")]
 script = ExtResource("16_vmlud")
 player = NodePath("../VehicleController")
 road = NodePath("../road_path/mesh_road")
+camera = NodePath("../Camera3D")
 vignette_material = ExtResource("21_iwa3l")
+road_material = ExtResource("12_6g7ee")
 
 [connection signal="body_entered" from="VehicleController/VehicleRigidBody/Area3DFront" to="manager" method="_on_area_3d_front_body_entered"]
 [connection signal="body_exited" from="VehicleController/VehicleRigidBody/Area3DFront" to="manager" method="_on_area_3d_front_body_exited"]
