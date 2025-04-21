@@ -5,10 +5,10 @@ uniform sampler2D SCREEN_TEXTURE: hint_screen_texture, repeat_disable, filter_li
 //uniform sampler2D NORMAL_TEXTURE : hint_normal_roughness_texture, filter_linear_mipmap;
 //uniform sampler2D DEPTH_TEXTURE : hint_depth_texture, filter_linear_mipmap;
 
-uniform sampler2D noise: repeat_enable;
+//uniform sampler2D noise: repeat_enable;
 
-uniform float coverage = 0.0	;
-
+uniform float coverage = 0.0;
+uniform float vignette_strength = 0.6;
 void vertex(){
 	POSITION = vec4(VERTEX.xy * 2.0, 1.0, 1.0);
 }
@@ -31,15 +31,16 @@ float effect_mask(float posx, float cov, float offset, float aspect){
 
 void fragment() {
 	// sort out UVs
-	float ratio = 1.0 / ( VIEWPORT_SIZE.x / VIEWPORT_SIZE.y);
+	float ratio = 1.0 / ( VIEWPORT_SIZE.y / VIEWPORT_SIZE.x);
 	vec2 pos = SCREEN_UV * 2.0 - 1.0;
-	pos = vec2(pos.x / ratio , pos.y  );
+	pos = vec2(pos.x , pos.y / ratio);
+	pos *= 0.4	;
 	pos = cartesian_to_polar(pos, vec2(0.0));
 	
 	float mask = effect_mask(pos.x, coverage * 0.1, 0.5, ratio);
 	mask = smoothstep(0.0, 0.2, mask);
-	mask =  mask;
-	
+	mask =  mask ;
+	mask = clamp(mask, 1.0 - vignette_strength, 1.0);
 	vec3 screen_texture = texture(SCREEN_TEXTURE, SCREEN_UV).xyz;
 	//vec3 lines = vec3(d); // vec3(rings * (1.0 - d));
 	ALBEDO = screen_texture * vec3(mask) ;

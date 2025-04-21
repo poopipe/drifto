@@ -11,7 +11,7 @@ extends Control
 
 
 func _process(delta):
-	speed_label.text = str(round(vehicle.speed * 3.6)) + " km/h"
+	speed_label.text = str(vehicle.speed) #str(round(vehicle.speed * 3.6)) + " km/h"
 	rpm_label.text = str(round(vehicle.motor_rpm)) + " rpm"
 	gear_label.text = "Gear: " + str(vehicle.current_gear)
 	skidding_label.text = "Skidding:" + str(game_manager.total_skidding)

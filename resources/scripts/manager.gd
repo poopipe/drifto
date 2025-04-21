@@ -82,11 +82,15 @@ func _process(delta: float) -> void:
 
 		
 		# get effect intensity
-		if skidding or skid_end_delta <= skid_cooldown:
-			effect_amount += effect_fade_rate * delta
-		else:
-			# slightly slower fade out 
-			effect_amount -= effect_fade_rate * 0.66 * delta
+		#if skidding or skid_end_delta <= skid_cooldown:
+		#	effect_amount += effect_fade_rate * delta
+		#else:
+		#	# slightly slower fade out 
+		#	effect_amount -= effect_fade_rate * 0.66 * delta
+		#effect_amount = clamp(effect_amount, 0.0, 1.0)
+	
+		# attach effect amount to speed instead
+		effect_amount = remap(vehicle_node.speed,10.0, 25.0, 0.0, 1.0)
 		effect_amount = clamp(effect_amount, 0.0, 1.0)
 	
 		# get  time multiplier 
@@ -110,8 +114,16 @@ func _process(delta: float) -> void:
 			# do stuff with shader
 		
 		# anything we pipe into a material should be 0-1 range (or -1:1)
+		
 		vignette_material.set_shader_parameter("coverage", effect_amount)
-		road_material.set_shader_parameter("speed", effect_amount)
+		#road_material.set_shader_parameter("coverage", effect_amount)
+		#var speed_amt:float = clamp(vehicle_node.speed, 0.0, 20.0) / 20.0
+
+		road_material.set_shader_parameter("coverage", effect_amount)
+		if skidding or skid_end_delta <= skid_cooldown:
+			road_material.set_shader_parameter("speed", effect_amount)
+		else:
+			road_material.set_shader_parameter("speed", 0.0)
 		
 		camera.fov = 75.0 + (effect_amount * 10.0)
 
