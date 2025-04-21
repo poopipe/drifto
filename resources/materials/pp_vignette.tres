@@ -1,10 +1,9 @@
-[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://bve0pcutdikid"]
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://bve0pcutdikid"]
 
 [ext_resource type="Shader" uid="uid://du1nq2d0y032g" path="res://resources/materials/pp_speedlines.gdshader" id="1_2kpa5"]
-[ext_resource type="Texture2D" uid="uid://qdtsuyytors1" path="res://resources/textures/noise.png" id="2_a3fi0"]
 
 [resource]
 render_priority = 0
 shader = ExtResource("1_2kpa5")
-shader_parameter/noise = ExtResource("2_a3fi0")
 shader_parameter/coverage = 1.0
+shader_parameter/vignette_strength = 0.6

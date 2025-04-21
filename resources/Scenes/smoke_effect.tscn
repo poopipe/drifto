@@ -37,6 +37,7 @@ radial_segments = 8
 rings = 4
 
 [node name="Smoke" type="GPUParticles3D"]
+cast_shadow = 0
 emitting = false
 amount = 100
 lifetime = 2.0

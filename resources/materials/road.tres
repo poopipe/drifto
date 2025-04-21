@@ -1,15 +1,18 @@
-[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://8ybeqagdpx28"]
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://8ybeqagdpx28"]
 
 [ext_resource type="Shader" uid="uid://blbvn8gtir83p" path="res://resources/materials/road.gdshader" id="1_1jonr"]
 [ext_resource type="Texture2D" uid="uid://qdtsuyytors1" path="res://resources/textures/noise.png" id="2_37046"]
+[ext_resource type="Texture2D" uid="uid://d2gd551g34yab" path="res://resources/textures/road_surface_output.png" id="2_xmfpm"]
 
 [resource]
 render_priority = 0
 shader = ExtResource("1_1jonr")
 shader_parameter/world_light_offset = -0.01
-shader_parameter/basecolor = Vector3(0.1, 0.1, 0.1)
+shader_parameter/basecolor = Vector3(0.08, 0.08, 0.09)
+shader_parameter/center_line_color = Vector3(0.6, 0.5, 0.1)
+shader_parameter/side_line_color = Vector3(0.6, 0.6, 0.6)
 shader_parameter/coverage = 1.0
-shader_parameter/speed = 1.0
+shader_parameter/drift_amount = 0.0
 shader_parameter/noise = ExtResource("2_37046")
-shader_parameter/speedline_mask_dist = 27.47
-shader_parameter/view_mask_offset = 0.3
+shader_parameter/basecolor_map = ExtResource("2_xmfpm")
+shader_parameter/view_mask_offset = 0.35

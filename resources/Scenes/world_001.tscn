@@ -216,7 +216,7 @@ vehicle = NodePath("..")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="VehicleController/VehicleRigidBody"]
 transform = Transform3D(1, 0, 0, 0, 0.984808, 0.173648, 0, -0.173648, 0.984808, 0, 0.341629, -2.65599)
-light_color = Color(1, 0.96, 0.76, 1)
+light_color = Color(0.94, 0.99, 1, 1)
 light_energy = 4.0
 light_projector = ExtResource("5_37yjk")
 light_size = 0.042
@@ -344,7 +344,7 @@ path_rotation = 2
 path_rotation_accurate = false
 path_local = true
 path_continuous_u = true
-path_u_distance = 64.0
+path_u_distance = 128.0
 path_joined = false
 material = ExtResource("12_6g7ee")
 
@@ -432,7 +432,7 @@ material = ExtResource("14_fccuq")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.891397, -0.424018, 0.160063, 0.256912, 0.763675, 0.592281, -0.373374, -0.486836, 0.789673, 17, 209.839, -183)
 light_color = Color(0.47, 0.664333, 1, 1)
-light_energy = 0.3
+light_energy = 1.1
 light_specular = 0.0
 shadow_enabled = true
 shadow_opacity = 0.5

@@ -121,9 +121,9 @@ func _process(delta: float) -> void:
 
 		road_material.set_shader_parameter("coverage", effect_amount)
 		if skidding or skid_end_delta <= skid_cooldown:
-			road_material.set_shader_parameter("speed", effect_amount)
+			road_material.set_shader_parameter("drift_amount", effect_amount)
 		else:
-			road_material.set_shader_parameter("speed", 0.0)
+			road_material.set_shader_parameter("drift_amount", 0.0)
 		
 		camera.fov = 75.0 + (effect_amount * 10.0)
 
