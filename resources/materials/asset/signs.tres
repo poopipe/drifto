@@ -1,0 +1,16 @@
+[gd_resource type="ShaderMaterial" load_steps=5 format=3 uid="uid://js63ja3lgfgy"]
+
+[ext_resource type="Shader" uid="uid://cji2n2t664ens" path="res://resources/shaders/toonlight_two_color_masked.gdshader" id="1_oyfho"]
+[ext_resource type="Texture2D" uid="uid://b6dmyka44mjlj" path="res://resources/textures/PolygonStreetRacer_Signs_01.png" id="2_7cwo1"]
+[ext_resource type="Texture2D" uid="uid://dp6o0kdsfls23" path="res://resources/textures/signs_effect_mask.png" id="3_6j0cs"]
+[ext_resource type="Texture2D" uid="uid://c2fmfeby2ft3g" path="res://resources/textures/signs_mask.png" id="4_mnpc1"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_oyfho")
+shader_parameter/basecolor_a = Color(0.83, 0.83, 0.83, 1)
+shader_parameter/basecolor_b = Color(0.740522, 0.0379665, 0.0429431, 1)
+shader_parameter/texture_mask = ExtResource("4_mnpc1")
+shader_parameter/texture_effect_mask = ExtResource("3_6j0cs")
+shader_parameter/texture_basecolor = ExtResource("2_7cwo1")
+shader_parameter/world_light_strength = 0.2

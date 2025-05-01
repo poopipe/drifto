@@ -1,0 +1,12 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://bvdu73r5yvhpo"]
+
+[ext_resource type="Shader" uid="uid://clsbjrpqdsmmu" path="res://resources/shaders/carlight.gdshader" id="1_j6746"]
+[ext_resource type="Texture2D" uid="uid://bna80af4luqee" path="res://resources/textures/car_decals_basecolor.png" id="2_ja7lg"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_j6746")
+shader_parameter/basecolor = Vector3(0.8, 0.8, 0.8)
+shader_parameter/world_light_offset = 0.1
+shader_parameter/world_light_shadow_strength = 0.3
+shader_parameter/texture_basecolor = ExtResource("2_ja7lg")

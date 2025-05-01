@@ -56,7 +56,7 @@ func get_yaw_angle(vehicle_node:Vehicle)-> float:
 		return 1.0 - absf(plane_xz.dot(Vector2.UP))
 	return 0.0
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	var vehicle_node = player.vehicle_node
 	if is_instance_valid(vehicle_node):	
 		var speed = vehicle_node.speed * 3.6

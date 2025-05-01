@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://cbhfd8a5r172m"]
 
-[ext_resource type="Shader" uid="uid://861u6l1ugo8f" path="res://resources/materials/smoke_shader.gdshader" id="1_rrip3"]
+[ext_resource type="Shader" uid="uid://861u6l1ugo8f" path="res://resources/shaders/smoke_shader.gdshader" id="1_rrip3"]
 
 [resource]
 render_priority = 0

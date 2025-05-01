@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://dg7c4ysyrb7yn"]
 
 [ext_resource type="PackedScene" uid="uid://3c0vtybx44g8" path="res://resources/Scenes/car_86.tscn" id="1_p8afq"]
-[ext_resource type="Shader" uid="uid://ckcemdxgypv2j" path="res://resources/materials/toonlight.gdshader" id="2_3xys7"]
+[ext_resource type="Shader" uid="uid://ckcemdxgypv2j" path="res://resources/shaders/toonlight.gdshader" id="2_3xys7"]
 [ext_resource type="PackedScene" uid="uid://wxwpnv43sr71" path="res://resources/Scenes/skidmark.tscn" id="3_qmci1"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qmci1"]

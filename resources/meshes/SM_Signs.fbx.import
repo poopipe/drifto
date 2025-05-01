@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://by4pxbq4f7iqn"
-path="res://.godot/imported/86_body.fbx-10b37df2985c1a0995fbc9c2acbab4bc.scn"
+uid="uid://cmnir4u3ymbwf"
+path="res://.godot/imported/SM_Signs.fbx-24bd0e696539652e4ceddb50d6e3ed20.scn"
 
 [deps]
 
-source_file="res://resources/meshes/86_body.fbx"
-dest_files=["res://.godot/imported/86_body.fbx-10b37df2985c1a0995fbc9c2acbab4bc.scn"]
+source_file="res://resources/meshes/SM_Signs.fbx"
+dest_files=["res://.godot/imported/SM_Signs.fbx-24bd0e696539652e4ceddb50d6e3ed20.scn"]
 
 [params]
 
@@ -34,13 +34,21 @@ animation/import_rest_as_RESET=false
 import_script/path=""
 _subresources={
 "meshes": {
-"86_body": {
+"SM_Prop_Sign_Arrow_left_001": {
 "generate/lightmap_uv": 0,
 "generate/lods": 0,
 "generate/shadow_meshes": 0,
 "lods/normal_merge_angle": 60.0,
 "save_to_file/enabled": true,
-"save_to_file/path": "res://resources/gd_meshes/86_body.res"
+"save_to_file/path": "res://resources/gd_meshes/SM_Prop_Sign_Arrow_left_001.res"
+},
+"SM_Prop_Sign_Arrow_right_01": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 60.0,
+"save_to_file/enabled": true,
+"save_to_file/path": "res://resources/gd_meshes/SM_Prop_Sign_Arrow_right_01.res"
 }
 }
 }

@@ -1,9 +1,9 @@
 [gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://umbapi20kp7x"]
 
-[ext_resource type="Shader" uid="uid://ckcemdxgypv2j" path="res://resources/materials/toonlight.gdshader" id="1_txnfj"]
+[ext_resource type="Shader" uid="uid://ckcemdxgypv2j" path="res://resources/shaders/toonlight.gdshader" id="1_txnfj"]
 
 [resource]
 render_priority = 0
 shader = ExtResource("1_txnfj")
-shader_parameter/basecolor = Vector3(0.6, 0.3, 0.5)
+shader_parameter/basecolor = Color(0, 0, 0, 1)
 shader_parameter/world_light_strength = 0.2

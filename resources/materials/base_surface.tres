@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dg746dwkdpn4v"]
 
-[ext_resource type="Shader" uid="uid://clsbjrpqdsmmu" path="res://resources/materials/carlight.gdshader" id="1_rdwoi"]
+[ext_resource type="Shader" uid="uid://clsbjrpqdsmmu" path="res://resources/shaders/carlight.gdshader" id="1_rdwoi"]
 
 [resource]
 render_priority = 0

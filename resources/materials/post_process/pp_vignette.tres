@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://bve0pcutdikid"]
 
-[ext_resource type="Shader" uid="uid://du1nq2d0y032g" path="res://resources/materials/pp_speedlines.gdshader" id="1_2kpa5"]
+[ext_resource type="Shader" uid="uid://du1nq2d0y032g" path="res://resources/shaders/pp_speedlines.gdshader" id="1_2kpa5"]
 
 [resource]
 render_priority = 0

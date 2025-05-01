@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://cmt5hyajglfiu"]
+
+[ext_resource type="Shader" uid="uid://ckcemdxgypv2j" path="res://resources/shaders/toonlight.gdshader" id="1_0rgcx"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_0rgcx")
+shader_parameter/basecolor = Color(0.216667, 0.159085, 0.0481256, 1)
+shader_parameter/world_light_strength = 0.025

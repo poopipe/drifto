@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://tvocwj83amdr"]
+
+[ext_resource type="Shader" uid="uid://cm02o3kyx867n" path="res://resources/materials/asset/toonlight_clip.gdshader" id="1_eyccq"]
+[ext_resource type="Texture2D" uid="uid://bf5f1a14js6px" path="res://resources/textures/Leaves_Pine_Texture.png" id="2_6uyti"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_eyccq")
+shader_parameter/basecolor = Color(0.13448, 0.16, 0.1136, 1)
+shader_parameter/texture_alpha = ExtResource("2_6uyti")
+shader_parameter/alpha_scissor_threshold = 0.5

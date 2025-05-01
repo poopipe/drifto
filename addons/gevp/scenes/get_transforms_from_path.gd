@@ -1,37 +1,128 @@
 @tool
 extends MultiMeshInstance3D
-
-@export var path:	Path3D
-@export var instance_spacing: float
-@export var start_offset: float
-@export var length: float	# 0 = full spline len - end offset
-@export var end_offset: float
-@export var h_offset: float
-@export var v_offset: float
-@export var h_offset_random: float
-@export var v_offset_random: float
-@export var scaling: Vector3 = Vector3(1.0, 1.0, 1.0)
-@export var scale_random: Vector3 = Vector3(0.0, 0.0, 0.0)
-@export var alternate_sides: bool
-@export var force_up: bool
-@export var seed: int = 69
-@export var instance_rotate: float = 0.0
-
-
-
 var is_dirty := false
+@export var path:	Path3D
+@export var instance_spacing: float:
+	# TODO: Why the fuck cant i generalise this?
+	get:
+		return instance_spacing
+	set(value):
+		if value != instance_spacing:
+			instance_spacing = value
+			is_dirty = true
+@export var start_offset: float:
+	get:
+		return start_offset
+	set(value):
+		if value != start_offset:
+			start_offset = value
+			is_dirty = true			
+@export var length: float:	# 0 = full spline len - end offset
+	get:
+		return length
+	set(value):
+		if value != length:
+			length = value
+			is_dirty = true			
+@export var end_offset: float:
+	get:
+		return end_offset
+	set(value):
+		if value != end_offset:
+			end_offset = value
+			is_dirty = true			
+@export var h_offset: float:
+	get:
+		return h_offset
+	set(value):
+		if value != h_offset:
+			h_offset = value
+			is_dirty = true			
+@export var v_offset: float:
+	get:
+		return v_offset
+	set(value):
+		if value != v_offset:
+			v_offset = value
+			is_dirty = true			
+@export var h_offset_random: float:
+	get:
+		return h_offset_random
+	set(value):
+		if value != h_offset_random:
+			h_offset_random = value
+			is_dirty = true			
+@export var v_offset_random: float:
+	get:
+		return v_offset_random
+	set(value):
+		if value != v_offset_random:
+			v_offset_random = value
+			is_dirty = true
+@export var scaling: Vector3 = Vector3(1.0, 1.0, 1.0):
+	get:
+		return scaling
+	set(value):
+		if value != scaling:
+			scaling = value
+			is_dirty = true
+@export var scale_random: Vector3 = Vector3(0.0, 0.0, 0.0):
+	get:
+		return scale_random
+	set(value):
+		if value != scale_random:
+			scale_random = value
+			is_dirty = true
+@export var alternate_sides: bool:
+	get:
+		return alternate_sides
+	set(value):
+		if value != alternate_sides:
+			alternate_sides = value
+			is_dirty = true
+@export var force_up: bool:
+	get:
+		return force_up
+	set(value):
+		if value != force_up:
+			force_up = value
+			is_dirty = true
+@export var seed: int = 69:
+	get:
+		return seed
+	set(value):
+		if value != seed:
+			seed = value
+			is_dirty = true
+@export var instance_rotate: float = 0.0:
+	get:
+		return instance_rotate
+	set(value):
+		if value != instance_rotate:
+			instance_rotate = value
+			is_dirty = true
+@export var rotate_random: float = 0.0:
+	get:
+		return rotate_random
+	set(value):
+		if value != rotate_random:
+			rotate_random = value
+			is_dirty = true
+
+
 var rng = RandomNumberGenerator.new()
-
-
+	
 func _process(_delta):
 	if is_dirty:
 		_update_multimesh()
 		is_dirty = false
 
+
 func _update_multimesh():
 	'''handle positioning of mesh instances along specified path'''
 	print('updating')
 	rng.seed = seed
+	var ass = path
 	var curve = path.curve
 	var curve_length:float = curve.get_baked_length()
 	var end: float
@@ -52,7 +143,7 @@ func _update_multimesh():
 		var h = h_offset + rng.randf_range(-h_offset_random, h_offset_random)
 		var v = v_offset + rng.randf_range(-v_offset_random, v_offset_random)
 		
-		var distance = start_offset + (instance_spacing) * i  + h_offset
+		var distance = start_offset + (instance_spacing) * i 
 		# bail if outside start and end bounds
 		if distance > end or distance < start_offset:
 			continue
@@ -74,10 +165,11 @@ func _update_multimesh():
 			
 		var s = scaling
 		transform = transform.scaled_local(s)			
-		var r = deg_to_rad(instance_rotate)
-		transform = transform.rotated_local(Vector3(0.0, 1.0, 0.0), r)
 		
+		var r = deg_to_rad(instance_rotate) + rng.randf_range(-rotate_random, rotate_random)
+		transform = transform.rotated_local(Vector3(0.0, 1.0, 0.0), r)
+
 		instance_mesh.set_instance_transform(i, transform)
 
-func _on_road_path_path_changed() -> void:
+func _on_path_changed() -> void:
 	is_dirty = true

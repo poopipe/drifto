@@ -7,7 +7,7 @@ uniform vec3 center_line_color = vec3(0.6, 0.4, 0.0) ;
 uniform vec3 side_line_color = vec3 (0.6);
 
 uniform float coverage = 0.0;
-uniform float drift_amount = 0.0;
+//uniform float drift_amount = 0.0;
 uniform sampler2D noise: repeat_enable;
 uniform sampler2D basecolor_map: repeat_enable;
 //uniform float speedline_mask_dist = 0.0;
@@ -38,7 +38,7 @@ void fragment() {
 	vec2 pos = fract(UV);
 
 	// surface texture
-	vec2 texture_uv = pos * vec2(12.0, 8.0);
+	vec2 texture_uv = pos * vec2(12.0, 16.0);
 	float surface = texture(basecolor_map, texture_uv).x;
 	//surface = clamp(surface, 0.0, 1.0);
 	surface *= 0.6;
@@ -53,8 +53,8 @@ void fragment() {
 	float center_gap = fract(pos.x * 8.0);
 	center_gap = step(0.4, center_gap);
 	//center_line -= center_gap;
-	float side_lines = step(0.875, lines);
-	side_lines = side_lines - step(0.92, lines);
+	float side_lines = step(0.475, lines);
+	side_lines = side_lines - step(0.50, lines);
 	// create road surface
 	bands -= surface;
 	bands = clamp(bands, 0.0, 1.0);
@@ -99,5 +99,5 @@ void light() {
 	float l = clamp(dot(worldNormal, worldLight), 0.0, 1.0);
     //vec3 l = LIGHT_COLOR 
 	DIFFUSE_LIGHT += smoothstep(world_light_offset	, world_light_offset + 0.01, l) * ATTENUATION * LIGHT_COLOR / PI;
-	//DIFFUSE_LIGHT = vec3(l);
+	//DIFFUSE_LIGHT = vec3(ATTENUATION);
 }

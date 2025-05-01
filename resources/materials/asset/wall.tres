@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://c8weq6vhoxn6i"]
 
-[ext_resource type="Shader" uid="uid://ckcemdxgypv2j" path="res://resources/materials/toonlight.gdshader" id="1_sl6xa"]
+[ext_resource type="Shader" uid="uid://ckcemdxgypv2j" path="res://resources/shaders/toonlight.gdshader" id="1_sl6xa"]
 
 [resource]
 render_priority = 0
