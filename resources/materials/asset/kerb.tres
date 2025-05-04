@@ -7,3 +7,5 @@ render_priority = 0
 shader = ExtResource("1_bfwdh")
 shader_parameter/basecolor = Color(0.21, 0.21, 0.21, 1)
 shader_parameter/world_light_strength = 0.2
+shader_parameter/view_mask_offset = 0.45
+shader_parameter/coverage = 0.0

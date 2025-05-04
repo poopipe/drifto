@@ -1,13 +1,24 @@
-[gd_scene load_steps=7 format=3 uid="uid://3c0vtybx44g8"]
+[gd_scene load_steps=14 format=3 uid="uid://3c0vtybx44g8"]
 
 [ext_resource type="Script" uid="uid://bfh8s2401t8tp" path="res://addons/gevp/scripts/vehicle.gd" id="1_oiavp"]
 [ext_resource type="Script" uid="uid://bdcfho6lohmi3" path="res://addons/gevp/scripts/wheel.gd" id="2_b2ojy"]
 [ext_resource type="Curve" uid="uid://vpp8m060y3lm" path="res://resources/scripts/drift_car_torque_curve.tres" id="2_mkuwc"]
 [ext_resource type="ArrayMesh" uid="uid://1julwog2sini" path="res://resources/gd_meshes/86_body.res" id="3_3wns2"]
 [ext_resource type="ArrayMesh" uid="uid://yf5n4wek375j" path="res://resources/gd_meshes/86_wheel.res" id="5_mkuwc"]
+[ext_resource type="PackedScene" uid="uid://b2hlchrj4h2b7" path="res://addons/gevp/scenes/engine_sound.tscn" id="6_pv8lk"]
+[ext_resource type="PackedScene" uid="uid://h6vdpba71kpr" path="res://resources/Scenes/smoke_effect.tscn" id="7_w4st2"]
+[ext_resource type="Texture2D" uid="uid://gr0r6c33424a" path="res://resources/textures/headlight_projection_mask.png" id="8_fke1n"]
+[ext_resource type="Script" uid="uid://1i2a37vp6oay" path="res://resources/scripts/skidmark_generator.gd" id="9_k6que"]
+[ext_resource type="Script" uid="uid://cu3rydur0l7t1" path="res://resources/scripts/proximity_detector.gd" id="10_w4st2"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mkuwc"]
 size = Vector3(2.1, 1.13304, 5.09586)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fke1n"]
+size = Vector3(3, 1, 3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_k6que"]
+size = Vector3(3, 1, 3)
 
 [node name="VehicleRigidBody" type="RigidBody3D" node_paths=PackedStringArray("front_left_wheel", "front_right_wheel", "rear_left_wheel", "rear_right_wheel")]
 script = ExtResource("1_oiavp")
@@ -121,3 +132,50 @@ wheel_node = NodePath("RearRightWheel")
 transform = Transform3D(-1, 1.50996e-07, 6.60024e-15, 0, -4.37114e-08, 1, 1.50996e-07, 1, 4.37114e-08, 0.16, 0, 0)
 mesh = ExtResource("5_mkuwc")
 skeleton = NodePath("")
+
+[node name="EngineSound" parent="." node_paths=PackedStringArray("vehicle") instance=ExtResource("6_pv8lk")]
+vehicle = NodePath("..")
+
+[node name="Smoke" parent="." node_paths=PackedStringArray("vehicle") instance=ExtResource("7_w4st2")]
+vehicle = NodePath("..")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.984808, 0.173648, 0, -0.173648, 0.984808, 0, 0.341629, -2.65599)
+light_color = Color(0.94, 0.99, 1, 1)
+light_energy = 6.0
+light_projector = ExtResource("8_fke1n")
+light_size = 0.042
+light_specular = 0.0
+shadow_enabled = true
+shadow_reverse_cull_face = true
+spot_range = 150.0
+spot_attenuation = 0.0
+spot_angle = 40.5
+spot_angle_attenuation = 0.196146
+
+[node name="SkidmarkLeft" type="Node3D" parent="." node_paths=PackedStringArray("vehicle")]
+script = ExtResource("9_k6que")
+vehicle = NodePath("..")
+
+[node name="SkidmarkRight" type="Node3D" parent="." node_paths=PackedStringArray("vehicle")]
+script = ExtResource("9_k6que")
+vehicle = NodePath("..")
+drive_wheel_index = 1
+
+[node name="Area3DFront" type="Area3D" parent="." node_paths=PackedStringArray("vehicle") groups=["proximity_areas"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.09239)
+script = ExtResource("10_w4st2")
+vehicle = NodePath("..")
+front = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3DFront"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.122066)
+shape = SubResource("BoxShape3D_fke1n")
+
+[node name="Area3DRear" type="Area3D" parent="." node_paths=PackedStringArray("vehicle") groups=["proximity_areas"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.64306)
+script = ExtResource("10_w4st2")
+vehicle = NodePath("..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3DRear"]
+shape = SubResource("BoxShape3D_k6que")

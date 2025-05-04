@@ -120,7 +120,6 @@ func _process(_delta):
 
 func _update_multimesh():
 	'''handle positioning of mesh instances along specified path'''
-	print('updating')
 	rng.seed = seed
 	var ass = path
 	var curve = path.curve
@@ -132,9 +131,9 @@ func _update_multimesh():
 	else:
 		end = start_offset + curve_length - end_offset
 		
-	var active_length = end - start_offset
+	var active_length : float = end - start_offset
 
-	var num_instances := floor(active_length / instance_spacing)
+	var num_instances = floor(active_length / instance_spacing)
 	var instance_mesh: MultiMesh = multimesh
 	instance_mesh.instance_count = num_instances 
 	

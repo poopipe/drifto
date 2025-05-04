@@ -44,7 +44,7 @@ void fragment() {
 	ROUGHNESS = roughness_tex * roughness;
 }
 void light() {
-	
+
 	float l = clamp(dot(NORMAL, LIGHT), 0.0, 1.0);
 	l = smoothstep(0.0, 0.1	, l);
 	DIFFUSE_LIGHT += vec3(l * ATTENUATION);

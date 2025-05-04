@@ -21,7 +21,7 @@ func _process(_delta):
 		is_dirty = false
 
 func _update_points_baked():
-	print("update baked")
+	print('update baked points')
 	var parent_curve = parent_path.curve
 	var source_curve = source_path.curve
 	

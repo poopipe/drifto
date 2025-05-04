@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://7nt8vyuwhfnu"]
 
 [ext_resource type="Material" uid="uid://8ybeqagdpx28" path="res://resources/materials/asset/road.tres" id="1_b7mfa"]
-[ext_resource type="Script" uid="uid://cmqetm6e0dbh5" path="res://addons/gevp/scenes/get_transforms_from_path.gd" id="2_b7mfa"]
+[ext_resource type="Script" uid="uid://cmqetm6e0dbh5" path="res://resources/scripts/get_transforms_from_path.gd" id="2_b7mfa"]
 [ext_resource type="Script" uid="uid://bqhoynr878g2i" path="res://resources/scripts/child_path.gd" id="2_wqupm"]
 
 [sub_resource type="Curve3D" id="Curve3D_lla37"]

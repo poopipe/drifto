@@ -37,6 +37,15 @@ var proximity_multiplier:int = 2
 var proximity_bonus = 1
 
 func _ready() -> void:
+	# get proximity areas 
+	var proximity_areas := get_tree().get_nodes_in_group("proximity_areas")
+	for pa in proximity_areas:
+		print(pa)
+		if pa.has_signal("body_entered"):
+			pa.body_entered.connect(_on_area_3d_front_body_entered.bind(pa.front) )
+		if pa.has_signal("body_exited"):
+			pa.body_exited.connect(_on_area_3d_front_body_exited.bind(pa.front) )
+	
 	pass
 
 
@@ -143,20 +152,17 @@ func _process(_delta: float) -> void:
 		
 		camera.fov = 75.0 + (effect_amount * 10.0)
 
-func _on_area_3d_front_body_entered(body: Node3D) -> void:
+func _on_area_3d_front_body_entered(body: Node3D, source) -> void:
+	
 	if not body == player.vehicle_node and not body == road:
-		front_close = true
-
-
-func _on_area_3d_front_body_exited(body: Node3D) -> void:
+		if source:
+			front_close = true
+		else:
+			rear_close = true
+			
+func _on_area_3d_front_body_exited(body: Node3D, source) -> void:
 	if not body == player.vehicle_node and not body == road:
-		front_close = false
-
-
-func _on_area_3d_rear_body_entered(body: Node3D) -> void:
-	if not body == player.vehicle_node and not body == road:
-		rear_close = true
-
-func _on_area_3d_rear_body_exited(body: Node3D) -> void:
-	if not body == player.vehicle_node and not body == road:
-		rear_close = false
+		if source:
+			front_close = false
+		else:
+			rear_close = false
