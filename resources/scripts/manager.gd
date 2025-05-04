@@ -16,6 +16,7 @@ extends Node3D
 @export_group("effects")
 @export var vignette_material:ShaderMaterial
 @export var road_material:ShaderMaterial
+@export var armco_material:ShaderMaterial
 @export var effect_fade_rate:float = 1.25
 
 var skidding: bool = false
@@ -70,6 +71,20 @@ func _process(_delta: float) -> void:
 		var skid_start_delta = now - skid_start_time
 
 		# check for skidding
+		# extend this:
+		# skid is valid if:
+		#	speed : 	
+		#		above a threshold to  enter drift state
+		#		speed stays above a lower threshold to retain drift state
+		#	angle : 
+		#		above a threshold to enter drift state
+		#		remains above a lower threshold to retain drift state
+		#		requires cooldown to support transitions left/right
+		#		speed should prevent donuts qualifying (unless somehow done at speed which is cool and thus counts)
+		#	wheel slip / spin:
+		#		lateral slip is the more important factor
+		#		perhaps bonus points for spin/smoke
+		
 		if wheels_spinning and yaw_angle >= skid_yaw_threshold and speed >= skid_speed_threshold :
 			if not skidding:
 				skidding = true
@@ -111,19 +126,20 @@ func _process(_delta: float) -> void:
 		#if skidding or within grace period, add scoar
 		if skidding or skid_end_delta <= skid_cooldown :
 			total_skidding += skid_score * skid_time_bonus * proximity_bonus
-			# do stuff with shader
 		
+		
+		# set uniforms on materials (TODO: find a way to set these globally)
 		# anything we pipe into a material should be 0-1 range (or -1:1)
-		
 		vignette_material.set_shader_parameter("coverage", effect_amount)
-		#road_material.set_shader_parameter("coverage", effect_amount)
-		#var speed_amt:float = clamp(vehicle_node.speed, 0.0, 20.0) / 20.0
-
+		
 		road_material.set_shader_parameter("coverage", effect_amount)
-		if skidding or skid_end_delta <= skid_cooldown:
-			road_material.set_shader_parameter("drift_amount", effect_amount)
-		else:
-			road_material.set_shader_parameter("drift_amount", 0.0)
+		armco_material.set_shader_parameter("coverage", effect_amount)
+		
+		# not using this in the shader.  consider adding it back in later
+		#if skidding or skid_end_delta <= skid_cooldown:
+		#	road_material.set_shader_parameter("drift_amount", effect_amount)
+		#else:
+		#	road_material.set_shader_parameter("drift_amount", 0.0)
 		
 		camera.fov = 75.0 + (effect_amount * 10.0)
 

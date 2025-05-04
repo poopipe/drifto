@@ -9,6 +9,7 @@ uniform sampler2D SCREEN_TEXTURE: hint_screen_texture, repeat_disable, filter_li
 
 uniform float coverage = 0.0;
 uniform float vignette_strength = 0.6;
+uniform float vignette_offset = 0.3;
 void vertex(){
 	POSITION = vec4(VERTEX.xy * 2.0, 1.0, 1.0);
 }
@@ -31,7 +32,21 @@ float effect_mask(float posx, float cov, float offset, float aspect){
 
 void fragment() {
 	// sort out UVs
-	float ratio = 1.0 / ( VIEWPORT_SIZE.y / VIEWPORT_SIZE.x);
+	//float ratio = 1.0 / ( VIEWPORT_SIZE.y / VIEWPORT_SIZE.x);
+	vec2 viewport_size = VIEWPORT_SIZE * 2.0 - 1.0;
+	vec2 ratio = vec2( viewport_size.x / viewport_size.y, 1.0);
+	vec2 screen_uv = (SCREEN_UV * 2.0-1.0) * ratio;
+	float vignette = clamp(length(screen_uv) - vignette_offset, 0.0, 1.0);
+	// smooth curve
+	vignette = 1.0 - pow(abs(sin(PI*vignette / 2.0)), 2.5);
+	vignette *= clamp(vignette_strength, 0.0, 1.0);
+	
+	
+	vec3 screen_texture = texture(SCREEN_TEXTURE, SCREEN_UV).xyz;
+	ALBEDO = screen_texture * vignette;
+	//ALBEDO = vec3(fract(vignette));
+	//ALBEDO = vec3(vignette);
+	/*
 	vec2 pos = SCREEN_UV * 2.0 - 1.0;
 	pos = vec2(pos.x , pos.y / ratio);
 	pos *= 0.4	;
@@ -43,7 +58,7 @@ void fragment() {
 	mask = clamp(mask, 1.0 - vignette_strength, 1.0);
 	vec3 screen_texture = texture(SCREEN_TEXTURE, SCREEN_UV).xyz;
 	//vec3 lines = vec3(d); // vec3(rings * (1.0 - d));
-	ALBEDO = screen_texture * vec3(mask) ;
+	ALBEDO = screen_texture * vec3(mask) ;*/
 
 
 }

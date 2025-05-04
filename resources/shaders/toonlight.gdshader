@@ -1,8 +1,15 @@
 shader_type spatial;
-
+#include "res://resources/shaders/viewmask.gdshaderinc"
+#include "res://resources/shaders/speedlines.gdshaderinc"
 
 uniform vec4 basecolor : source_color;
 uniform float world_light_strength = 0.2;
+uniform float view_mask_offset = 0.45;
+uniform float coverage = 0.0;
+
+uniform sampler2D noise: repeat_enable;
+
+
 
 void vertex() {
 	// Called for every vertex the material is visible on.
@@ -16,12 +23,15 @@ void fragment() {
 	// fog is too soft a falloff and it makes me sad
 	vec3 worldNormal = (INV_VIEW_MATRIX * vec4(NORMAL, 0.0)).xyz;
 	float l = dot(worldNormal, vec3(0.0,1.0,0.0));
+	
+	// view space masking
+	float view_mask = get_view_mask(FRAGCOORD, VIEWPORT_SIZE, view_mask_offset, coverage);
+	float speedlines = get_speed_lines(fract(UV.xy), view_mask, noise, vec2(0.25, 4.0) );
+	speedlines *= 1.5;
 
-	//l = smoothstep(0.0, 1.0, l) * 2.0 - 1.0;
 	l = l * world_light_strength ;
-
-	ALBEDO = basecolor.xyz + l; //clamp(basecolor + (l  * world_light_shadow_strength), 0.0, 1.0);
-
+	vec3 col = mix(basecolor.xyz, vec3(0.0), speedlines);
+	ALBEDO = col  + l ; 
 }
 
 void light() {

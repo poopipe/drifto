@@ -34,6 +34,7 @@ func _update_points_baked():
 		var distance:float = source_pos.x + start_offset
 		
 		# get position on parent curve at distance
+		# TODO: Something fucked up is happening at the end of the curve
 		var target_transform:Transform3D = parent_curve.sample_baked_with_rotation(distance, true, true)
 		
 		# handle offsets
