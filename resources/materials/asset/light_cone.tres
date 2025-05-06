@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://d24b35qgq6fia"]
+
+[ext_resource type="Shader" uid="uid://coo0sr7yrxfvl" path="res://resources/shaders/light_cone.gdshader" id="1_kqbxj"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_kqbxj")
+shader_parameter/basecolor = Color(1, 0.97582, 0.930219, 1)
+shader_parameter/intensity = 1.0

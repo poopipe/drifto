@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://bmg25k4thniva"]
+
+[ext_resource type="ArrayMesh" uid="uid://d0g2k53wcqrjp" path="res://resources/gd_meshes/SM_Prop_LightPole_Base_01.res" id="1_vktqb"]
+[ext_resource type="ArrayMesh" uid="uid://djdrvcrbae8fn" path="res://resources/gd_meshes/Cone001.res" id="2_mj873"]
+
+[node name="LampPost" type="Node3D"]
+
+[node name="SmPropLightPoleBase01" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_vktqb")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource("2_mj873")
