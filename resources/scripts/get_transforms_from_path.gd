@@ -121,7 +121,7 @@ func _process(_delta):
 func _update_multimesh():
 	'''handle positioning of mesh instances along specified path'''
 	rng.seed = seed
-	var ass = path
+
 	var curve = path.curve
 	var curve_length:float = curve.get_baked_length()
 	var end: float

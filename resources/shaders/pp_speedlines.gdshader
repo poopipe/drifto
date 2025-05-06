@@ -27,7 +27,7 @@ float effect_mask(float posx, float cov, float offset, float aspect){
 	float c = cov + offset;
 	float d = 1.0 - (posx / 4.0 * aspect + c);
 	return clamp(d, 0.0, 1.0);
-	
+
 }
 
 void fragment() {
@@ -40,8 +40,8 @@ void fragment() {
 	// smooth curve
 	vignette = 1.0 - pow(abs(sin(PI*vignette / 2.0)), 2.5);
 	vignette *= clamp(vignette_strength, 0.0, 1.0);
-	
-	
+
+
 	vec3 screen_texture = texture(SCREEN_TEXTURE, SCREEN_UV).xyz;
 	ALBEDO = screen_texture * vignette;
 	//ALBEDO = vec3(fract(vignette));
@@ -51,7 +51,7 @@ void fragment() {
 	pos = vec2(pos.x , pos.y / ratio);
 	pos *= 0.4	;
 	pos = cartesian_to_polar(pos, vec2(0.0));
-	
+
 	float mask = effect_mask(pos.x, coverage * 0.1, 0.5, ratio);
 	mask = smoothstep(0.0, 0.2, mask);
 	mask =  mask ;
