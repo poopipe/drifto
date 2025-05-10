@@ -6,6 +6,6 @@
 [resource]
 render_priority = 0
 shader = ExtResource("1_1vf8s")
-shader_parameter/basecolor = Color(0.298503, 0.276522, 0.217618, 1)
+shader_parameter/basecolor = Color(0.231373, 0.270588, 0.2, 1)
 shader_parameter/texture_alpha = ExtResource("2_a2sw7")
 shader_parameter/alpha_scissor_threshold = 0.5

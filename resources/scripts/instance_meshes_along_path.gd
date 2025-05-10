@@ -181,7 +181,9 @@ func _update_instances():
 		transform = transform.rotated_local(Vector3(0.0, 1.0, 0.0), r)
 		
 		var inst = mesh_instances[i]
-
+		inst.visibility_range_begin = 0.0
+		inst.visibility_range_end = 200.0
+		
 		add_child(inst)
 		inst.transform = transform
 

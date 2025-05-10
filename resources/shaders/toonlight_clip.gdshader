@@ -30,10 +30,11 @@ void fragment() {
 	//ALBEDO = vec3(sign(NORMAL.z));
 }
 void light() {
+
 	
 	float l = clamp(dot(NORMAL, LIGHT), 0.0, 1.0);
-	l = smoothstep(0.1, 0.2, l);
-	DIFFUSE_LIGHT += vec3(l * ATTENUATION * (LIGHT_COLOR/PI));
-	//DIFFUSE_LIGHT = max(DIFFUSE_LIGHT, vec3(0.025));
+	l = smoothstep(0.0, 0.1	, l);
+	DIFFUSE_LIGHT += vec3(l * ATTENUATION) * LIGHT_COLOR / PI;
+	DIFFUSE_LIGHT = max(DIFFUSE_LIGHT, vec3(0.025));
 
 }
