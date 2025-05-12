@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://b5k0jify76cl4"]
+
+[ext_resource type="Shader" uid="uid://g7bul1vut2u6" path="res://resources/shaders/car_glass.gdshader" id="1_cppbc"]
+[ext_resource type="CompressedCubemap" uid="uid://m2u57s3or5xd" path="res://resources/textures/skybox_cube.png" id="2_t8g7m"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_cppbc")
+shader_parameter/horizon_offset = 0.0
+shader_parameter/y_offset = 0.3
+shader_parameter/texture_sky = ExtResource("2_t8g7m")

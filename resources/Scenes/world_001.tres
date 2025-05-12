@@ -1,0 +1,132 @@
+[gd_resource type="VisualShader" load_steps=14 format=3 uid="uid://cakoiialqwb20"]
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_p1tfb"]
+input_name = "normal"
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_553ra"]
+input_name = "model_matrix"
+
+[sub_resource type="VisualShaderNodeTransformVecMult" id="VisualShaderNodeTransformVecMult_kij7x"]
+operator = 2
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_ieq58"]
+input_name = "node_position_world"
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_kapts"]
+expanded_output_ports = [0]
+input_name = "normal"
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_6gicc"]
+input_name = "inv_view_matrix"
+
+[sub_resource type="VisualShaderNodeVectorCompose" id="VisualShaderNodeVectorCompose_5tx6i"]
+default_input_values = [0, 0.0, 1, 0.0, 2, 0.0, 3, 1.0]
+op_type = 2
+
+[sub_resource type="VisualShaderNodeCubemap" id="VisualShaderNodeCubemap_p1tfb"]
+source = 1
+
+[sub_resource type="VisualShaderNodeCubemapParameter" id="VisualShaderNodeCubemapParameter_p1tfb"]
+parameter_name = "CubemapParameter"
+texture_type = 1
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_2qabm"]
+input_name = "camera_position_world"
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_ffaey"]
+operator = 1
+
+[sub_resource type="VisualShaderNodeVectorFunc" id="VisualShaderNodeVectorFunc_lcxgt"]
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_vnsgd"]
+operator = 10
+
+[resource]
+code = "shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_schlick_ggx;
+
+uniform samplerCube CubemapParameter : source_color;
+
+
+
+void fragment() {
+// Input:15
+	mat4 n_out15p0 = INV_VIEW_MATRIX;
+
+
+// Input:14
+	vec3 n_out14p0 = NORMAL;
+	float n_out14p1 = n_out14p0.r;
+	float n_out14p2 = n_out14p0.g;
+	float n_out14p3 = n_out14p0.b;
+
+
+// VectorCompose:16
+	float n_in16p3 = 1.00000;
+	vec4 n_out16p0 = vec4(n_out14p1, n_out14p2, n_out14p3, n_in16p3);
+
+
+// TransformVectorMult:12
+	vec3 n_out12p0 = (n_out15p0 * vec4(vec3(n_out16p0.xyz), 0.0)).xyz;
+
+
+// Input:13
+	vec3 n_out13p0 = NODE_POSITION_WORLD;
+
+
+// Input:4
+	vec3 n_out4p0 = CAMERA_POSITION_WORLD;
+
+
+// VectorOp:6
+	vec3 n_out6p0 = n_out13p0 - n_out4p0;
+
+
+// VectorFunc:7
+	vec3 n_out7p0 = normalize(n_out6p0);
+
+
+// VectorOp:9
+	vec3 n_out9p0 = reflect(n_out12p0, n_out7p0);
+
+
+	vec4 n_out2p0;
+// Cubemap:2
+	n_out2p0 = texture(CubemapParameter, n_out9p0);
+
+
+// Output:0
+	ALBEDO = vec3(n_out2p0.xyz);
+	EMISSION = vec3(n_out2p0.xyz);
+
+
+}
+"
+graph_offset = Vector2(-1258.35, -90.4292)
+nodes/fragment/2/node = SubResource("VisualShaderNodeCubemap_p1tfb")
+nodes/fragment/2/position = Vector2(-120, 220)
+nodes/fragment/3/node = SubResource("VisualShaderNodeCubemapParameter_p1tfb")
+nodes/fragment/3/position = Vector2(-820, 680)
+nodes/fragment/4/node = SubResource("VisualShaderNodeInput_2qabm")
+nodes/fragment/4/position = Vector2(-1660, 120)
+nodes/fragment/6/node = SubResource("VisualShaderNodeVectorOp_ffaey")
+nodes/fragment/6/position = Vector2(-1300, -40)
+nodes/fragment/7/node = SubResource("VisualShaderNodeVectorFunc_lcxgt")
+nodes/fragment/7/position = Vector2(-1040, -40)
+nodes/fragment/9/node = SubResource("VisualShaderNodeVectorOp_vnsgd")
+nodes/fragment/9/position = Vector2(-780, 20)
+nodes/fragment/10/node = SubResource("VisualShaderNodeInput_p1tfb")
+nodes/fragment/10/position = Vector2(-1580, 840)
+nodes/fragment/11/node = SubResource("VisualShaderNodeInput_553ra")
+nodes/fragment/11/position = Vector2(-1520, 740)
+nodes/fragment/12/node = SubResource("VisualShaderNodeTransformVecMult_kij7x")
+nodes/fragment/12/position = Vector2(-1140, 320)
+nodes/fragment/13/node = SubResource("VisualShaderNodeInput_ieq58")
+nodes/fragment/13/position = Vector2(-1640, -40)
+nodes/fragment/14/node = SubResource("VisualShaderNodeInput_kapts")
+nodes/fragment/14/position = Vector2(-1860, 440)
+nodes/fragment/15/node = SubResource("VisualShaderNodeInput_6gicc")
+nodes/fragment/15/position = Vector2(-1520, 320)
+nodes/fragment/16/node = SubResource("VisualShaderNodeVectorCompose_5tx6i")
+nodes/fragment/16/position = Vector2(-1400, 440)
+nodes/fragment/connections = PackedInt32Array(2, 0, 0, 0, 3, 0, 2, 2, 2, 0, 0, 5, 4, 0, 6, 1, 6, 0, 7, 0, 13, 0, 6, 0, 15, 0, 12, 0, 7, 0, 9, 1, 12, 0, 9, 0, 14, 1, 16, 0, 14, 2, 16, 1, 14, 3, 16, 2, 16, 0, 12, 1, 9, 0, 2, 0)

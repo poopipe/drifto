@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dkm2jd23gqoh5"]
+
+[ext_resource type="Shader" uid="uid://clsbjrpqdsmmu" path="res://resources/shaders/carlight.gdshader" id="1_d1m70"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_d1m70")
+shader_parameter/basecolor = Vector3(0.8, 0.8, 0.8)
+shader_parameter/world_light_offset = 0.06
+shader_parameter/world_light_shadow_strength = 5.0
