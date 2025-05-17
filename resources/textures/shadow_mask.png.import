@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c2cupwi7h74b6"
-path.s3tc="res://.godot/imported/skidmarks_output.png-4a3c508eafc1962d13a0caf21d6980e3.s3tc.ctex"
+uid="uid://b7ya4yn41io58"
+path.s3tc="res://.godot/imported/shadow_mask.png-b75cbf132ec173f2fa4977e141399b57.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://resources/textures/skidmarks_output.png"
-dest_files=["res://.godot/imported/skidmarks_output.png-4a3c508eafc1962d13a0caf21d6980e3.s3tc.ctex"]
+source_file="res://resources/textures/shadow_mask.png"
+dest_files=["res://.godot/imported/shadow_mask.png-b75cbf132ec173f2fa4977e141399b57.s3tc.ctex"]
 
 [params]
 

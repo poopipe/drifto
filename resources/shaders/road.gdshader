@@ -7,7 +7,8 @@ uniform float world_light_offset = 0.1;
 //uniform float world_light_shadow_strength = 0.3;
 uniform vec3 basecolor : source_color = vec3(0.2, 0.2, 0.2);
 uniform vec3 center_line_color : source_color = vec3(0.6, 0.4, 0.0) ;
-uniform vec3 side_line_color : source_color = vec3 (0.6);
+uniform vec3 side_line_color : source_color = vec3(0.6);
+uniform vec3 angle_line_color : source_color = vec3(0.6);
 
 uniform float coverage = 0.0;
 
@@ -22,6 +23,21 @@ float get_bands(vec2 p, float dist){
 	float r = step(0.5, fract(p.x * dist));
 	r *= 0.125;
 	return r + 0.5;
+}
+
+float get_road_mask(vec2 p){
+	vec2 boundary_pos = p * vec2(1.0, 8.0);
+	float pos_width = boundary_pos.y - 1.0;
+	float center_mask = step(pos_width, 0.77);
+	float left_mask = step(pos_width, 0.23);
+	return center_mask - left_mask;
+}
+
+float get_skew_lines(vec2 p){
+	vec2 skew_pos = p * vec2(1.0, 8.0);
+	float skew_across = abs((skew_pos.y - 1.0) * 2.0 - 1.0) + (p.x * 12.0);
+	return step(abs(sin( skew_across * TAU * 1.0)), 0.75);
+	
 }
 
 void fragment() {
@@ -42,6 +58,11 @@ void fragment() {
 	center_gap = step(0.4, center_gap);
 	float side_lines = step(0.475, lines);
 	side_lines = side_lines - step(0.50, lines);
+	// road mask
+	float road_mask =  get_road_mask(pos);
+	// angled stripes
+	float skew_lines = get_skew_lines(pos);
+	skew_lines = skew_lines * (1.0 - road_mask);
 	
 	// create road surface
 	bands -= surface;
@@ -50,6 +71,7 @@ void fragment() {
 	vec3 road_surface = vec3(bands) * basecolor;
 	road_surface = mix(road_surface, center_line_color, center_line);
 	road_surface = mix(road_surface, side_line_color, side_lines);
+	road_surface = mix(road_surface, angle_line_color, skew_lines);
 	
 	
 	// view space masking
@@ -63,6 +85,8 @@ void fragment() {
 	col -= speedlines;
 
 	ALBEDO = col;
+	
+
 	//ALBEDO = vec3(speedlines);
 }
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://3c0vtybx44g8"]
+[gd_scene load_steps=15 format=3 uid="uid://3c0vtybx44g8"]
 
 [ext_resource type="Script" uid="uid://bfh8s2401t8tp" path="res://addons/gevp/scripts/vehicle.gd" id="1_oiavp"]
 [ext_resource type="Script" uid="uid://bdcfho6lohmi3" path="res://addons/gevp/scripts/wheel.gd" id="2_b2ojy"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://gr0r6c33424a" path="res://resources/textures/headlight_projection_mask.png" id="8_fke1n"]
 [ext_resource type="Script" uid="uid://1i2a37vp6oay" path="res://resources/scripts/skidmark_generator.gd" id="9_k6que"]
 [ext_resource type="Script" uid="uid://cu3rydur0l7t1" path="res://resources/scripts/proximity_detector.gd" id="10_w4st2"]
+[ext_resource type="Texture2D" uid="uid://b7ya4yn41io58" path="res://resources/textures/shadow_mask.png" id="11_fke1n"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mkuwc"]
 size = Vector3(2.1, 1.13304, 5.09586)
@@ -148,6 +149,7 @@ light_size = 0.042
 light_specular = 0.0
 shadow_enabled = true
 shadow_reverse_cull_face = true
+shadow_caster_mask = 4293918720
 spot_range = 150.0
 spot_attenuation = 0.0
 spot_angle = 40.5
@@ -179,3 +181,9 @@ vehicle = NodePath("..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3DRear"]
 shape = SubResource("BoxShape3D_k6que")
+
+[node name="Decal" type="Decal" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.301865, 0.0475239)
+size = Vector3(3, 0.51, 4.73446)
+texture_albedo = ExtResource("11_fke1n")
+albedo_mix = 0.71

@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bmg25k4thniva"]
+[gd_scene load_steps=4 format=3 uid="uid://bmg25k4thniva"]
 
 [ext_resource type="ArrayMesh" uid="uid://d0g2k53wcqrjp" path="res://resources/gd_meshes/SM_Prop_LightPole_Base_01.res" id="1_vktqb"]
 [ext_resource type="ArrayMesh" uid="uid://djdrvcrbae8fn" path="res://resources/gd_meshes/Cone001.res" id="2_mj873"]
+[ext_resource type="Texture2D" uid="uid://h3egs8im4wph" path="res://resources/textures/streetlight_projection_mask.png" id="3_0sj5e"]
 
 [node name="LampPost" type="Node3D"]
 
@@ -14,10 +15,15 @@ mesh = ExtResource("2_mj873")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -0.378794, 0.925481, 0, -0.925481, -0.378794, 0, 6.0426, 1.98035)
-light_energy = 4.0
+light_energy = 2.0
+light_projector = ExtResource("3_0sj5e")
+shadow_enabled = true
+shadow_caster_mask = 4293918720
 distance_fade_enabled = true
 distance_fade_begin = 150.0
+distance_fade_shadow = 100.0
 distance_fade_length = 20.0
-spot_range = 16.0
+spot_range = 20.0
 spot_attenuation = 0.0
+spot_angle = 50.0
 spot_angle_attenuation = 1e-05
