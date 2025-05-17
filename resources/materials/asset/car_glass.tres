@@ -6,6 +6,5 @@
 [resource]
 render_priority = 0
 shader = ExtResource("1_cppbc")
-shader_parameter/horizon_offset = 0.0
-shader_parameter/y_offset = 0.3
+shader_parameter/y_offset = 1.0
 shader_parameter/texture_sky = ExtResource("2_t8g7m")

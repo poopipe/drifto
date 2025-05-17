@@ -91,6 +91,6 @@ void sky() {
 	ground *= ground_energy;
 
 	COLOR = mix(ground, sky, step(0.0, EYEDIR.y + horizon_offset)) * exposure;
-	//COLOR = sky * exposure;
-	COLOR = sky_cover_texture.xyz;
+	COLOR = sky * exposure;
+	COLOR = sky_cover_texture.xyz*exposure;
 }

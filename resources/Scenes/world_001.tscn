@@ -110,7 +110,7 @@ shader_parameter/CubemapParameter = ExtResource("4_b8618")
 shader = ExtResource("8_vmlud")
 shader_parameter/sky_top_color = Color(0.0212, 0.08904, 0.53, 1)
 shader_parameter/sky_horizon_color = Color(1, 0.48, 0.956667, 1)
-shader_parameter/sky_curve = 0.904
+shader_parameter/sky_curve = 1.0
 shader_parameter/horizon_offset = 0.4
 shader_parameter/sky_energy = 1.0
 shader_parameter/sky_cover = ExtResource("9_g5e6g")
@@ -249,7 +249,7 @@ skeleton = NodePath("../../..")
 surface_material_override/0 = SubResource("ShaderMaterial_b8618")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="VehicleController/VehicleRigidBody"]
-transform = Transform3D(-1.80305, 0, -0.865462, 0, 2, 0, 0.865462, 0, -1.80305, -2.85016, 2.21185, 0)
+transform = Transform3D(1.31554, 0, 1.50644, 0, 2, 0, -1.50644, 0, 1.31554, -2.85016, 2.21185, 0)
 mesh = SubResource("SphereMesh_0kgah")
 skeleton = NodePath("../../..")
 surface_material_override/0 = ExtResource("3_etpm2")

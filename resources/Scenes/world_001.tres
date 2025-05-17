@@ -102,7 +102,6 @@ void fragment() {
 
 }
 "
-graph_offset = Vector2(-1258.35, -90.4292)
 nodes/fragment/2/node = SubResource("VisualShaderNodeCubemap_p1tfb")
 nodes/fragment/2/position = Vector2(-120, 220)
 nodes/fragment/3/node = SubResource("VisualShaderNodeCubemapParameter_p1tfb")
