@@ -11,6 +11,7 @@ shader_parameter/world_light_offset = -0.01
 shader_parameter/basecolor = Color(0.306923, 0.306923, 0.306923, 1)
 shader_parameter/center_line_color = Color(0.6, 0.54, 0, 1)
 shader_parameter/side_line_color = Color(0.521141, 0.521141, 0.52114, 1)
+shader_parameter/angle_line_color = Color(0.6, 0.6, 0.6, 1)
 shader_parameter/coverage = 1.0
 shader_parameter/noise = ExtResource("3_fpjqg")
 shader_parameter/basecolor_map = ExtResource("2_xmfpm")

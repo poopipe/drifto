@@ -150,10 +150,10 @@ light_specular = 0.0
 shadow_enabled = true
 shadow_reverse_cull_face = true
 shadow_caster_mask = 4293918720
-spot_range = 150.0
+spot_range = 100.0
 spot_attenuation = 0.0
 spot_angle = 40.5
-spot_angle_attenuation = 0.196146
+spot_angle_attenuation = 1e-05
 
 [node name="SkidmarkLeft" type="Node3D" parent="." node_paths=PackedStringArray("vehicle")]
 script = ExtResource("9_k6que")
