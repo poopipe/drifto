@@ -388,6 +388,7 @@ var delta_time := 0.0
 
 var vehicle_inertia : Vector3
 var current_gravity : Vector3
+var current_impulse : Vector3
 
 class Axle:
 	var wheels : Array[Wheel] = []
@@ -426,6 +427,8 @@ func _ready():
 
 func _integrate_forces(state : PhysicsDirectBodyState3D):
 	current_gravity = state.total_gravity
+	current_impulse = state.get_contact_impulse(0)
+	
 
 func initialize():
 	# Check to verify that surface types are provided

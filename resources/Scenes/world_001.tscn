@@ -308,6 +308,10 @@ layout_mode = 2
 [node name="ProxBonus" type="Label" parent="VehicleController/GUI/VBoxContainer"]
 layout_mode = 2
 
+[node name="Crashing" type="Label" parent="VehicleController/GUI/VBoxContainer"]
+layout_mode = 2
+text = "true"
+
 [node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("follow_this")]
 transform = Transform3D(-4.37114e-08, -0.190809, -0.981627, 0, 0.981627, -0.190809, 1, -8.34053e-09, -4.29083e-08, 50.0691, 202.28, -186.551)
 script = ExtResource("8_vwumr")

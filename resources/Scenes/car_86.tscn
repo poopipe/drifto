@@ -21,7 +21,9 @@ size = Vector3(3, 1, 3)
 [sub_resource type="BoxShape3D" id="BoxShape3D_k6que"]
 size = Vector3(3, 1, 3)
 
-[node name="VehicleRigidBody" type="RigidBody3D" node_paths=PackedStringArray("front_left_wheel", "front_right_wheel", "rear_left_wheel", "rear_right_wheel")]
+[node name="VehicleRigidBody" type="RigidBody3D" node_paths=PackedStringArray("front_left_wheel", "front_right_wheel", "rear_left_wheel", "rear_right_wheel") groups=["vehicle_body_collision"]]
+contact_monitor = true
+max_contacts_reported = 1
 script = ExtResource("1_oiavp")
 front_left_wheel = NodePath("WheelFrontLeft")
 front_right_wheel = NodePath("WheelFrontRight")
@@ -82,7 +84,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.031, 0)
 mesh = ExtResource("3_3wns2")
 skeleton = NodePath("")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="VehicleBodyCollision" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.567519, -0.0380743)
 shape = SubResource("BoxShape3D_mkuwc")
 
@@ -143,7 +145,7 @@ vehicle = NodePath("..")
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.984808, 0.173648, 0, -0.173648, 0.984808, 0, 0.341629, -2.65599)
 light_color = Color(0.94, 0.99, 1, 1)
-light_energy = 6.0
+light_energy = 4.0
 light_projector = ExtResource("8_fke1n")
 light_size = 0.042
 light_specular = 0.0
