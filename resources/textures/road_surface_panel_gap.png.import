@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://h3egs8im4wph"
-path.s3tc="res://.godot/imported/streetlight_projection_mask.png-9cd3a669ad07fe0a3c7d384b07d5a5a2.s3tc.ctex"
+uid="uid://cpqf31xn1jcut"
+path.s3tc="res://.godot/imported/road_surface_panel_gap.png-0f11dad731ce555e7fb71d4198cf6522.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://resources/textures/streetlight_projection_mask.png"
-dest_files=["res://.godot/imported/streetlight_projection_mask.png-9cd3a669ad07fe0a3c7d384b07d5a5a2.s3tc.ctex"]
+source_file="res://resources/textures/road_surface_panel_gap.png"
+dest_files=["res://.godot/imported/road_surface_panel_gap.png-0f11dad731ce555e7fb71d4198cf6522.s3tc.ctex"]
 
 [params]
 

@@ -13,6 +13,7 @@ uniform vec3 angle_line_color : source_color = vec3(0.6);
 uniform float coverage = 0.0;
 
 uniform sampler2D noise: repeat_enable;
+uniform sampler2D panel_gap_mask: repeat_enable;
 uniform sampler2D basecolor_map: repeat_enable;
 uniform float view_mask_offset = 0.1;
 
@@ -46,9 +47,13 @@ void fragment() {
 	// surface texture
 	vec2 texture_uv = pos * vec2(12.0, 16.0);
 	float surface = texture(basecolor_map, texture_uv).x;
-	surface *= 1.0;
-
+	vec2 panel_gap_pos = pos * vec2(8.0, 16.0);
+	float m = 1.0 - floor(mod(panel_gap_pos.x, 2.0));
+	surface += texture(panel_gap_mask, panel_gap_pos).x * m;
+	
+	
 	float bands = get_bands(pos, 1.0);
+	
 
 	// get road markings
 	float lines = fract(pos.y * 8.0);
@@ -65,10 +70,11 @@ void fragment() {
 	skew_lines = skew_lines * (1.0 - road_mask);
 	
 	// create road surface
-	bands -= surface;
+	bands = 1.0 -surface;
 	bands = clamp(bands, 0.0, 1.0);
 	
 	vec3 road_surface = vec3(bands) * basecolor;
+	
 	road_surface = mix(road_surface, center_line_color, center_line);
 	road_surface = mix(road_surface, side_line_color, side_lines);
 	road_surface = mix(road_surface, angle_line_color, skew_lines);
@@ -85,9 +91,6 @@ void fragment() {
 	col -= speedlines;
 
 	ALBEDO = col;
-	
-
-	//ALBEDO = vec3(speedlines);
 }
 
 void light() {

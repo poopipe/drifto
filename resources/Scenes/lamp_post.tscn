@@ -1,17 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://bmg25k4thniva"]
+[gd_scene load_steps=5 format=3 uid="uid://bmg25k4thniva"]
 
 [ext_resource type="ArrayMesh" uid="uid://d0g2k53wcqrjp" path="res://resources/gd_meshes/SM_Prop_LightPole_Base_01.res" id="1_vktqb"]
-[ext_resource type="ArrayMesh" uid="uid://djdrvcrbae8fn" path="res://resources/gd_meshes/Cone001.res" id="2_mj873"]
 [ext_resource type="Texture2D" uid="uid://h3egs8im4wph" path="res://resources/textures/streetlight_projection_mask.png" id="3_0sj5e"]
+[ext_resource type="Material" uid="uid://c0ascp4xrlv3b" path="res://resources/materials/asset/light_halo.tres" id="4_tpaer"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_nieim"]
 
 [node name="LampPost" type="Node3D"]
 
 [node name="SmPropLightPoleBase01" type="MeshInstance3D" parent="."]
 mesh = ExtResource("1_vktqb")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-visible = false
-mesh = ExtResource("2_mj873")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -0.378794, 0.925481, 0, -0.925481, -0.378794, 0, 6.0426, 1.98035)
@@ -27,3 +25,12 @@ spot_range = 20.0
 spot_attenuation = 0.0
 spot_angle = 50.0
 spot_angle_attenuation = 1e-05
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.273, 1.99153)
+material_override = ExtResource("4_tpaer")
+visibility_range_begin_margin = 10.0
+visibility_range_end = 150.0
+visibility_range_fade_mode = 1
+mesh = SubResource("PlaneMesh_nieim")
+skeleton = NodePath("../SpotLight3D")
