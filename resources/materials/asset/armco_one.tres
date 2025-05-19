@@ -1,13 +1,17 @@
-[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://dmuq65dahn5ov"]
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://dmuq65dahn5ov"]
 
-[ext_resource type="Shader" uid="uid://ckcemdxgypv2j" path="res://resources/shaders/toonlight.gdshader" id="1_tikjv"]
+[ext_resource type="Shader" uid="uid://cf5dfgd6ryt77" path="res://resources/shaders/armco.gdshader" id="1_ytitb"]
+[ext_resource type="Texture2D" uid="uid://bsvtw2hm0qnm0" path="res://resources/textures/armco_mask.png" id="2_s1knt"]
 [ext_resource type="Texture2D" uid="uid://cs5swk3vrb2ov" path="res://resources/textures/speedlines_mask.png" id="2_ytitb"]
 
 [resource]
 render_priority = 0
-shader = ExtResource("1_tikjv")
+shader = ExtResource("1_ytitb")
 shader_parameter/basecolor = Color(0.941758, 0.539111, 0.681037, 1)
 shader_parameter/world_light_strength = 0.3
 shader_parameter/view_mask_offset = 0.45
 shader_parameter/coverage = 1.0
 shader_parameter/noise = ExtResource("2_ytitb")
+shader_parameter/divider = ExtResource("2_s1knt")
+shader_parameter/uv_scale = Vector2(12, 3)
+shader_parameter/uv_offset = Vector2(0, 0)

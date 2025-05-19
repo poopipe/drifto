@@ -5,7 +5,7 @@
 [resource]
 render_priority = 0
 shader = ExtResource("1_0rgcx")
-shader_parameter/basecolor = Color(0.1, 0.08, 0.04, 1)
+shader_parameter/basecolor = Color(0.123827, 0.100775, 0.0546818, 1)
 shader_parameter/world_light_strength = 0.025
 shader_parameter/view_mask_offset = 0.45
 shader_parameter/coverage = 0.0

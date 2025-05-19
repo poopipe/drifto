@@ -34,10 +34,10 @@ void fragment() {
 	reflection_vector += vec3(0.0, reflection_offset, 0.0);
 	float levels = 4.0;
 	reflection_vector = floor(reflection_vector * levels) / levels;
-	vec3 refl = clamp(texture(texture_sky, reflection_vector).xxx * 3.0, 0.0, 1.0) ;
+	vec3 refl =  clamp(texture(texture_sky, reflection_vector).xxx * 3.0, 0.0, 1.0) ;
 	
 	ALBEDO = basecolor * basecolor_texture;
-	ALBEDO -= refl;
+	ALBEDO *= refl;
 }
 
 void light() {

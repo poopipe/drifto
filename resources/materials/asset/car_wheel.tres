@@ -1,10 +1,13 @@
-[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dkm2jd23gqoh5"]
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://dkm2jd23gqoh5"]
 
-[ext_resource type="Shader" uid="uid://clsbjrpqdsmmu" path="res://resources/shaders/carlight.gdshader" id="1_d1m70"]
+[ext_resource type="Shader" uid="uid://cmemdhmj2mwqs" path="res://resources/shaders/wheel.gdshader" id="1_d1m70"]
+[ext_resource type="CompressedCubemap" uid="uid://m2u57s3or5xd" path="res://resources/textures/skybox_cube.png" id="2_lt2al"]
 
 [resource]
 render_priority = 0
 shader = ExtResource("1_d1m70")
 shader_parameter/basecolor = Vector3(0.8, 0.8, 0.8)
 shader_parameter/world_light_offset = 0.06
-shader_parameter/world_light_shadow_strength = 5.0
+shader_parameter/world_light_shadow_strength = 0.0
+shader_parameter/reflection_offset = 0.58
+shader_parameter/texture_sky = ExtResource("2_lt2al")

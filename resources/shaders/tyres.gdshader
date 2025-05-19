@@ -31,7 +31,7 @@ void fragment() {
 
 	l = l * world_light_strength ;
 	vec3 col = mix(basecolor.xyz, vec3(0.0), speedlines);
-	ALBEDO = col + l ; 
+	ALBEDO = col;// + l ; 
 
 }
 

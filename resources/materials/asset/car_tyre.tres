@@ -1,10 +1,11 @@
 [gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dcmw5y1gtg5pq"]
 
-[ext_resource type="Shader" uid="uid://clsbjrpqdsmmu" path="res://resources/shaders/carlight.gdshader" id="1_ot1en"]
+[ext_resource type="Shader" uid="uid://5mjqbolrat0j" path="res://resources/shaders/tyres.gdshader" id="1_ot1en"]
 
 [resource]
 render_priority = 0
 shader = ExtResource("1_ot1en")
-shader_parameter/basecolor = Vector3(0.1, 0.1, 0.1)
-shader_parameter/world_light_offset = 0.1
-shader_parameter/world_light_shadow_strength = 0.3
+shader_parameter/basecolor = Color(0, 0, 0, 1)
+shader_parameter/world_light_strength = 1.0
+shader_parameter/view_mask_offset = 0.45
+shader_parameter/coverage = 0.0

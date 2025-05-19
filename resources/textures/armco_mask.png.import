@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://yoxn0wyr7q7u"
-path.s3tc="res://.godot/imported/car_decals_lines_mask.png-074c30a6fcd06e3cff6f73f7fa8153f1.s3tc.ctex"
+uid="uid://bsvtw2hm0qnm0"
+path.s3tc="res://.godot/imported/armco_mask.png-192dc7ea02ac189837d8167c94be5a10.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://resources/textures/car_decals_lines_mask.png"
-dest_files=["res://.godot/imported/car_decals_lines_mask.png-074c30a6fcd06e3cff6f73f7fa8153f1.s3tc.ctex"]
+source_file="res://resources/textures/armco_mask.png"
+dest_files=["res://.godot/imported/armco_mask.png-192dc7ea02ac189837d8167c94be5a10.s3tc.ctex"]
 
 [params]
 

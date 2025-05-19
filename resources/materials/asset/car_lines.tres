@@ -1,12 +1,11 @@
-[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://cqffnijcamxnw"]
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://cqffnijcamxnw"]
 
-[ext_resource type="Shader" uid="uid://clsbjrpqdsmmu" path="res://resources/shaders/carlight.gdshader" id="1_pxff4"]
-[ext_resource type="Texture2D" uid="uid://bna80af4luqee" path="res://resources/textures/car_decals_basecolor.png" id="2_kb7o0"]
+[ext_resource type="Shader" uid="uid://ckcemdxgypv2j" path="res://resources/shaders/toonlight.gdshader" id="1_d0b76"]
 
 [resource]
 render_priority = 0
-shader = ExtResource("1_pxff4")
-shader_parameter/basecolor = Vector3(0, 0, 0)
-shader_parameter/world_light_offset = 0.0
-shader_parameter/world_light_shadow_strength = 0.0
-shader_parameter/texture_basecolor = ExtResource("2_kb7o0")
+shader = ExtResource("1_d0b76")
+shader_parameter/basecolor = Color(0, 0, 0, 1)
+shader_parameter/world_light_strength = 0.0
+shader_parameter/view_mask_offset = 0.45
+shader_parameter/coverage = 0.0

@@ -1,31 +1,40 @@
-[gd_scene load_steps=8 format=3 uid="uid://dg7c4ysyrb7yn"]
+[gd_scene load_steps=10 format=3 uid="uid://dg7c4ysyrb7yn"]
 
 [ext_resource type="PackedScene" uid="uid://3c0vtybx44g8" path="res://resources/Scenes/car_86.tscn" id="1_p8afq"]
-[ext_resource type="Shader" uid="uid://ckcemdxgypv2j" path="res://resources/shaders/toonlight.gdshader" id="2_3xys7"]
+[ext_resource type="Shader" uid="uid://clsbjrpqdsmmu" path="res://resources/shaders/carlight.gdshader" id="2_vanvx"]
 [ext_resource type="PackedScene" uid="uid://wxwpnv43sr71" path="res://resources/Scenes/skidmark.tscn" id="3_qmci1"]
+[ext_resource type="CompressedCubemap" uid="uid://m2u57s3or5xd" path="res://resources/textures/skybox_cube.png" id="3_xrsmw"]
+[ext_resource type="ArrayMesh" uid="uid://1julwog2sini" path="res://resources/gd_meshes/86_body.res" id="5_0nexm"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qmci1"]
 render_priority = 0
-shader = ExtResource("2_3xys7")
+shader = ExtResource("2_vanvx")
 shader_parameter/basecolor = Vector3(0.8, 0.8, 0.8)
-shader_parameter/world_light_strength = 0.2
+shader_parameter/world_light_offset = 0.1
+shader_parameter/world_light_shadow_strength = 0.3
+shader_parameter/reflection_offset = 0.2
+shader_parameter/texture_sky = ExtResource("3_xrsmw")
 
 [sub_resource type="SphereMesh" id="SphereMesh_wec60"]
 material = SubResource("ShaderMaterial_qmci1")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_3xys7"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0nexm"]
 render_priority = 0
-shader = ExtResource("2_3xys7")
+shader = ExtResource("2_vanvx")
 shader_parameter/basecolor = Vector3(0.8, 0.8, 0.8)
-shader_parameter/world_light_strength = 0.2
+shader_parameter/world_light_offset = 0.1
+shader_parameter/world_light_shadow_strength = 0.3
+shader_parameter/reflection_offset = 0.2
+shader_parameter/texture_sky = ExtResource("3_xrsmw")
 
 [sub_resource type="TorusMesh" id="TorusMesh_qmci1"]
-material = SubResource("ShaderMaterial_3xys7")
+material = SubResource("ShaderMaterial_0nexm")
 
 [node name="MaterialTestScene" type="Node3D"]
 
 [node name="VehicleRigidBody" parent="." instance=ExtResource("1_p8afq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.38392, 0, -0.970922)
+visible = false
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.237381, 0.971417, 0, -0.971417, 0.237381, 0, 4.51417, -0.0955789)
@@ -35,12 +44,25 @@ shadow_blur = 0.129
 sky_mode = 1
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 1.63157, -0.12516, -5.2455)
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 1.63157, 6.43764, 5.78754)
+visible = false
 mesh = SubResource("SphereMesh_wec60")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
-transform = Transform3D(2.95939, 0, 0.491941, 0, 3, 0, -0.491941, 0, 2.95939, 1.63157, 2.09017, -10.2035)
+transform = Transform3D(2.22978, 1.97248, 0.370658, -1.94578, 2.26038, -0.323448, -0.491941, 0, 2.95939, 1.63157, 5.94133, -2.21723)
+visible = false
 mesh = SubResource("TorusMesh_qmci1")
 
 [node name="Skidmark" parent="." instance=ExtResource("3_qmci1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.115042, 3.0463, -11.9595)
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.38758, -0.921836, 0, 0.921836, 0.38758, 0, 0, 0, 1, 0, 3.18912, 4.68162)
+mesh = ExtResource("5_0nexm")
+skeleton = NodePath("../MeshInstance3D")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 4.97899, 2.56323)
+visible = false
+mesh = SubResource("SphereMesh_wec60")
+skeleton = NodePath("../MeshInstance3D")

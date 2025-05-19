@@ -23,17 +23,17 @@ void vertex() {
 		vec4(0.0, length(MODEL_MATRIX[1].xyz * billboard_scale), 0.0, 0.0),
 		vec4(0.0, 0.0, length(MODEL_MATRIX[2].xyz* billboard_scale), 0.0),
 		vec4(0.0, 0.5, 0.0, 1.0));
-	
 
-	
+
+
 	MODELVIEW_NORMAL_MATRIX = mat3(MODELVIEW_MATRIX);
-	
+
 }
 
 void fragment() {
 	// use texture from streetlight
 	ALBEDO = texture(mask_texture, UV).xyz * intensity;
-	
+
 }
 
 //void light() {

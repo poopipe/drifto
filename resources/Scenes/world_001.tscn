@@ -12,7 +12,6 @@
 [ext_resource type="Script" uid="uid://b3x2sv0t72127" path="res://addons/gevp/scripts/debug_ui.gd" id="10_ipmle"]
 [ext_resource type="Script" uid="uid://dryxkqundec26" path="res://addons/gevp/scenes/road_path.gd" id="11_wp37n"]
 [ext_resource type="Material" uid="uid://8ybeqagdpx28" path="res://resources/materials/asset/road.tres" id="12_6g7ee"]
-[ext_resource type="Shader" uid="uid://ckcemdxgypv2j" path="res://resources/shaders/toonlight.gdshader" id="14_1fuwa"]
 [ext_resource type="Material" uid="uid://dmuq65dahn5ov" path="res://resources/materials/asset/armco_one.tres" id="14_fccuq"]
 [ext_resource type="Script" uid="uid://cmqetm6e0dbh5" path="res://resources/scripts/get_transforms_from_path.gd" id="14_h3gei"]
 [ext_resource type="Material" uid="uid://b3y0v4dcpgdux" path="res://resources/materials/asset/road_base.tres" id="15_1fuwa"]
@@ -25,6 +24,7 @@
 [ext_resource type="Texture2D" uid="uid://d2gd551g34yab" path="res://resources/textures/road_surface_output.png" id="18_dg2gx"]
 [ext_resource type="ArrayMesh" uid="uid://bp3o2200v42np" path="res://resources/gd_meshes/SM_Env_Tree_Small_01_fbx.res" id="18_wp37n"]
 [ext_resource type="Script" uid="uid://bqhoynr878g2i" path="res://resources/scripts/child_path.gd" id="19_320bu"]
+[ext_resource type="Shader" uid="uid://cf5dfgd6ryt77" path="res://resources/shaders/armco.gdshader" id="19_mpkgg"]
 [ext_resource type="ArrayMesh" uid="uid://b8dy0jg83avup" path="res://resources/gd_meshes/SM_Env_Tree_Small_02_fbx.res" id="19_x1msw"]
 [ext_resource type="Material" uid="uid://cmdsso7tw6djb" path="res://resources/materials/asset/armco_post.tres" id="20_vwumr"]
 [ext_resource type="Material" uid="uid://bve0pcutdikid" path="res://resources/materials/post_process/pp_vignette.tres" id="21_iwa3l"]
@@ -193,11 +193,13 @@ up_vector_enabled = false
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_51eg1"]
 render_priority = 0
-shader = ExtResource("14_1fuwa")
+shader = ExtResource("19_mpkgg")
 shader_parameter/basecolor = Color(0, 0, 0, 1)
 shader_parameter/world_light_strength = 0.2
 shader_parameter/view_mask_offset = 0.45
 shader_parameter/coverage = 0.0
+shader_parameter/uv_scale = Vector2(8, 4)
+shader_parameter/uv_offset = Vector2(0, 0)
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_iwa3l"]
 material = ExtResource("20_vwumr")
@@ -245,7 +247,7 @@ up_vector_enabled = false
 [node name="world_001" type="Node3D"]
 
 [node name="VehicleController" parent="." node_paths=PackedStringArray("vehicle_node") groups=["Road"] instance=ExtResource("1_5d8ml")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 71.4199, 199.432, -187.158)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 66.66, 199.432, -187.158)
 vehicle_node = NodePath("VehicleRigidBody")
 
 [node name="VehicleRigidBody" parent="VehicleController" instance=ExtResource("2_6g7ee")]
