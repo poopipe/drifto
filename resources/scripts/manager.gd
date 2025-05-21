@@ -3,6 +3,7 @@ extends Node3D
 @export var road:CSGPolygon3D
 @export var camera: Camera3D
 @export var start_point: Node3D
+@export var main_menu_scene: PackedScene
 
 @export_group("skid thresholds")
 @export var longitudinal_slip_threshold := 0.7
@@ -70,6 +71,8 @@ func _ready() -> void:
 	if vehicle_node.has_signal("body_exited"):
 		vehicle_node.body_exited.connect(_on_vehicle_body_exited.bind())
 	
+	print(main_menu_scene)
+	
 	# init run
 	init_run()
 		
@@ -109,11 +112,14 @@ func get_yaw_angle(vehicle_node:Vehicle)-> float:
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("action_back"):
 		init_run()
-		
 				
 	if event.is_action_pressed("action_menu"):
-		print("MENU", event)
-
+		print("menu", main_menu_scene)
+		
+		var s := get_tree().change_scene_to_packed(main_menu_scene)
+		print(s)
+		
+		
 func _process(_delta: float) -> void:
 	var vehicle_node = player.vehicle_node
 	if is_instance_valid(vehicle_node):	

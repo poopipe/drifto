@@ -432,13 +432,9 @@ func _integrate_forces(state : PhysicsDirectBodyState3D):
 	current_impulse = state.get_contact_impulse(0)
 
 	if is_resetting:
-		#self.freeze = true
 		PhysicsServer3D.body_set_mode(self.get_rid(), PhysicsServer3D.BODY_MODE_KINEMATIC)
 		self.global_transform = start_xform
 		PhysicsServer3D.body_set_mode(self.get_rid(), PhysicsServer3D.BODY_MODE_RIGID)
-		#PhysicsServer3D.body_set_state(self.get_rid(), PhysicsServer3D.BODY_STATE_TRANSFORM, start_xform)
-		print("vehicle resetting")
-	
 
 func initialize():
 	# Check to verify that surface types are provided
