@@ -2,6 +2,7 @@ extends Node3D
 @export var player: VehicleController
 @export var road:CSGPolygon3D
 @export var camera: Camera3D
+@export var start_point: Node3D
 
 @export_group("skid thresholds")
 @export var longitudinal_slip_threshold := 0.7
@@ -22,26 +23,31 @@ extends Node3D
 @export var armco_material:ShaderMaterial
 @export var effect_fade_rate:float = 1.25
 
+var is_resetting: bool = false
+
 # skid tracking
 var skidding: bool = false
 var skids_initiated: int = 0
 var skid_start_time  := Time.get_unix_time_from_system()
 var skid_end_time := Time.get_unix_time_from_system()
-var total_skidding: int = 0
+var total_score: int = 0
 
 # crash tracking
 var crashing: bool = false
 var crash_start_time := Time.get_unix_time_from_system()
 var crash_end_time := Time.get_unix_time_from_system()
 var crash_impulse:Vector3 = Vector3(0.0, 0.0, 0.0)
+var crash_bonus_default = 1.0	# this is multiplied, we set to 0.0 when we crash
 var crash_bonus = 1.0
 
 # proximity tracking
 var front_close:bool = false
 var rear_close:bool = false
-var proximity_multiplier:float = 2.0
+
+var proximity_bonus_default:float = 2.0
 var proximity_bonus:float = 1.0
 # score multipliers
+var skid_time_bonus_default:float = 1.0
 var skid_time_bonus:float = 1.0
 
 
@@ -63,7 +69,26 @@ func _ready() -> void:
 		vehicle_node.body_entered.connect(_on_vehicle_body_entered.bind())
 	if vehicle_node.has_signal("body_exited"):
 		vehicle_node.body_exited.connect(_on_vehicle_body_exited.bind())
-				
+	
+	# init run
+	init_run()
+		
+func init_run()-> void:
+	# position vehicle controller:
+	player.transform = start_point.transform
+	# tell vehiclebody we're resetting and where to reset to
+	player.vehicle_node.start_xform = start_point.transform
+	player.vehicle_node.is_resetting = true
+	# tell camera we're resetting
+	camera.is_resetting = true
+	# reset scores and bonuses
+	total_score = 0
+	skid_time_bonus = skid_time_bonus_default
+	crash_bonus = crash_bonus_default
+	proximity_bonus = proximity_bonus_default
+	
+	
+
 func get_wheels_spinning(vehicle_node:Vehicle)-> bool:
 	# are any wheels spinning / sliding
 	# TODO: 
@@ -81,6 +106,13 @@ func get_yaw_angle(vehicle_node:Vehicle)-> float:
 		return 1.0 - absf(plane_xz.dot(Vector2.UP))
 	return 0.0
 
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("action_back"):
+		init_run()
+		
+				
+	if event.is_action_pressed("action_menu"):
+		print("MENU", event)
 
 func _process(_delta: float) -> void:
 	var vehicle_node = player.vehicle_node
@@ -130,14 +162,14 @@ func _process(_delta: float) -> void:
 	
 		# get  time multiplier 
 		if skidding:
-			skid_time_bonus = 1.0 + floor(2.0 * skid_start_delta)
+			skid_time_bonus = skid_time_bonus_default + floor(2.0 * skid_start_delta)
 		else:
 			skid_time_bonus = 1.0
 			
 		# get proximity multiplier
 		# TODO: is there a way to reward closeness?
 		if front_close or rear_close:
-			proximity_bonus = proximity_multiplier	
+			proximity_bonus = proximity_bonus_default	
 		else:
 			proximity_bonus = 1.0
 				
@@ -149,14 +181,14 @@ func _process(_delta: float) -> void:
 			#print(crash_impulse.length(), crash_impulse)
 			crash_bonus = 0.0
 		else:
-			crash_bonus = 1.0
+			crash_bonus = crash_bonus_default
 		
 		var frame_score = 0.0
 		#if skidding or within grace period, add score
 		if skidding or skid_end_delta <= skid_cooldown :
 			frame_score = skid_score * skid_time_bonus * proximity_bonus * crash_bonus
 		
-		total_skidding += frame_score
+		total_score += floor(frame_score)
 		
 		
 		
@@ -170,6 +202,7 @@ func _process(_delta: float) -> void:
 		armco_material.set_shader_parameter("coverage", effect_amount)
 		
 		camera.fov = 75.0 + (effect_amount * 10.0)
+
 
 func _on_vehicle_body_entered(body: Node3D) -> void:
 	if not body == player.vehicle_node and not body == road:

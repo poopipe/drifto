@@ -346,6 +346,8 @@ var clutch_input := 0.0
 ################################################################
 
 var is_ready := false
+var is_resetting := false
+var start_xform := Transform3D.IDENTITY
 var local_velocity := Vector3.ZERO
 var previous_global_position := Vector3.ZERO
 var speed := 0.0
@@ -428,6 +430,14 @@ func _ready():
 func _integrate_forces(state : PhysicsDirectBodyState3D):
 	current_gravity = state.total_gravity
 	current_impulse = state.get_contact_impulse(0)
+
+	if is_resetting:
+		#self.freeze = true
+		PhysicsServer3D.body_set_mode(self.get_rid(), PhysicsServer3D.BODY_MODE_KINEMATIC)
+		self.global_transform = start_xform
+		PhysicsServer3D.body_set_mode(self.get_rid(), PhysicsServer3D.BODY_MODE_RIGID)
+		#PhysicsServer3D.body_set_state(self.get_rid(), PhysicsServer3D.BODY_STATE_TRANSFORM, start_xform)
+		print("vehicle resetting")
 	
 
 func initialize():
@@ -608,19 +618,22 @@ func initialize():
 func _physics_process(delta : float) -> void:
 	if not is_ready:
 		return
+	if is_resetting:
+		previous_global_position = start_xform.origin
+		speed = 0.0
+	else:
 	
-	## For stability calculations, we need the vehicle body inertia which isn't
-	## available immediately
-	if not vehicle_inertia:
-		var rigidbody_inertia := PhysicsServer3D.body_get_direct_state(get_rid()).inverse_inertia.inverse()
-		if rigidbody_inertia.is_finite():
-			vehicle_inertia = rigidbody_inertia * inertia_multiplier
-			inertia = vehicle_inertia
-	
-	delta_time += delta
-	local_velocity = lerp(((global_transform.origin - previous_global_position) / delta) * global_transform.basis, local_velocity, 0.5)
-	previous_global_position = global_position
-	speed = local_velocity.length()
+		## For stability calculations, we need the vehicle body inertia which isn't
+		## available immediately
+		if not vehicle_inertia:
+			var rigidbody_inertia := PhysicsServer3D.body_get_direct_state(get_rid()).inverse_inertia.inverse()
+			if rigidbody_inertia.is_finite():
+				vehicle_inertia = rigidbody_inertia * inertia_multiplier
+				inertia = vehicle_inertia
+		delta_time += delta
+		local_velocity = lerp(((global_transform.origin - previous_global_position) / delta) * global_transform.basis, local_velocity, 0.5)
+		previous_global_position = global_position
+		speed = local_velocity.length()
 	
 	process_drag()
 	process_braking(delta)
@@ -632,6 +645,12 @@ func _physics_process(delta : float) -> void:
 	process_drive(delta)
 	process_forces(delta)
 	process_stability()
+	
+	if self.freeze:
+		self.freeze = false
+	if self.is_resetting:
+		self.is_resetting = false
+		
 
 func process_drag() -> void:
 	var drag := 0.5 * air_density * pow(speed, 2.0) * frontal_area * coefficient_of_drag

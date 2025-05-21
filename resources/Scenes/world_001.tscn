@@ -247,10 +247,11 @@ up_vector_enabled = false
 [node name="world_001" type="Node3D"]
 
 [node name="VehicleController" parent="." node_paths=PackedStringArray("vehicle_node") groups=["Road"] instance=ExtResource("1_5d8ml")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 66.66, 199.432, -187.158)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 52.9959, 199.069, -187.085)
 vehicle_node = NodePath("VehicleRigidBody")
 
 [node name="VehicleRigidBody" parent="VehicleController" instance=ExtResource("2_6g7ee")]
+freeze_mode = 1
 brake_force_multiplier = 4.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="VehicleController/VehicleRigidBody"]
@@ -315,7 +316,7 @@ layout_mode = 2
 text = "true"
 
 [node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("follow_this")]
-transform = Transform3D(-4.37114e-08, -0.190809, -0.981627, 0, 0.981627, -0.190809, 1, -8.34053e-09, -4.29083e-08, 50.0691, 202.28, -186.551)
+transform = Transform3D(0.0540759, -0.000566302, -0.998536, 0.0104718, 0.999945, 0, 0.998482, -0.0104565, 0.0540788, 32.9701, 202.448, -188.714)
 script = ExtResource("8_vwumr")
 follow_distance = 8
 follow_height = 4
@@ -571,11 +572,12 @@ force_up = true
 [node name="track_one_mountain" parent="." instance=ExtResource("15_jcyjv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.765, 0)
 
-[node name="manager" type="Node3D" parent="." node_paths=PackedStringArray("player", "road", "camera")]
+[node name="manager" type="Node3D" parent="." node_paths=PackedStringArray("player", "road", "camera", "start_point")]
 script = ExtResource("16_vmlud")
 player = NodePath("../VehicleController")
 road = NodePath("../road_path/mesh_road")
 camera = NodePath("../Camera3D")
+start_point = NodePath("../car_start")
 vignette_material = ExtResource("21_iwa3l")
 road_material = ExtResource("12_6g7ee")
 armco_material = ExtResource("14_fccuq")
@@ -594,7 +596,6 @@ curve = SubResource("Curve3D_1fuwa")
 
 [node name="lights_left" type="Node3D" parent="." node_paths=PackedStringArray("path", "path_left", "path_right")]
 script = ExtResource("21_jcyjv")
-is_dirty = true
 instance_scene = ExtResource("26_wp37n")
 path = NodePath("../road_path")
 path_left = NodePath("../road_path/sub_path_armco_left")
@@ -606,7 +607,6 @@ instance_rotate = -90.0
 
 [node name="trees_right" type="Node3D" parent="." node_paths=PackedStringArray("path")]
 script = ExtResource("27_x1msw")
-is_dirty = true
 meshes = Array[ArrayMesh]([ExtResource("15_51eg1"), ExtResource("17_ipmle"), ExtResource("18_wp37n"), ExtResource("19_x1msw")])
 path = NodePath("../road_path/sub_path_armco_right")
 instance_spacing = 1.5
@@ -620,7 +620,6 @@ rotate_random = 360.0
 
 [node name="trees_right2" type="Node3D" parent="." node_paths=PackedStringArray("path")]
 script = ExtResource("27_x1msw")
-is_dirty = true
 meshes = Array[ArrayMesh]([ExtResource("15_51eg1"), ExtResource("17_ipmle"), ExtResource("18_wp37n"), ExtResource("19_x1msw")])
 path = NodePath("../road_path/sub_path_armco_right")
 instance_spacing = 1.5
@@ -635,7 +634,6 @@ rotate_random = 360.0
 
 [node name="bushes_right" type="Node3D" parent="." node_paths=PackedStringArray("path")]
 script = ExtResource("27_x1msw")
-is_dirty = true
 meshes = Array[ArrayMesh]([ExtResource("27_320bu")])
 path = NodePath("../road_path/sub_path_armco_right")
 instance_spacing = 1.0
@@ -648,7 +646,6 @@ rotate_random = 360.0
 
 [node name="bushes_right2" type="Node3D" parent="." node_paths=PackedStringArray("path")]
 script = ExtResource("27_x1msw")
-is_dirty = true
 meshes = Array[ArrayMesh]([ExtResource("27_320bu")])
 path = NodePath("../road_path/sub_path_armco_right")
 instance_spacing = 1.0
@@ -662,7 +659,6 @@ rotate_random = 360.0
 
 [node name="bushes_left" type="Node3D" parent="." node_paths=PackedStringArray("path")]
 script = ExtResource("27_x1msw")
-is_dirty = true
 meshes = Array[ArrayMesh]([ExtResource("27_320bu")])
 path = NodePath("../road_path/sub_path_armco_left")
 instance_spacing = 1.0
@@ -675,7 +671,6 @@ rotate_random = 360.0
 
 [node name="bushes_left2" type="Node3D" parent="." node_paths=PackedStringArray("path")]
 script = ExtResource("27_x1msw")
-is_dirty = true
 meshes = Array[ArrayMesh]([ExtResource("27_320bu")])
 path = NodePath("../road_path/sub_path_armco_left")
 instance_spacing = 1.0
@@ -689,7 +684,6 @@ rotate_random = 360.0
 
 [node name="trees_left" type="Node3D" parent="." node_paths=PackedStringArray("path")]
 script = ExtResource("27_x1msw")
-is_dirty = true
 meshes = Array[ArrayMesh]([ExtResource("15_51eg1"), ExtResource("17_ipmle"), ExtResource("18_wp37n"), ExtResource("19_x1msw")])
 path = NodePath("../road_path/sub_path_armco_left")
 instance_spacing = 1.5
@@ -703,7 +697,6 @@ rotate_random = 360.0
 
 [node name="trees_left2" type="Node3D" parent="." node_paths=PackedStringArray("path")]
 script = ExtResource("27_x1msw")
-is_dirty = true
 meshes = Array[ArrayMesh]([ExtResource("15_51eg1"), ExtResource("17_ipmle"), ExtResource("18_wp37n"), ExtResource("19_x1msw")])
 path = NodePath("../road_path/sub_path_armco_left")
 instance_spacing = 1.5
@@ -718,7 +711,6 @@ rotate_random = 360.0
 
 [node name="trees_left3" type="Node3D" parent="." node_paths=PackedStringArray("path")]
 script = ExtResource("27_x1msw")
-is_dirty = true
 meshes = Array[ArrayMesh]([ExtResource("15_51eg1"), ExtResource("17_ipmle"), ExtResource("18_wp37n"), ExtResource("19_x1msw")])
 path = NodePath("../road_path/sub_path_armco_left")
 instance_spacing = 1.5
@@ -756,6 +748,9 @@ skeleton = NodePath("../..")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0, 0)
 mesh = ExtResource("30_etpm2")
 skeleton = NodePath("../..")
+
+[node name="car_start" type="Node3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 52.9959, 199.069, -192.273)
 
 [connection signal="path_changed" from="road_path" to="road_path/sub_path_armco_left" method="_on_parent_path_changed"]
 [connection signal="path_changed" from="road_path" to="road_path/sub_path_armco_right" method="_on_parent_path_changed"]

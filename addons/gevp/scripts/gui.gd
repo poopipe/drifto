@@ -14,7 +14,7 @@ func _process(delta):
 	speed_label.text = str(snappedf(vehicle.speed, 1.0)) #str(round(vehicle.speed * 3.6)) + " km/h"
 	rpm_label.text = str(round(vehicle.motor_rpm)) + " rpm"
 	gear_label.text = "Gear: " + str(vehicle.current_gear)
-	skidding_label.text = "Skidding:" + str(game_manager.total_skidding)
+	skidding_label.text = "Skidding:" + str(game_manager.total_score)
 	time_bonus_label.text = "time bonus:" + str(game_manager.skid_time_bonus)
 	prox_bonus_label.text = "prox bonus:" + str(game_manager.proximity_bonus)
 	crashing_label.text = "crashing:" + str(game_manager.crashing)
