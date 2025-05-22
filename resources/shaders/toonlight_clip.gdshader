@@ -23,7 +23,7 @@ void fragment() {
 	if(!FRONT_FACING){
 		n = bn;
 	}
-	
+
 	NORMAL = n;
 	ALPHA *= alpha.w;
 	ALPHA_SCISSOR_THRESHOLD = alpha_scissor_threshold;
@@ -31,7 +31,7 @@ void fragment() {
 }
 void light() {
 
-	
+
 	float l = clamp(dot(NORMAL, LIGHT), 0.0, 1.0);
 	l = smoothstep(0.0, 0.1	, l);
 	DIFFUSE_LIGHT += vec3(l * ATTENUATION) * LIGHT_COLOR / PI;

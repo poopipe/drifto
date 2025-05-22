@@ -5,7 +5,7 @@ uniform vec4 basecolor : source_color;
 uniform float intensity = 1.0;
 void vertex() {
 	// Called for every vertex the material is visible on.
-	
+
 }
 float fresnel(float amount, vec3 normal, vec3 view)
 {
@@ -14,7 +14,7 @@ float fresnel(float amount, vec3 normal, vec3 view)
 
 
 void fragment() {
-	
+
 	vec3 vcol = COLOR.xyz * fresnel(2.0, NORMAL, VIEW);
 	vcol *= vcol;
 	vcol *= intensity;

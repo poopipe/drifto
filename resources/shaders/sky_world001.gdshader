@@ -27,19 +27,19 @@ void sky() {
 	float v_angle = acos(clamp(EYEDIR.y, -1.0, 1.0));
 	float c = (1.0 - v_angle / (PI * 0.5));
 	//vec3 sky = mix(sky_horizon_color.rgb, sky_top_color.rgb, clamp(1.0 - pow(1.0 - c, 1.0 / sky_curve), 0.0, 1.0));
-	
+
 	// set up sky gradient bands
 	float sky_y = (1.0-SKY_COORDS.y) + horizon_offset;
 	float sky_gradient = 1.0 - abs(sky_y * 2.0 - 1.0);
 	sky_gradient = sky_gradient * sky_bands;
-	
+
 	float sky_sections = floor(sky_gradient-0.5) / sky_bands;
 	float sky_lines =smoothstep(0.0, 0.1, abs(fract(sky_gradient)*2.0 - 1.0));
-	
-	
-	
+
+
+
 	vec3 sky = vec3(sky_sections * mix(sky_horizon_color.rgb, sky_top_color.rgb, pow(1.0-(SKY_COORDS.y * SKY_COORDS.y), sky_curve)));
-	
+
 	sky *= sky_energy;
 
 	if (LIGHT0_ENABLED) {

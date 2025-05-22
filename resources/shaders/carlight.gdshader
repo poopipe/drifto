@@ -12,30 +12,30 @@ uniform samplerCube texture_sky : source_color, filter_linear_mipmap, repeat_ena
 
 void vertex() {
 	// Called for every vertex the material is visible on.
-	
+
 }
 
 void fragment() {
 	// Called for every pixel the material is visible on.
-	
+
 	// consider putting the depth cue into the shaders rather than using fog
 	// fog is too soft a falloff and it makes me sad
-	
+
 	// world lighting effect - prefer cubemap
 	//vec3 worldNormal = (INV_VIEW_MATRIX * vec4(NORMAL, 0.0)).xyz;
 	//float l = clamp(dot(worldNormal, vec3(0.0,1.0,0.0)), 0.0, 1.0);
 	//float world_light_offset_end = world_light_offset + 0.01;
 	//l = 1.0 - smoothstep(world_light_offset, world_light_offset_end, l) ;
-	
+
 	vec3 basecolor_texture = texture(texture_basecolor, UV).xyz;
-	
+
 	// view space reflection vector
 	vec3 reflection_vector = get_cubemap_uv(INV_VIEW_MATRIX, NORMAL, CAMERA_POSITION_WORLD, NODE_POSITION_WORLD);
 	reflection_vector += vec3(0.0, reflection_offset, 0.0);
 	float levels = 4.0;
 	reflection_vector = floor(reflection_vector * levels) / levels;
 	vec3 refl = clamp(texture(texture_sky, reflection_vector).xxx * 3.0, 0.0, 1.0) ;
-	
+
 	ALBEDO = basecolor * basecolor_texture;
 	ALBEDO -= refl;
 }

@@ -38,7 +38,7 @@ float get_skew_lines(vec2 p){
 	vec2 skew_pos = p * vec2(1.0, 8.0);
 	float skew_across = abs((skew_pos.y - 1.0) * 2.0 - 1.0) + (p.x * 12.0);
 	return step(abs(sin( skew_across * TAU * 1.0)), 0.75);
-	
+
 }
 
 void fragment() {
@@ -50,10 +50,10 @@ void fragment() {
 	vec2 panel_gap_pos = pos * vec2(8.0, 16.0);
 	float m = 1.0 - floor(mod(panel_gap_pos.x, 2.0));
 	surface += texture(panel_gap_mask, panel_gap_pos).x * m;
-	
-	
+
+
 	float bands = get_bands(pos, 1.0);
-	
+
 
 	// get road markings
 	float lines = fract(pos.y * 8.0);
@@ -68,23 +68,23 @@ void fragment() {
 	// angled stripes
 	float skew_lines = get_skew_lines(pos);
 	skew_lines = skew_lines * (1.0 - road_mask);
-	
+
 	// create road surface
 	bands = 1.0 -surface;
 	bands = clamp(bands, 0.0, 1.0);
-	
+
 	vec3 road_surface = vec3(bands) * basecolor;
-	
+
 	road_surface = mix(road_surface, center_line_color, center_line);
 	road_surface = mix(road_surface, side_line_color, side_lines);
 	road_surface = mix(road_surface, angle_line_color, skew_lines);
-	
-	
+
+
 	// view space masking
 	float view_mask = get_view_mask(FRAGCOORD, VIEWPORT_SIZE, view_mask_offset, coverage);
 	// speedlines
 	float speedlines = get_speed_lines(fract(UV.xy), view_mask, noise , vec2(16.0, 4.0));
-	
+
 	// combine lines and bands
 	vec3 col = clamp(road_surface, 0.0, 1.0);
 	// combine speedlines

@@ -5,16 +5,20 @@ extends Control
 @onready var speed_label = $VBoxContainer/Speed
 @onready var rpm_label = $VBoxContainer/RPM
 @onready var gear_label = $VBoxContainer/Gear
-@onready var skidding_label = $VBoxContainer/Skidding
+@onready var score_label = $VBoxContainer/Score
+@onready var skid_score_label =$VBoxContainer/SkidScore
 @onready var time_bonus_label = $VBoxContainer/TimeBonus
 @onready var prox_bonus_label = $VBoxContainer/ProxBonus
 @onready var crashing_label = $VBoxContainer/Crashing
 
 func _process(delta):
-	speed_label.text = str(snappedf(vehicle.speed, 1.0)) #str(round(vehicle.speed * 3.6)) + " km/h"
+
+	speed_label.text = str(snappedf(vehicle.speed * 3.6, 1.0)) + "km/h" #str(round(vehicle.speed * 3.6)) + " km/h"
 	rpm_label.text = str(round(vehicle.motor_rpm)) + " rpm"
-	gear_label.text = "Gear: " + str(vehicle.current_gear)
-	skidding_label.text = "Skidding:" + str(game_manager.total_score)
-	time_bonus_label.text = "time bonus:" + str(game_manager.skid_time_bonus)
-	prox_bonus_label.text = "prox bonus:" + str(game_manager.proximity_bonus)
-	crashing_label.text = "crashing:" + str(game_manager.crashing)
+	gear_label.text = "debuf: " + str(game_manager.skid_debug)
+	time_bonus_label.text = "skid score:" + str(game_manager.current_skid_score)
+	crashing_label.text = "skidding:" + str(game_manager.skidding)
+	prox_bonus_label.text = "skid cooldown:" + str(game_manager.skid_cooldown_active)
+	skid_score_label.text = "end delta:" + str(snappedf(game_manager.skid_end_delta, 0.01))
+	score_label.text = "start delta:" + str(snappedf(game_manager.skid_start_delta, 0.01))
+	
