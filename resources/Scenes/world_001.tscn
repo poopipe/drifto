@@ -549,6 +549,30 @@ text = "skid:234"
 layout_mode = 2
 text = "1234"
 
+[node name="skid_start" type="Label" parent="VehicleController/GUI/VBoxContainer"]
+layout_mode = 2
+text = "start"
+
+[node name="skid_end" type="Label" parent="VehicleController/GUI/VBoxContainer"]
+layout_mode = 2
+text = "end"
+
+[node name="skid_ended" type="Label" parent="VehicleController/GUI/VBoxContainer"]
+layout_mode = 2
+text = "ended"
+
+[node name="skid_length" type="Label" parent="VehicleController/GUI/VBoxContainer"]
+layout_mode = 2
+text = "skid length"
+
+[node name="time_bonus" type="Label" parent="VehicleController/GUI/VBoxContainer"]
+layout_mode = 2
+text = "time bonus"
+
+[node name="speed_bonus" type="Label" parent="VehicleController/GUI/VBoxContainer"]
+layout_mode = 2
+text = "speed bonus"
+
 [node name="VBoxContainer2" type="VBoxContainer" parent="VehicleController/GUI"]
 layout_mode = 1
 anchors_preset = 1

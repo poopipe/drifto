@@ -13,9 +13,12 @@ extends Control
 @onready var prox_state_label = $VBoxContainer/prox_state
 @onready var skid_state_label = $VBoxContainer/skid_state
 @onready var skid_score_label = $VBoxContainer/skid_score
-
-
-
+@onready var skid_end_label = $VBoxContainer/skid_end
+@onready var skid_start_label = $VBoxContainer/skid_start
+@onready var skid_ended_label = $VBoxContainer/skid_ended
+@onready var skid_len_label = $VBoxContainer/skid_length
+@onready var time_bonus_label = $VBoxContainer/time_bonus
+@onready var speed_bonus_label = $VBoxContainer/speed_bonus
 
 func _process(delta):
 
@@ -27,5 +30,11 @@ func _process(delta):
 	if game_manager.current_skid:
 		skid_score_label.text = "skid score:  " + str(game_manager.current_skid.score)
 		skid_state_label.text = "skid state:  " + str(game_manager.current_skid.active)
+		skid_start_label.text = "start time:  " + str(game_manager.current_skid.start_time)
+		skid_end_label.text = 	"end time:    " + str(game_manager.current_skid.end_time)
+		skid_ended_label.text = "ended:       " + str(game_manager.current_skid.ended)
+		skid_len_label.text =	"skid length  " + str(game_manager.current_skid.length)
 	crash_state_label.text = 	"crash state: " + str(game_manager.crashing)
 	prox_state_label.text =     "prox state:  " + str(game_manager.proximity_bonus)
+	time_bonus_label.text =		"time bonus:  " + str(game_manager.skid_time_bonus)
+	speed_bonus_label.text =    "speed bonus: " + str(game_manager.skid_speed_bonus)

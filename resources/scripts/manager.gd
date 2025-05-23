@@ -84,8 +84,9 @@ class Skid:
 	var start_time:float
 	var end_time:float
 	var score:float
-	var active:bool
-	var ended:bool
+	var active:bool			# if inactive no score is accumulated but can be reactivated
+	var ended:bool			# if ended it's actually dead
+	var length:float
 
 # skidz
 var previous_skid:Skid
@@ -157,34 +158,11 @@ func get_crashing_state(now)-> bool:
 		return true
 	return false
 
-func initiate_skid(now)->void:
-	print("initiate_skid")
-	# if our current skid is still active
-	# ie. cooldown has not been reached
-	# we re-use it rather than creating a new one	
-	skidding = true
-	skids_initiated += 1
-	skid_start_time = Time.get_unix_time_from_system()
-
-func terminate_skid(now)->void:
-	print('terminate_skid')
-	if not crashing:
-		if skid_end_delta >= skid_cooldown:
-			commit_skid_score()
-			current_skid_score = 0.0
-			skidding = false
-			skid_end_time = Time.get_unix_time_from_system()
-	else:
-		current_skid_score = 0.0
-		skid_end_time = Time.get_unix_time_from_system()
-		skidding = false
-
 func initiate_crash()->void:
 	# crashing must be true
 	# crash start time is set
 	crash_impulse = player.vehicle_node.current_impulse
 	crash_start_time = Time.get_unix_time_from_system()
-
 
 func terminate_crash()->void:
 	# crashing must be false
@@ -192,13 +170,12 @@ func terminate_crash()->void:
 	crash_impulse = Vector3(0.0, 0.0, 0.0)
 	crash_end_time = Time.get_unix_time_from_system()
 
-
 func get_speed_bonus() -> float:
 	# bonus hsould be a function of speed when greater than threshold
 	# for now we just return 0 if less than threshold
 	if crashing:
 		return skid_speed_bonus_default
-	if not skidding:
+	if not current_skid.active:
 		return skid_speed_bonus_default
 	var corrected_speed = player.vehicle_node.speed * speed_correction	# not sure why it's 3.6 - check this
 	if corrected_speed >= skid_speed_threshold:
@@ -207,17 +184,12 @@ func get_speed_bonus() -> float:
 	return skid_speed_bonus_default
 
 func get_time_bonus(now)->float:
-	if crashing:
-		return skid_time_bonus_default
-	if skidding:
-		var start_delta = now - skid_start_time
-		return skid_time_bonus_default + floor(2.0 * start_delta)
+	if current_skid.active:
+		return skid_time_bonus_default + floor(1.0 + current_skid.length)
 	return skid_time_bonus_default
 
 func get_proximity_bonus()->float:
-	if crashing:
-		return proximity_bonus_default
-	if skidding:
+	if current_skid.active:
 		if front_close or rear_close:
 			return 2.0 * proximity_bonus_default
 	return proximity_bonus_default
@@ -227,7 +199,7 @@ func accumulate_skid_score()->void:
 
 func commit_skid_score()->void:
 	total_score += current_skid.score
-	print("commit score ", current_skid.score, " ", total_score)
+	#print("commit score: ", current_skid.score, " total: ", total_score, " length: ", current_skid.length)
 
 func skid_conditions_met()->bool:
 	var enough_yaw := false
@@ -258,7 +230,17 @@ func skid_conditions_met()->bool:
 		
 	return enough_slip and enough_yaw and enough_speed
 
-
+func new_skid()->Skid:
+	var now = Time.get_unix_time_from_system()
+	var skid = Skid.new()
+	skid.start_time = now
+	skid.end_time = now 
+	skid.score = 0.0
+	skid.active = false
+	skid.ended = false
+	skid.length = 0.0
+	return skid 
+	
 func _process(_delta: float) -> void:
 	var vehicle_node = player.vehicle_node
 	if is_instance_valid(vehicle_node):	
@@ -266,137 +248,54 @@ func _process(_delta: float) -> void:
 		# time stuff
 		var now = Time.get_unix_time_from_system()
 		skid_start_delta = now - skid_start_time
-		
 		# can car skid on this frame?
 		var can_skid:bool = skid_conditions_met()	
 		# is car crashing
 		crashing = get_crashing_state(now)
 		
-		# deactivate skid if it needs to end 
-		if current_skid:
-			skid_end_delta = now - current_skid.end_time	
-			# if skid is old deactivate,  
-			if skid_end_delta >= skid_cooldown:
-				current_skid.active = false
-			# if crashed deactivate
-			if crashing:
-				current_skid.active = false
-				if not current_skid.ended:
-					current_skid.end_time = now
-					current_skid.score = 0.0
-				current_skid.ended = true
-			# if skid conditions aren't met, set the end time 
-			# but do not deactivate the skid 
-			if not can_skid:
-				# end skid and commit score
-				if not current_skid.ended:
-					current_skid.end_time = now
-					commit_skid_score()
-					current_skid.score = 0.0
-					
-				current_skid.ended = true
+		# we need a current skid regardless
+		if not current_skid:
+			current_skid = new_skid()
+
+		skid_end_delta = now - current_skid.end_time
 		
-			
-		if can_skid:
-			# if there is no current skid we need to make one
-			if not current_skid:
-				current_skid = Skid.new()
-				current_skid.start_time = now
-				current_skid.end_time = now 
-				current_skid.score = 0.0
-				current_skid.active = true
-				current_skid.ended = false
-			else:
-				# if there is an inactive current skid, reactivate it 
+		# if cooldown time reached burn current skid
+		if skid_end_delta >= skid_cooldown:
+			if current_skid.active:
+				commit_skid_score()
+			current_skid = new_skid()
+		
+		# if crashed burn current skid
+		if crashing:
+			current_skid = new_skid()
+		
+		# if skid conditions aren't met, set the end time 
+		# but do not end the skid this is successful skid exit and can be reactivated
+		if not can_skid:
+			if current_skid.active:
+				current_skid.end_time = now
+				current_skid.length = now - current_skid.start_time
+				current_skid.active = false
+		# if we can skid, continue skidding
+		else:
+			if not current_skid.ended:
 				if not current_skid.active:
 					current_skid.active = true
-					current_skid.ended = false
+				else:
+					#update skid object
+					current_skid.length = now - current_skid.start_time
 				
 		# skid state should be correct at this point
 		# so we can handle scoring
-		if current_skid:
-			skidding = current_skid.active	
-			if current_skid.active and not current_skid.ended and not crashing:
-				skid_time_bonus = get_time_bonus(now)
-				skid_speed_bonus = get_speed_bonus()
-				proximity_bonus = get_proximity_bonus()
-				accumulate_skid_score()
+		skidding = current_skid.active	
+		if current_skid.active and not current_skid.ended and not crashing:
+			skid_time_bonus = get_time_bonus(now)
+			skid_speed_bonus = get_speed_bonus()
+			proximity_bonus = get_proximity_bonus()
+			accumulate_skid_score()
 
 
 
-		
-		"""
-		# check for crashing first
-		# 	any function that cares about crashing should check it internally
-		crashing = get_crashing_state(now)
-		
-		# NOTE:  This is still shit - see above where i declare the skid class for new plan 
-		 
-		# track whether skid cooldown is active or not
-		if now - skid_end_time < skid_cooldown:
-			skid_cooldown_active = true
-		elif now-skid_end_time == skid_cooldown:
-			print("skid cooldown complete")
-			skid_cooldown_active = false
-		else:
-			skid_cooldown_active = false
-		
-		if crashing:
-			skidding = false
-		else:
-			
-			var enough_yaw := false
-			var enough_slip := false
-			var enough_speed := false
-			var speed = player.vehicle_node.speed * speed_correction
-			# todo: dont need to pass vehice node into these
-			var wheels_spinning := get_wheels_spinning(player.vehicle_node)
-			var yaw_angle := get_yaw_angle(player.vehicle_node)
-			
-			if wheels_spinning:
-				enough_slip = true
-			if yaw_angle >= skid_yaw_threshold:
-				enough_yaw = true
-			if speed >= skid_speed_threshold:
-				enough_speed = true		
-		
-			skid_debug = ""
-			if not enough_slip:
-				skid_debug += "no slip "
-			if not enough_speed:
-				skid_debug += "no speed "
-			if not enough_yaw:
-				skid_debug += "no yaw"
-			# TODO: Still cant get this fucker to behave sensibly 
-			# 		all i want it to do is not cancel the fucking skid
-			#		if the cooldown hasnt happened  
-				
-			# if conditions met to be skidding
-			if enough_yaw and enough_slip and enough_speed:
-				# strt a skid if we arent already skidding 
-				if not skidding:
-					skid_start_time = Time.get_unix_time_from_system()
-				# set skidding to be sure
-				skidding = true
-			# if conditions are not met				
-			else:
-				# and we are currently skidding
-				# and skid cooldown has expired
-				if skidding:
-					skid_end_time = Time.get_unix_time_from_system()
-					skidding = false
-				else:
-					skidding = false
-					
-			if skidding:	
-				skid_time_bonus = get_time_bonus(now)
-				skid_speed_bonus = get_speed_bonus()
-				proximity_bonus = get_proximity_bonus()
-				accumulate_skid_score()
-			else:
-				commit_skid_score()
-				current_skid_score = 0.0
-		"""
 		# attach effect amount to speed 
 		effect_amount = remap(vehicle_node.speed,10.0, 25.0, 0.0, 1.0)
 		effect_amount = clamp(effect_amount, 0.0, 1.0)
