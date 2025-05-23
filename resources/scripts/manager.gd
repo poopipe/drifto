@@ -12,7 +12,7 @@ extends Node3D
 @export var skid_speed_threshold:float = 20.0	# corrected speed - not raw speed
 
 @export_group("scores and stuff")
-@export var skid_cooldown: float = 1.5
+@export var skid_cooldown: float = 1.0
 @export var skid_score:float = 1.0	# base amount to increase score
 
 @export_group("crashing")
@@ -67,8 +67,6 @@ var skid_speed_bonus:float = 1.0
 var skid_link_bonus_default:float = 1.0
 var skid_link_bonus:float = 1.0
 
-
-
 # visuals
 var effect_amount:float = 0.0	 # use this for any timed effects that are connected to skiddin
 
@@ -87,7 +85,11 @@ class Skid:
 	var end_time:float
 	var score:float
 	var active:bool
+	var ended:bool
 
+# skidz
+var previous_skid:Skid
+var current_skid:Skid
 
 
 func _ready() -> void:
@@ -120,18 +122,18 @@ func init_run()-> void:
 	crash_bonus = crash_bonus_default
 	proximity_bonus = proximity_bonus_default
 
-func get_wheels_spinning(vehicle_node:Vehicle)-> bool:
+func get_wheels_spinning()-> bool:
 	# are any wheels spinning / sliding
 	# TODO: 
 	#	perhaps we want to check that more than one are slipping
 	#	or perhaps we want to check back wheels only?
-	for wheel in vehicle_node.wheel_array:
+	for wheel in player.vehicle_node.wheel_array:
 		if absf(wheel.slip_vector.x) > lateral_slip_threshold or absf(wheel.slip_vector.y) > longitudinal_slip_threshold:
 			return true
 	return false
 
-func get_yaw_angle(vehicle_node:Vehicle)-> float:
-	var plane_xz := Vector2(vehicle_node.local_velocity.x, vehicle_node.local_velocity.z)
+func get_yaw_angle()-> float:
+	var plane_xz := Vector2(player.vehicle_node.local_velocity.x, player.vehicle_node.local_velocity.z)
 	if plane_xz.y < 0 and plane_xz.length() > 1.0:
 		plane_xz = plane_xz.normalized()
 		return 1.0 - absf(plane_xz.dot(Vector2.UP))
@@ -145,7 +147,7 @@ func _input(event: InputEvent) -> void:
 		print("menu", main_menu_scene)
 		
 		#var s := get_tree().change_scene_to_packed(main_menu_scene)
-		var s := get_tree().change_scene_to_file("res://resources/Scenes/main_menu.tscn")
+		get_tree().change_scene_to_file("res://resources/Scenes/main_menu.tscn")
 
 func get_crashing_state(now)-> bool:
 	# crash start and end times are set by signals
@@ -156,7 +158,10 @@ func get_crashing_state(now)-> bool:
 	return false
 
 func initiate_skid(now)->void:
-	print("initiate_skid")		
+	print("initiate_skid")
+	# if our current skid is still active
+	# ie. cooldown has not been reached
+	# we re-use it rather than creating a new one	
 	skidding = true
 	skids_initiated += 1
 	skid_start_time = Time.get_unix_time_from_system()
@@ -164,7 +169,6 @@ func initiate_skid(now)->void:
 func terminate_skid(now)->void:
 	print('terminate_skid')
 	if not crashing:
-		
 		if skid_end_delta >= skid_cooldown:
 			commit_skid_score()
 			current_skid_score = 0.0
@@ -175,20 +179,19 @@ func terminate_skid(now)->void:
 		skid_end_time = Time.get_unix_time_from_system()
 		skidding = false
 
-
 func initiate_crash()->void:
 	# crashing must be true
 	# crash start time is set
 	crash_impulse = player.vehicle_node.current_impulse
 	crash_start_time = Time.get_unix_time_from_system()
-	print("crash")
+
 
 func terminate_crash()->void:
 	# crashing must be false
 	# crash end time is set
 	crash_impulse = Vector3(0.0, 0.0, 0.0)
 	crash_end_time = Time.get_unix_time_from_system()
-	print("un-crash")
+
 
 func get_speed_bonus() -> float:
 	# bonus hsould be a function of speed when greater than threshold
@@ -220,11 +223,41 @@ func get_proximity_bonus()->float:
 	return proximity_bonus_default
 
 func accumulate_skid_score()->void:
-	current_skid_score += skid_score * skid_time_bonus * skid_speed_bonus * skid_link_bonus
+	current_skid.score += skid_score * skid_time_bonus * skid_speed_bonus * skid_link_bonus
 
 func commit_skid_score()->void:
-	total_score += current_skid_score
-	print("commit score ", current_skid_score, " ", total_score)
+	total_score += current_skid.score
+	print("commit score ", current_skid.score, " ", total_score)
+
+func skid_conditions_met()->bool:
+	var enough_yaw := false
+	var enough_slip := false
+	var enough_speed := false
+
+	var speed = player.vehicle_node.speed * speed_correction
+	var wheels_spinning := get_wheels_spinning()
+	var yaw_angle := get_yaw_angle()
+			
+	if wheels_spinning:
+		enough_slip = true
+	if yaw_angle >= skid_yaw_threshold:
+		enough_yaw = true
+	if speed >= skid_speed_threshold:
+		enough_speed = true		
+		
+	var db:=true
+	if db:	
+		skid_debug = ""
+		if not enough_slip:
+			skid_debug += "no slip "
+		if not enough_speed:
+			skid_debug += "no speed "
+		if not enough_yaw:
+			skid_debug += "no yaw"
+		
+		
+	return enough_slip and enough_yaw and enough_speed
+
 
 func _process(_delta: float) -> void:
 	var vehicle_node = player.vehicle_node
@@ -233,18 +266,69 @@ func _process(_delta: float) -> void:
 		# time stuff
 		var now = Time.get_unix_time_from_system()
 		skid_start_delta = now - skid_start_time
-		skid_end_delta = now - skid_end_time
 		
+		# can car skid on this frame?
+		var can_skid:bool = skid_conditions_met()	
+		# is car crashing
+		crashing = get_crashing_state(now)
+		
+		# deactivate skid if it needs to end 
+		if current_skid:
+			skid_end_delta = now - current_skid.end_time	
+			# if skid is old deactivate,  
+			if skid_end_delta >= skid_cooldown:
+				current_skid.active = false
+			# if crashed deactivate
+			if crashing:
+				current_skid.active = false
+				if not current_skid.ended:
+					current_skid.end_time = now
+					current_skid.score = 0.0
+				current_skid.ended = true
+			# if skid conditions aren't met, set the end time 
+			# but do not deactivate the skid 
+			if not can_skid:
+				# end skid and commit score
+				if not current_skid.ended:
+					current_skid.end_time = now
+					commit_skid_score()
+					current_skid.score = 0.0
+					
+				current_skid.ended = true
+		
+			
+		if can_skid:
+			# if there is no current skid we need to make one
+			if not current_skid:
+				current_skid = Skid.new()
+				current_skid.start_time = now
+				current_skid.end_time = now 
+				current_skid.score = 0.0
+				current_skid.active = true
+				current_skid.ended = false
+			else:
+				# if there is an inactive current skid, reactivate it 
+				if not current_skid.active:
+					current_skid.active = true
+					current_skid.ended = false
+				
+		# skid state should be correct at this point
+		# so we can handle scoring
+		if current_skid:
+			skidding = current_skid.active	
+			if current_skid.active and not current_skid.ended and not crashing:
+				skid_time_bonus = get_time_bonus(now)
+				skid_speed_bonus = get_speed_bonus()
+				proximity_bonus = get_proximity_bonus()
+				accumulate_skid_score()
 
+
+
+		
+		"""
 		# check for crashing first
 		# 	any function that cares about crashing should check it internally
 		crashing = get_crashing_state(now)
-	
-		if not skid_end_time:
-			# must be our first skid
-			skid_end_time = now
-		
-		# check for skidding
 		
 		# NOTE:  This is still shit - see above where i declare the skid class for new plan 
 		 
@@ -312,7 +396,7 @@ func _process(_delta: float) -> void:
 			else:
 				commit_skid_score()
 				current_skid_score = 0.0
-	
+		"""
 		# attach effect amount to speed 
 		effect_amount = remap(vehicle_node.speed,10.0, 25.0, 0.0, 1.0)
 		effect_amount = clamp(effect_amount, 0.0, 1.0)

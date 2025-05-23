@@ -91,12 +91,12 @@ extends Node3D
 		if value != force_up:
 			force_up = value
 			is_dirty = true
-@export var seed: int = 69:
+@export var this_seed: int = 69:
 	get:
-		return seed
+		return this_seed
 	set(value):
-		if value != seed:
-			seed = value
+		if value != this_seed:
+			this_seed = value
 			is_dirty = true
 @export var instance_rotate: float = 0.0:
 	get:
@@ -127,7 +127,7 @@ func _process(_delta):
 
 func _update_instances():
 
-	rng.seed = seed
+	rng.seed = this_seed
 
 	var curve = path.curve
 	var curve_length:float = curve.get_baked_length()
@@ -165,27 +165,27 @@ func _update_instances():
 		if alternate_sides:
 			h = h if i % 2 == 0 else 0.0-h
 		# set xform before rotating
-		var transform = sample_point_transform.translated_local(Vector3(h, v, 0.0))
+		var this_transform = sample_point_transform.translated_local(Vector3(h, v, 0.0))
 		
 		if force_up:
 			# create a new transform k
 			var t:Transform3D
-			t.basis = Basis.looking_at(transform.origin - sample_point_location - Vector3(0.0, v, 0.0), Vector3(0.0, 100.0, 0.0), false)
-			t.origin = transform.origin
-			transform = t
+			t.basis = Basis.looking_at(this_transform.origin - sample_point_location - Vector3(0.0, v, 0.0), Vector3(0.0, 100.0, 0.0), false)
+			t.origin = this_transform.origin
+			this_transform = t
 			
 		var s = scaling
-		transform = transform.scaled_local(s)			
+		this_transform = this_transform.scaled_local(s)			
 		
 		var r = deg_to_rad(instance_rotate) + rng.randf_range(-rotate_random, rotate_random)
-		transform = transform.rotated_local(Vector3(0.0, 1.0, 0.0), r)
+		this_transform = this_transform.rotated_local(Vector3(0.0, 1.0, 0.0), r)
 		
 		var inst = mesh_instances[i]
 		inst.visibility_range_begin = 0.0
 		inst.visibility_range_end = 200.0
 		
 		add_child(inst)
-		inst.transform = transform
+		inst.transform = this_transform
 
 		
 

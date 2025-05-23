@@ -533,37 +533,46 @@ layout_mode = 1
 offset_right = 357.0
 offset_bottom = 280.0
 
-[node name="Speed" type="Label" parent="VehicleController/GUI/VBoxContainer"]
+[node name="crash_state" type="Label" parent="VehicleController/GUI/VBoxContainer"]
 layout_mode = 2
-text = "000 km/h"
+text = "crash"
 
-[node name="RPM" type="Label" parent="VehicleController/GUI/VBoxContainer"]
-layout_mode = 2
-text = "1234 rpm"
-
-[node name="Gear" type="Label" parent="VehicleController/GUI/VBoxContainer"]
-layout_mode = 2
-text = "Gear: 1"
-
-[node name="TimeBonus" type="Label" parent="VehicleController/GUI/VBoxContainer"]
-layout_mode = 2
-text = "time"
-
-[node name="ProxBonus" type="Label" parent="VehicleController/GUI/VBoxContainer"]
+[node name="prox_state" type="Label" parent="VehicleController/GUI/VBoxContainer"]
 layout_mode = 2
 text = "prox"
 
-[node name="Crashing" type="Label" parent="VehicleController/GUI/VBoxContainer"]
-layout_mode = 2
-text = "true"
-
-[node name="SkidScore" type="Label" parent="VehicleController/GUI/VBoxContainer"]
+[node name="skid_state" type="Label" parent="VehicleController/GUI/VBoxContainer"]
 layout_mode = 2
 text = "skid:234"
 
-[node name="Score" type="Label" parent="VehicleController/GUI/VBoxContainer"]
+[node name="skid_score" type="Label" parent="VehicleController/GUI/VBoxContainer"]
 layout_mode = 2
-text = "qaa"
+text = "1234"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VehicleController/GUI"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+
+[node name="Score" type="Label" parent="VehicleController/GUI/VBoxContainer2"]
+layout_mode = 2
+text = "total score"
+
+[node name="Speed" type="Label" parent="VehicleController/GUI/VBoxContainer2"]
+layout_mode = 2
+text = "000 km/h"
+
+[node name="RPM" type="Label" parent="VehicleController/GUI/VBoxContainer2"]
+layout_mode = 2
+text = "1234 rpm"
+
+[node name="Gear" type="Label" parent="VehicleController/GUI/VBoxContainer2"]
+layout_mode = 2
+text = "Gear: 1"
 
 [node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("follow_this")]
 transform = Transform3D(0.0540759, -0.000566302, -0.998536, 0.0104718, 0.999945, 0, 0.998482, -0.0104565, 0.0540788, 32.9701, 202.448, -188.714)
@@ -800,6 +809,7 @@ start_offset = 0.5
 h_offset = -0.75
 v_offset = 0.5
 force_up = true
+this_seed = null
 
 [node name="instance_barrier_posts_right" type="MultiMeshInstance3D" parent="." node_paths=PackedStringArray("path")]
 multimesh = SubResource("MultiMesh_1fuwa")
@@ -810,6 +820,7 @@ start_offset = 0.5
 h_offset = 0.75
 v_offset = 0.5
 force_up = true
+this_seed = null
 
 [node name="instance_signs_left" type="MultiMeshInstance3D" parent="." node_paths=PackedStringArray("path")]
 multimesh = SubResource("MultiMesh_320bu")
@@ -818,6 +829,7 @@ path = NodePath("../road_path/sub_path_armco_left")
 instance_spacing = 10.0
 h_offset = -1.06
 force_up = true
+this_seed = null
 
 [node name="track_one_mountain" parent="." instance=ExtResource("15_jcyjv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.765, 0)
@@ -854,6 +866,7 @@ path_right = NodePath("../road_path/sub_path_armco_right")
 instance_spacing = 50.0
 h_offset = 1.335
 alternate_sides = true
+this_seed = null
 instance_rotate = -90.0
 
 [node name="trees_right" type="Node3D" parent="." node_paths=PackedStringArray("path")]
@@ -866,7 +879,7 @@ h_offset = 5.0
 v_offset = -1.155
 h_offset_random = 3.0
 v_offset_random = 2.0
-seed = 134
+this_seed = null
 rotate_random = 360.0
 
 [node name="trees_right2" type="Node3D" parent="." node_paths=PackedStringArray("path")]
@@ -880,7 +893,7 @@ h_offset = 5.0
 v_offset = -1.155
 h_offset_random = 3.0
 v_offset_random = 2.0
-seed = 134
+this_seed = null
 rotate_random = 360.0
 
 [node name="bushes_right" type="Node3D" parent="." node_paths=PackedStringArray("path")]
@@ -892,7 +905,7 @@ length = 410.0
 h_offset = 3.44
 v_offset = -1.155
 scaling = Vector3(1.5, 1.5, 1.5)
-seed = 134
+this_seed = null
 rotate_random = 360.0
 
 [node name="bushes_right2" type="Node3D" parent="." node_paths=PackedStringArray("path")]
@@ -905,7 +918,7 @@ length = 420.0
 h_offset = 3.44
 v_offset = -1.155
 scaling = Vector3(1.5, 1.5, 1.5)
-seed = 134
+this_seed = null
 rotate_random = 360.0
 
 [node name="bushes_left" type="Node3D" parent="." node_paths=PackedStringArray("path")]
@@ -917,7 +930,7 @@ length = 150.0
 h_offset = -3.44
 v_offset = -1.155
 scaling = Vector3(1.5, 1.5, 1.5)
-seed = 134
+this_seed = null
 rotate_random = 360.0
 
 [node name="bushes_left2" type="Node3D" parent="." node_paths=PackedStringArray("path")]
@@ -930,7 +943,7 @@ length = 4100.0
 h_offset = -3.44
 v_offset = -1.155
 scaling = Vector3(1.5, 1.5, 1.5)
-seed = 134
+this_seed = null
 rotate_random = 360.0
 
 [node name="trees_left" type="Node3D" parent="." node_paths=PackedStringArray("path")]
@@ -943,7 +956,7 @@ h_offset = -5.0
 v_offset = -1.155
 h_offset_random = 3.0
 v_offset_random = 2.0
-seed = 134
+this_seed = null
 rotate_random = 360.0
 
 [node name="trees_left2" type="Node3D" parent="." node_paths=PackedStringArray("path")]
@@ -957,7 +970,7 @@ h_offset = -5.0
 v_offset = -1.155
 h_offset_random = 3.0
 v_offset_random = 2.0
-seed = 134
+this_seed = null
 rotate_random = 360.0
 
 [node name="trees_left3" type="Node3D" parent="." node_paths=PackedStringArray("path")]
@@ -971,7 +984,7 @@ h_offset = -5.0
 v_offset = -1.155
 h_offset_random = 3.0
 v_offset_random = 2.0
-seed = 134
+this_seed = null
 rotate_random = 360.0
 
 [node name="RetainingWall" type="MeshInstance3D" parent="."]

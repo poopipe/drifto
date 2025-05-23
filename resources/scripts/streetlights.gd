@@ -93,12 +93,12 @@ extends Node3D
 		if value != force_up:
 			force_up = value
 			is_dirty = true
-@export var seed: int = 69:
+@export var this_seed: int = 69:
 	get:
-		return seed
+		return this_seed
 	set(value):
-		if value != seed:
-			seed = value
+		if value != this_seed:
+			this_seed = value
 			is_dirty = true
 @export var instance_rotate: float = 0.0:
 	get:
@@ -126,7 +126,7 @@ func _process(_delta):
 		is_dirty = false
 
 func _update_instances():
-	rng.seed = seed
+	rng.seed = this_seed
 
 	var curve = path.curve
 	var curve_left = path_left.curve
@@ -170,37 +170,37 @@ func _update_instances():
 		var right_offset := curve_right.get_closest_offset(right_target_local)
 		var right_transform := curve_right.sample_baked_with_rotation(right_offset)
 		var final_rotate = instance_rotate
-		var transform = Transform3D()
+		var this_transform = Transform3D()
 		if alternate_sides:
 			if i % 2 == 0:
-				transform = right_transform.translated_local(Vector3(h, v, 0.0))
+				this_transform = right_transform.translated_local(Vector3(h, v, 0.0))
 				
 			else: 
-				transform = left_transform.translated_local(Vector3(-h, v, 0.0))
+				this_transform = left_transform.translated_local(Vector3(-h, v, 0.0))
 				final_rotate = 0.0 - instance_rotate
 			#h = h if i % 2 == 0 else 0.0-h
 		else:
-			transform = sample_point_transform.translated_local(Vector3(h, v, 0.0))	
+			this_transform = sample_point_transform.translated_local(Vector3(h, v, 0.0))	
 			# set xform before rotating
 		
 		
 		if force_up:
 			# create a new transform k
 			var t:Transform3D
-			t.basis = Basis.looking_at(transform.origin - sample_point_location - Vector3(0.0, v, 0.0), Vector3(0.0, 100.0, 0.0), false)
-			t.origin = transform.origin
-			transform = t
+			t.basis = Basis.looking_at(this_transform.origin - sample_point_location - Vector3(0.0, v, 0.0), Vector3(0.0, 100.0, 0.0), false)
+			t.origin = this_transform.origin
+			this_transform = t
 			
 		var s = scaling
-		transform = transform.scaled_local(s)			
+		this_transform = this_transform.scaled_local(s)			
 		
 		var r = deg_to_rad(final_rotate) + rng.randf_range(-rotate_random, rotate_random)
-		transform = transform.rotated_local(Vector3(0.0, 1.0, 0.0), r)
+		this_transform = this_transform.rotated_local(Vector3(0.0, 1.0, 0.0), r)
 		
 		var inst = scene_instances[i]
 
 		add_child(inst)
-		inst.transform = transform
+		inst.transform = this_transform
 
 		
 
