@@ -1,0 +1,49 @@
+[remap]
+
+importer="scene"
+importer_version=1
+type="PackedScene"
+uid="uid://c46vvlodp7u1v"
+path="res://.godot/imported/SM_Env_Sidewalk_Construction_01.fbx-baaf1726676221c8f56d94600d77faec.scn"
+
+[deps]
+
+source_file="res://resources/meshes/SM_Env_Sidewalk_Construction_01.fbx"
+dest_files=["res://.godot/imported/SM_Env_Sidewalk_Construction_01.fbx-baaf1726676221c8f56d94600d77faec.scn"]
+
+[params]
+
+nodes/root_type=""
+nodes/root_name=""
+nodes/apply_root_scale=true
+nodes/root_scale=100.0
+nodes/import_as_skeleton_bones=false
+nodes/use_node_type_suffixes=true
+meshes/ensure_tangents=true
+meshes/generate_lods=true
+meshes/create_shadow_meshes=true
+meshes/light_baking=1
+meshes/lightmap_texel_size=0.2
+meshes/force_disable_compression=false
+skins/use_named_skins=true
+animation/import=true
+animation/fps=30
+animation/trimming=true
+animation/remove_immutable_tracks=true
+animation/import_rest_as_RESET=false
+import_script/path=""
+_subresources={
+"meshes": {
+"SM_Env_Sidewalk_Construction_01": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 60.0,
+"save_to_file/enabled": true,
+"save_to_file/path": "res://resources/gd_meshes/SM_Env_Sidewalk_Construction_01.res"
+}
+}
+}
+fbx/importer=0
+fbx/allow_geometry_helper_nodes=false
+fbx/embedded_image_handling=1
