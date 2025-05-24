@@ -12,7 +12,7 @@ extends Path3D
 			start_offset = value
 			is_dirty = true
 			
-var is_dirty:bool = true
+@export var is_dirty:bool = true
 
 func _process(_delta):
 	if is_dirty:
@@ -21,7 +21,7 @@ func _process(_delta):
 		is_dirty = false
 
 func _update_points_baked():
-	#print('update baked points')
+	print('update baked points')
 	var parent_curve = parent_path.curve
 	var source_curve = source_path.curve
 	
@@ -32,15 +32,16 @@ func _update_points_baked():
 	for i in range(len(baked_points)):
 		var source_pos:Vector3 = baked_points.get(i)
 		var distance:float = source_pos.x + start_offset
-		
-		# get position on parent curve at distance
-		# TODO: Something fucked up is happening at the end of the curve
-		var target_transform:Transform3D = parent_curve.sample_baked_with_rotation(distance, true, true)
-		
-		# handle offsets
-		target_transform = target_transform.translated_local(Vector3(source_pos.z, source_pos.y, 0.0))
-		# add a point to this curve 
-		curve.add_point(target_transform.origin)
+		# we want to bail if we're trying to add a point after the end of the parent curve
+		var parent_length = parent_curve.get_baked_length()
+		if distance <= parent_length:
+			# get position on parent curve at distance
+			# TODO: Something fucked up is happening at the end of the curve
+			var target_transform:Transform3D = parent_curve.sample_baked_with_rotation(distance, true, true)		
+			# handle offsets
+			target_transform = target_transform.translated_local(Vector3(source_pos.z, source_pos.y, 0.0))
+			# add a point to this curve 
+			curve.add_point(target_transform.origin)
 		
 
 func _on_parent_path_changed() -> void:
