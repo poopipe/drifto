@@ -122,6 +122,8 @@ func init_run()-> void:
 	skid_time_bonus = skid_time_bonus_default
 	crash_bonus = crash_bonus_default
 	proximity_bonus = proximity_bonus_default
+	skid_speed_bonus = skid_speed_bonus_default
+	current_skid = new_skid()
 
 func get_wheels_spinning()-> bool:
 	# are any wheels spinning / sliding

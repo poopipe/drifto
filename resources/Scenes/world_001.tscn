@@ -880,7 +880,6 @@ curve = SubResource("Curve3D_c16uy")
 
 [node name="lights_left" type="Node3D" parent="." node_paths=PackedStringArray("path", "path_left", "path_right")]
 script = ExtResource("21_jcyjv")
-is_dirty = true
 instance_scene = ExtResource("26_wp37n")
 path = NodePath("../road_path")
 path_left = NodePath("../road_path/sub_path_armco_left")
@@ -892,7 +891,6 @@ instance_rotate = -90.0
 
 [node name="trees_right" type="Node3D" parent="." node_paths=PackedStringArray("path")]
 script = ExtResource("27_x1msw")
-is_dirty = true
 meshes = Array[ArrayMesh]([ExtResource("15_51eg1"), ExtResource("17_ipmle"), ExtResource("18_wp37n"), ExtResource("19_x1msw")])
 path = NodePath("../road_path/sub_path_armco_right")
 instance_spacing = 1.5
@@ -905,7 +903,6 @@ rotate_random = 360.0
 
 [node name="trees_right2" type="Node3D" parent="." node_paths=PackedStringArray("path")]
 script = ExtResource("27_x1msw")
-is_dirty = true
 meshes = Array[ArrayMesh]([ExtResource("15_51eg1"), ExtResource("17_ipmle"), ExtResource("18_wp37n"), ExtResource("19_x1msw")])
 path = NodePath("../road_path/sub_path_armco_right")
 instance_spacing = 1.5
@@ -919,7 +916,6 @@ rotate_random = 360.0
 
 [node name="bushes_right" type="Node3D" parent="." node_paths=PackedStringArray("path")]
 script = ExtResource("27_x1msw")
-is_dirty = true
 meshes = Array[ArrayMesh]([ExtResource("27_320bu")])
 path = NodePath("../road_path/sub_path_armco_right")
 instance_spacing = 1.0
@@ -931,7 +927,6 @@ rotate_random = 360.0
 
 [node name="bushes_right2" type="Node3D" parent="." node_paths=PackedStringArray("path")]
 script = ExtResource("27_x1msw")
-is_dirty = true
 meshes = Array[ArrayMesh]([ExtResource("27_320bu")])
 path = NodePath("../road_path/sub_path_armco_right")
 instance_spacing = 1.0
@@ -944,7 +939,6 @@ rotate_random = 360.0
 
 [node name="bushes_left" type="Node3D" parent="." node_paths=PackedStringArray("path")]
 script = ExtResource("27_x1msw")
-is_dirty = true
 meshes = Array[ArrayMesh]([ExtResource("27_320bu")])
 path = NodePath("../road_path/sub_path_armco_left")
 instance_spacing = 1.0
@@ -956,7 +950,6 @@ rotate_random = 360.0
 
 [node name="bushes_left2" type="Node3D" parent="." node_paths=PackedStringArray("path")]
 script = ExtResource("27_x1msw")
-is_dirty = true
 meshes = Array[ArrayMesh]([ExtResource("27_320bu")])
 path = NodePath("../road_path/sub_path_armco_left")
 instance_spacing = 1.0
@@ -969,7 +962,6 @@ rotate_random = 360.0
 
 [node name="trees_left" type="Node3D" parent="." node_paths=PackedStringArray("path")]
 script = ExtResource("27_x1msw")
-is_dirty = true
 meshes = Array[ArrayMesh]([ExtResource("15_51eg1"), ExtResource("17_ipmle"), ExtResource("18_wp37n"), ExtResource("19_x1msw")])
 path = NodePath("../road_path/sub_path_armco_left")
 instance_spacing = 1.5
@@ -982,7 +974,6 @@ rotate_random = 360.0
 
 [node name="trees_left2" type="Node3D" parent="." node_paths=PackedStringArray("path")]
 script = ExtResource("27_x1msw")
-is_dirty = true
 meshes = Array[ArrayMesh]([ExtResource("15_51eg1"), ExtResource("17_ipmle"), ExtResource("18_wp37n"), ExtResource("19_x1msw")])
 path = NodePath("../road_path/sub_path_armco_left")
 instance_spacing = 1.5
@@ -996,7 +987,6 @@ rotate_random = 360.0
 
 [node name="trees_left3" type="Node3D" parent="." node_paths=PackedStringArray("path")]
 script = ExtResource("27_x1msw")
-is_dirty = true
 meshes = Array[ArrayMesh]([ExtResource("15_51eg1"), ExtResource("17_ipmle"), ExtResource("18_wp37n"), ExtResource("19_x1msw")])
 path = NodePath("../road_path/sub_path_armco_left")
 instance_spacing = 1.5
