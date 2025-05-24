@@ -31,6 +31,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.273, 1.99153)
 material_override = ExtResource("4_tpaer")
 visibility_range_begin_margin = 10.0
 visibility_range_end = 150.0
+visibility_range_end_margin = 10.0
 visibility_range_fade_mode = 1
 mesh = SubResource("PlaneMesh_nieim")
 skeleton = NodePath("../SpotLight3D")
