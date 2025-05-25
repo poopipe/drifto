@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://dr4mkrvh76pjq"]
+[gd_scene load_steps=39 format=3 uid="uid://dr4mkrvh76pjq"]
 
 [ext_resource type="ArrayMesh" uid="uid://df5nrt4tlven2" path="res://resources/gd_meshes/SM_Prop_Gaspump_Base_01.res" id="1_agd45"]
 [ext_resource type="ArrayMesh" uid="uid://cfqro7nbflhhv" path="res://resources/gd_meshes/SM_Prop_Gaspump_01.res" id="2_n3id3"]
@@ -31,6 +31,7 @@
 [ext_resource type="ArrayMesh" uid="uid://cx0jsnadgxpub" path="res://resources/gd_meshes/SM_Bush.res" id="29_4k2qa"]
 [ext_resource type="ArrayMesh" uid="uid://n285xammm65q" path="res://resources/gd_meshes/SM_Prop_Fence_Concrete_01.res" id="30_lyqg7"]
 [ext_resource type="PackedScene" uid="uid://cwu5fc7jofjhs" path="res://resources/meshes/SM_Prop_Fence_Concrete_Pillar_01.fbx" id="31_fd2vv"]
+[ext_resource type="Script" uid="uid://dvh3u3mdgvlsy" path="res://resources/scripts/instance_meshes_along_path.gd" id="32_fd2vv"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1s3we"]
 albedo_color = Color(0.25, 0.25, 0.25, 1)
@@ -44,6 +45,15 @@ material = SubResource("StandardMaterial3D_1s3we")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_qstrt"]
 
+[sub_resource type="Curve3D" id="Curve3D_c7k3x"]
+bake_interval = 1.0
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 16.309, 0, -52.857, 0, 0, 0, 0, 0, 0, 15.061, 0, 55.777, 0, 0, 0, 0, 0, 0, 11.164, 0, 67.062),
+"tilts": PackedFloat32Array(0, 0, 0)
+}
+point_count = 3
+up_vector_enabled = false
+
 [node name="GasStation" type="Node3D"]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
@@ -55,10 +65,6 @@ mesh = SubResource("BoxMesh_80pct")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
 shape = SubResource("BoxShape3D_ruqns")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
-transform = Transform3D(30, 0, 0, 0, 1, 0, 0, 0, 3, -23, -0.5, 58.5)
-mesh = SubResource("BoxMesh_80pct")
-
 [node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
 transform = Transform3D(25, 0, 0, 0, 1, 0, 0, 0, 50, -20.5, -0.5, 2)
 mesh = SubResource("BoxMesh_80pct")
@@ -67,10 +73,6 @@ mesh = SubResource("BoxMesh_80pct")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D4/StaticBody3D"]
 shape = SubResource("BoxShape3D_ekpgi")
-
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
-transform = Transform3D(30, 0, 0, 0, 1, 0, 0, 0, 3, 23, -0.5, 58.5)
-mesh = SubResource("BoxMesh_80pct")
 
 [node name="SmPropGaspumpBase01" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, 15)
@@ -398,7 +400,7 @@ transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -8, 0,
 mesh = ExtResource("4_43fea")
 
 [node name="SmEnvSidewalkCorner03" type="MeshInstance3D" parent="."]
-transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -8, 0, 57)
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -8, 0, 62)
 mesh = ExtResource("4_43fea")
 
 [node name="SmEnvSidewalkCorner02" type="MeshInstance3D" parent="."]
@@ -454,6 +456,9 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -8, 0,
 [node name="SM_Env_Sidewalk_Straight_42" parent="." instance=ExtResource("6_ni1ox")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -13, 0, -53)
 
+[node name="SM_Env_Sidewalk_Straight_71" parent="." instance=ExtResource("6_ni1ox")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 18, 0, -53)
+
 [node name="SM_Env_Sidewalk_Straight_43" parent="." instance=ExtResource("6_ni1ox")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -18, 0, -53)
 
@@ -466,38 +471,35 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -28, 0
 [node name="SM_Env_Sidewalk_Straight_46" parent="." instance=ExtResource("6_ni1ox")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -33, 0, -53)
 
-[node name="SM_Env_Sidewalk_Straight_21" parent="." instance=ExtResource("6_ni1ox")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -8, 0, -38)
-
 [node name="SM_Env_Sidewalk_Straight_22" parent="." instance=ExtResource("6_ni1ox")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -8, 0, 37)
 
 [node name="SM_Env_Sidewalk_Straight_26" parent="." instance=ExtResource("6_ni1ox")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 0, 57)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 0, 62)
 
 [node name="SM_Env_Sidewalk_Straight_27" parent="." instance=ExtResource("6_ni1ox")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23, 0, 57)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23, 0, 62)
 
 [node name="SM_Env_Sidewalk_Straight_28" parent="." instance=ExtResource("6_ni1ox")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28, 0, 57)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28, 0, 62)
 
 [node name="SM_Env_Sidewalk_Straight_29" parent="." instance=ExtResource("6_ni1ox")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33, 0, 57)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33, 0, 62)
 
 [node name="SM_Env_Sidewalk_Straight_30" parent="." instance=ExtResource("6_ni1ox")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38, 0, 57)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38, 0, 62)
 
 [node name="SM_Env_Sidewalk_Straight_67" parent="." instance=ExtResource("6_ni1ox")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -38, 0, -53)
 
 [node name="SM_Env_Sidewalk_Straight_31" parent="." instance=ExtResource("6_ni1ox")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43, 0, 57)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43, 0, 62)
 
 [node name="SM_Env_Sidewalk_Straight_68" parent="." instance=ExtResource("6_ni1ox")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -43, 0, -53)
 
 [node name="SM_Env_Sidewalk_Straight_32" parent="." instance=ExtResource("6_ni1ox")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48, 0, 57)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48, 0, 62)
 
 [node name="SM_Env_Sidewalk_Straight_69" parent="." instance=ExtResource("6_ni1ox")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -48, 0, -53)
@@ -506,10 +508,10 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -48, 0
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -53, 0, -53)
 
 [node name="SM_Env_Sidewalk_Straight_33" parent="." instance=ExtResource("6_ni1ox")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -53, 0, 57)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -53, 0, 62)
 
 [node name="SM_Env_Sidewalk_Straight_34" parent="." instance=ExtResource("6_ni1ox")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58, 0, 57)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58, 0, 62)
 
 [node name="SM_Env_Sidewalk_Straight_23" parent="." instance=ExtResource("6_ni1ox")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -8, 0, 42)
@@ -520,8 +522,11 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -8, 0,
 [node name="SM_Env_Sidewalk_Straight_25" parent="." instance=ExtResource("6_ni1ox")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -8, 0, 52)
 
+[node name="SM_Env_Sidewalk_Straight_35" parent="." instance=ExtResource("6_ni1ox")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -8, 0, 57)
+
 [node name="SmEnvSidewalkCorner05" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, 8, 0, 57)
+transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, 8, 0, 62)
 mesh = ExtResource("4_43fea")
 
 [node name="SmEnvSidewalkCorner06" type="MeshInstance3D" parent="."]
@@ -530,6 +535,9 @@ mesh = ExtResource("4_43fea")
 
 [node name="SM_Env_Sidewalk_Straight_47" parent="." instance=ExtResource("6_ni1ox")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 8, 0, 47)
+
+[node name="SM_Env_Sidewalk_Straight_72" parent="." instance=ExtResource("6_ni1ox")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 8, 0, 52)
 
 [node name="SM_Env_Sidewalk_Straight_48" parent="." instance=ExtResource("6_ni1ox")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 8, 0, 42)
@@ -983,6 +991,69 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58, 0, -38)
 [node name="SM_Env_Sidewalk_104" parent="." instance=ExtResource("19_sx2rs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58, 0, -43)
 
+[node name="SM_Env_Sidewalk_121" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, -28)
+
+[node name="SM_Env_Sidewalk_122" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, -33)
+
+[node name="SM_Env_Sidewalk_123" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, -38)
+
+[node name="SM_Env_Sidewalk_124" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, -43)
+
+[node name="SM_Env_Sidewalk_125" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, -8)
+
+[node name="SM_Env_Sidewalk_126" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, -13)
+
+[node name="SM_Env_Sidewalk_127" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, -18)
+
+[node name="SM_Env_Sidewalk_128" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, -23)
+
+[node name="SM_Env_Sidewalk_129" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, 12)
+
+[node name="SM_Env_Sidewalk_130" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, 7)
+
+[node name="SM_Env_Sidewalk_131" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, 2)
+
+[node name="SM_Env_Sidewalk_132" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, -3)
+
+[node name="SM_Env_Sidewalk_133" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, 32)
+
+[node name="SM_Env_Sidewalk_134" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, 27)
+
+[node name="SM_Env_Sidewalk_135" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, 22)
+
+[node name="SM_Env_Sidewalk_136" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, 17)
+
+[node name="SM_Env_Sidewalk_137" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, 52)
+
+[node name="SM_Env_Sidewalk_141" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, 57)
+
+[node name="SM_Env_Sidewalk_138" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, 47)
+
+[node name="SM_Env_Sidewalk_139" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, 42)
+
+[node name="SM_Env_Sidewalk_140" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, 37)
+
 [node name="SM_Env_Sidewalk_105" parent="." instance=ExtResource("19_sx2rs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58, 0, -8)
 
@@ -1021,6 +1092,33 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58, 0, 17)
 
 [node name="SM_Env_Sidewalk_117" parent="." instance=ExtResource("19_sx2rs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58, 0, 52)
+
+[node name="SM_Env_Sidewalk_142" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 0, 57)
+
+[node name="SM_Env_Sidewalk_143" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23, 0, 57)
+
+[node name="SM_Env_Sidewalk_144" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28, 0, 57)
+
+[node name="SM_Env_Sidewalk_145" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33, 0, 57)
+
+[node name="SM_Env_Sidewalk_146" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38, 0, 57)
+
+[node name="SM_Env_Sidewalk_147" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43, 0, 57)
+
+[node name="SM_Env_Sidewalk_148" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48, 0, 57)
+
+[node name="SM_Env_Sidewalk_149" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -53, 0, 57)
+
+[node name="SM_Env_Sidewalk_150" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58, 0, 57)
 
 [node name="SM_Env_Sidewalk_118" parent="." instance=ExtResource("19_sx2rs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58, 0, 47)
@@ -1806,3 +1904,34 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47, 0, 52)
 
 [node name="SM_Prop_Fence_Concrete_Pillar_09" parent="." instance=ExtResource("31_fd2vv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52, 0, 52)
+
+[node name="Path3D" type="Path3D" parent="."]
+curve = SubResource("Curve3D_c7k3x")
+
+[node name="trees_gas_station" type="Node3D" parent="." node_paths=PackedStringArray("path")]
+script = ExtResource("32_fd2vv")
+meshes = Array[ArrayMesh]([ExtResource("27_fd2vv"), ExtResource("28_c7k3x"), ExtResource("25_gi7vy"), ExtResource("26_lyqg7")])
+path = NodePath("../Path3D")
+instance_spacing = 4.0
+h_offset_random = 2.96
+v_offset_random = 0.145
+force_up = true
+
+[node name="bushes_gas_station" type="Node3D" parent="." node_paths=PackedStringArray("path")]
+script = ExtResource("32_fd2vv")
+meshes = Array[ArrayMesh]([ExtResource("29_4k2qa")])
+path = NodePath("../Path3D")
+instance_spacing = 3.3
+h_offset = 1.36
+h_offset_random = 0.335
+scaling = Vector3(2, 2, 2)
+scale_random = Vector3(1, 1, 1)
+force_up = true
+rotate_random = 260.0
+
+[node name="SmEnvSidewalkDip03" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -8, 0, -38)
+mesh = ExtResource("24_d4iih")
+
+[connection signal="curve_changed" from="Path3D" to="trees_gas_station" method="_on_path_changed"]
+[connection signal="curve_changed" from="Path3D" to="bushes_gas_station" method="_on_path_changed"]

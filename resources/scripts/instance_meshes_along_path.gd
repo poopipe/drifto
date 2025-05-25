@@ -126,7 +126,7 @@ func _process(_delta):
 		is_dirty = false
 
 func _update_instances():
-
+	
 	rng.seed = this_seed
 
 	var curve = path.curve
