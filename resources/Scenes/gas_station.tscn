@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://dr4mkrvh76pjq"]
+[gd_scene load_steps=37 format=3 uid="uid://dr4mkrvh76pjq"]
 
 [ext_resource type="ArrayMesh" uid="uid://df5nrt4tlven2" path="res://resources/gd_meshes/SM_Prop_Gaspump_Base_01.res" id="1_agd45"]
 [ext_resource type="ArrayMesh" uid="uid://cfqro7nbflhhv" path="res://resources/gd_meshes/SM_Prop_Gaspump_01.res" id="2_n3id3"]
@@ -18,6 +18,19 @@
 [ext_resource type="ArrayMesh" uid="uid://mmrk4kapyhss" path="res://resources/gd_meshes/SM_Bld_Shop_02_Door_R.res" id="14_dyase"]
 [ext_resource type="ArrayMesh" uid="uid://b8clgbk6sm7cn" path="res://resources/gd_meshes/SM_Bld_Shop_02_Door_Rear.res" id="15_b44gy"]
 [ext_resource type="PackedScene" uid="uid://bmg25k4thniva" path="res://resources/Scenes/lamp_post.tscn" id="16_ekpgi"]
+[ext_resource type="PackedScene" uid="uid://dqssisi2pmbj3" path="res://resources/meshes/SM_Env_Sidewalk_01.fbx" id="19_sx2rs"]
+[ext_resource type="ArrayMesh" uid="uid://b5gdgaseie3o0" path="res://resources/gd_meshes/SM_Bld_RepairShop_Medium_01.res" id="20_qstrt"]
+[ext_resource type="ArrayMesh" uid="uid://cgd3rxs3djpii" path="res://resources/gd_meshes/SM_Bld_RepairShop_Medium_01_GarageDoor_01.res" id="21_bgqpx"]
+[ext_resource type="ArrayMesh" uid="uid://brjtxoliq8q62" path="res://resources/gd_meshes/SM_Bld_RepairShop_Medium_01_GarageDoor_01_Glass.res" id="22_dp2vr"]
+[ext_resource type="ArrayMesh" uid="uid://cmafergviyc57" path="res://resources/gd_meshes/SM_Bld_RepairShop_Medium_01_Glass.res" id="23_m1akk"]
+[ext_resource type="ArrayMesh" uid="uid://dr47c54r2y3e6" path="res://resources/gd_meshes/SM_Env_Sidewalk_Dip_01.res" id="24_d4iih"]
+[ext_resource type="ArrayMesh" uid="uid://deic8m0en25qe" path="res://resources/gd_meshes/SM_Env_Tree_Medium_01_fbx.res" id="25_gi7vy"]
+[ext_resource type="ArrayMesh" uid="uid://bx0f6xjfbrd86" path="res://resources/gd_meshes/SM_Env_Tree_Medium_02_fbx.res" id="26_lyqg7"]
+[ext_resource type="ArrayMesh" uid="uid://bp3o2200v42np" path="res://resources/gd_meshes/SM_Env_Tree_Small_01_fbx.res" id="27_fd2vv"]
+[ext_resource type="ArrayMesh" uid="uid://b8dy0jg83avup" path="res://resources/gd_meshes/SM_Env_Tree_Small_02_fbx.res" id="28_c7k3x"]
+[ext_resource type="ArrayMesh" uid="uid://cx0jsnadgxpub" path="res://resources/gd_meshes/SM_Bush.res" id="29_4k2qa"]
+[ext_resource type="ArrayMesh" uid="uid://n285xammm65q" path="res://resources/gd_meshes/SM_Prop_Fence_Concrete_01.res" id="30_lyqg7"]
+[ext_resource type="PackedScene" uid="uid://cwu5fc7jofjhs" path="res://resources/meshes/SM_Prop_Fence_Concrete_Pillar_01.fbx" id="31_fd2vv"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1s3we"]
 albedo_color = Color(0.25, 0.25, 0.25, 1)
@@ -408,12 +421,6 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -23, 0
 [node name="SM_Env_Sidewalk_Straight_04" parent="." instance=ExtResource("6_ni1ox")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -28, 0, 27)
 
-[node name="SM_Env_Sidewalk_Straight_05" parent="." instance=ExtResource("6_ni1ox")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -33, 0, 27)
-
-[node name="SM_Env_Sidewalk_Straight_06" parent="." instance=ExtResource("6_ni1ox")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -33, 0, 22)
-
 [node name="SM_Env_Sidewalk_Straight_07" parent="." instance=ExtResource("6_ni1ox")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -33, 0, 17)
 
@@ -480,38 +487,32 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33, 0, 57)
 [node name="SM_Env_Sidewalk_Straight_30" parent="." instance=ExtResource("6_ni1ox")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38, 0, 57)
 
-[node name="SM_Env_Sidewalk_Straight_23" parent="." instance=ExtResource("6_ni1ox")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -8, 0, 42)
+[node name="SM_Env_Sidewalk_Straight_67" parent="." instance=ExtResource("6_ni1ox")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -38, 0, -53)
 
 [node name="SM_Env_Sidewalk_Straight_31" parent="." instance=ExtResource("6_ni1ox")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -18, 0, 42)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43, 0, 57)
+
+[node name="SM_Env_Sidewalk_Straight_68" parent="." instance=ExtResource("6_ni1ox")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -43, 0, -53)
 
 [node name="SM_Env_Sidewalk_Straight_32" parent="." instance=ExtResource("6_ni1ox")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -18, 0, 37)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48, 0, 57)
+
+[node name="SM_Env_Sidewalk_Straight_69" parent="." instance=ExtResource("6_ni1ox")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -48, 0, -53)
+
+[node name="SM_Env_Sidewalk_Straight_70" parent="." instance=ExtResource("6_ni1ox")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -53, 0, -53)
 
 [node name="SM_Env_Sidewalk_Straight_33" parent="." instance=ExtResource("6_ni1ox")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23, 0, 37)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -53, 0, 57)
 
 [node name="SM_Env_Sidewalk_Straight_34" parent="." instance=ExtResource("6_ni1ox")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28, 0, 37)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58, 0, 57)
 
-[node name="SM_Env_Sidewalk_Straight_35" parent="." instance=ExtResource("6_ni1ox")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33, 0, 37)
-
-[node name="SM_Env_Sidewalk_Straight_36" parent="." instance=ExtResource("6_ni1ox")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38, 0, 37)
-
-[node name="SM_Env_Sidewalk_Straight_37" parent="." instance=ExtResource("6_ni1ox")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -18, 0, 47)
-
-[node name="SM_Env_Sidewalk_Straight_38" parent="." instance=ExtResource("6_ni1ox")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -23, 0, 47)
-
-[node name="SM_Env_Sidewalk_Straight_39" parent="." instance=ExtResource("6_ni1ox")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -28, 0, 47)
-
-[node name="SM_Env_Sidewalk_Straight_40" parent="." instance=ExtResource("6_ni1ox")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -33, 0, 47)
+[node name="SM_Env_Sidewalk_Straight_23" parent="." instance=ExtResource("6_ni1ox")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -8, 0, 42)
 
 [node name="SM_Env_Sidewalk_Straight_24" parent="." instance=ExtResource("6_ni1ox")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -8, 0, 47)
@@ -605,12 +606,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 0, -23)
 [node name="SM_Env_Sidewalk_Corner_02" parent="." instance=ExtResource("7_u0p1a")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -33, 0, 27)
 
-[node name="SM_Env_Sidewalk_Corner_04" parent="." instance=ExtResource("7_u0p1a")]
-transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -18, 0, 37)
-
-[node name="SM_Env_Sidewalk_Corner_05" parent="." instance=ExtResource("7_u0p1a")]
-transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -18, 0, 47)
-
 [node name="SM_Env_Sidewalk_Corner_03" parent="." instance=ExtResource("7_u0p1a")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -33, 0, -23)
 
@@ -662,8 +657,32 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.91606, 0.230572, -3.3488)
 mesh = ExtResource("11_ruqns")
 skeleton = NodePath("../..")
 
+[node name="SmBldShop07" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 0, 39)
+mesh = ExtResource("7_11kka")
+
+[node name="SmBldShop01DoorL" type="MeshInstance3D" parent="SmBldShop07"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.16956, 0.254281, 4.24997)
+mesh = ExtResource("8_i6jua")
+skeleton = NodePath("../..")
+
+[node name="SmBldShop01DoorR" type="MeshInstance3D" parent="SmBldShop07"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.18436, 0.254281, 4.24997)
+mesh = ExtResource("9_fii11")
+skeleton = NodePath("../..")
+
+[node name="SmBldShop01DoorRear01" type="MeshInstance3D" parent="SmBldShop07"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.08867, 0.236578, -2.60946)
+mesh = ExtResource("10_tbt2k")
+skeleton = NodePath("../..")
+
+[node name="SmBldShop01DoorRear02" type="MeshInstance3D" parent="SmBldShop07"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.91606, 0.230572, -3.3488)
+mesh = ExtResource("11_ruqns")
+skeleton = NodePath("../..")
+
 [node name="SmBldShop02" type="MeshInstance3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -43, 0, 30)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -20, 0, 41)
 mesh = ExtResource("12_ruqns")
 
 [node name="SmBldShop02DoorL" type="MeshInstance3D" parent="SmBldShop02"]
@@ -682,7 +701,7 @@ mesh = ExtResource("15_b44gy")
 skeleton = NodePath("../..")
 
 [node name="SmBldShop04" type="MeshInstance3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -43, 0, 13)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -43, 0, -5)
 mesh = ExtResource("12_ruqns")
 
 [node name="SmBldShop02DoorL" type="MeshInstance3D" parent="SmBldShop04"]
@@ -700,44 +719,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.44542, 0.235581, -4.97884)
 mesh = ExtResource("15_b44gy")
 skeleton = NodePath("../..")
 
-[node name="SmBldShop05" type="MeshInstance3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -43, 0, -4)
-mesh = ExtResource("12_ruqns")
-
-[node name="SmBldShop02DoorL" type="MeshInstance3D" parent="SmBldShop05"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.15575, 0.253866, 4.47872)
-mesh = ExtResource("13_ekpgi")
-skeleton = NodePath("../..")
-
-[node name="SmBldShop02DoorR" type="MeshInstance3D" parent="SmBldShop05"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.51758, 0.253866, 4.47872)
-mesh = ExtResource("14_dyase")
-skeleton = NodePath("../..")
-
-[node name="SmBldShop02DoorRear" type="MeshInstance3D" parent="SmBldShop05"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.44542, 0.235581, -4.97884)
-mesh = ExtResource("15_b44gy")
-skeleton = NodePath("../..")
-
-[node name="SmBldShop06" type="MeshInstance3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -43, 0, -21)
-mesh = ExtResource("12_ruqns")
-
-[node name="SmBldShop02DoorL" type="MeshInstance3D" parent="SmBldShop06"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.15575, 0.253866, 4.47872)
-mesh = ExtResource("13_ekpgi")
-skeleton = NodePath("../..")
-
-[node name="SmBldShop02DoorR" type="MeshInstance3D" parent="SmBldShop06"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.51758, 0.253866, 4.47872)
-mesh = ExtResource("14_dyase")
-skeleton = NodePath("../..")
-
-[node name="SmBldShop02DoorRear" type="MeshInstance3D" parent="SmBldShop06"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.44542, 0.235581, -4.97884)
-mesh = ExtResource("15_b44gy")
-skeleton = NodePath("../..")
-
 [node name="LampPost" parent="." instance=ExtResource("16_ekpgi")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -12, 0, 40)
 
@@ -749,3 +730,1079 @@ transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 11, 0, 1
 
 [node name="LampPost4" parent="." instance=ExtResource("16_ekpgi")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 11, 0, -12)
+
+[node name="SM_Env_Sidewalk_01" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 0, 52)
+
+[node name="SM_Env_Sidewalk_02" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 0, 47)
+
+[node name="SM_Env_Sidewalk_03" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 0, 42)
+
+[node name="SM_Env_Sidewalk_04" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 0, 37)
+
+[node name="SM_Env_Sidewalk_05" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23, 0, 52)
+
+[node name="SM_Env_Sidewalk_06" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23, 0, 47)
+
+[node name="SM_Env_Sidewalk_07" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23, 0, 42)
+
+[node name="SM_Env_Sidewalk_08" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23, 0, 37)
+
+[node name="SM_Env_Sidewalk_09" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28, 0, 52)
+
+[node name="SM_Env_Sidewalk_10" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28, 0, 47)
+
+[node name="SM_Env_Sidewalk_11" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28, 0, 42)
+
+[node name="SM_Env_Sidewalk_12" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28, 0, 37)
+
+[node name="SM_Env_Sidewalk_13" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33, 0, 52)
+
+[node name="SM_Env_Sidewalk_14" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33, 0, 47)
+
+[node name="SM_Env_Sidewalk_15" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33, 0, 42)
+
+[node name="SM_Env_Sidewalk_16" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33, 0, 37)
+
+[node name="SM_Env_Sidewalk_17" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38, 0, 52)
+
+[node name="SM_Env_Sidewalk_18" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38, 0, 47)
+
+[node name="SM_Env_Sidewalk_19" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38, 0, 42)
+
+[node name="SM_Env_Sidewalk_20" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38, 0, 37)
+
+[node name="SM_Env_Sidewalk_41" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43, 0, 52)
+
+[node name="SM_Env_Sidewalk_42" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43, 0, 47)
+
+[node name="SM_Env_Sidewalk_43" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43, 0, 42)
+
+[node name="SM_Env_Sidewalk_44" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43, 0, 37)
+
+[node name="SM_Env_Sidewalk_45" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48, 0, 52)
+
+[node name="SM_Env_Sidewalk_46" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48, 0, 47)
+
+[node name="SM_Env_Sidewalk_47" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48, 0, 42)
+
+[node name="SM_Env_Sidewalk_48" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48, 0, 37)
+
+[node name="SM_Env_Sidewalk_49" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -53, 0, 52)
+
+[node name="SM_Env_Sidewalk_50" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -53, 0, 47)
+
+[node name="SM_Env_Sidewalk_51" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -53, 0, 42)
+
+[node name="SM_Env_Sidewalk_52" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -53, 0, 37)
+
+[node name="SM_Env_Sidewalk_53" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43, 0, 32)
+
+[node name="SM_Env_Sidewalk_54" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43, 0, 27)
+
+[node name="SM_Env_Sidewalk_55" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43, 0, 22)
+
+[node name="SM_Env_Sidewalk_56" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43, 0, 17)
+
+[node name="SM_Env_Sidewalk_57" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48, 0, 32)
+
+[node name="SM_Env_Sidewalk_58" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48, 0, 27)
+
+[node name="SM_Env_Sidewalk_59" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48, 0, 22)
+
+[node name="SM_Env_Sidewalk_60" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48, 0, 17)
+
+[node name="SM_Env_Sidewalk_61" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -53, 0, 32)
+
+[node name="SM_Env_Sidewalk_62" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -53, 0, 27)
+
+[node name="SM_Env_Sidewalk_63" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -53, 0, 22)
+
+[node name="SM_Env_Sidewalk_64" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -53, 0, 17)
+
+[node name="SM_Env_Sidewalk_65" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43, 0, 12)
+
+[node name="SM_Env_Sidewalk_66" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43, 0, 7)
+
+[node name="SM_Env_Sidewalk_67" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43, 0, 2)
+
+[node name="SM_Env_Sidewalk_68" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43, 0, -3)
+
+[node name="SM_Env_Sidewalk_69" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48, 0, 12)
+
+[node name="SM_Env_Sidewalk_70" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48, 0, 7)
+
+[node name="SM_Env_Sidewalk_71" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48, 0, 2)
+
+[node name="SM_Env_Sidewalk_72" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48, 0, -3)
+
+[node name="SM_Env_Sidewalk_73" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -53, 0, 12)
+
+[node name="SM_Env_Sidewalk_74" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -53, 0, 7)
+
+[node name="SM_Env_Sidewalk_75" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -53, 0, 2)
+
+[node name="SM_Env_Sidewalk_76" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -53, 0, -3)
+
+[node name="SM_Env_Sidewalk_77" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43, 0, -8)
+
+[node name="SM_Env_Sidewalk_78" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43, 0, -13)
+
+[node name="SM_Env_Sidewalk_79" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43, 0, -18)
+
+[node name="SM_Env_Sidewalk_80" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43, 0, -23)
+
+[node name="SM_Env_Sidewalk_81" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48, 0, -8)
+
+[node name="SM_Env_Sidewalk_82" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48, 0, -13)
+
+[node name="SM_Env_Sidewalk_83" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48, 0, -18)
+
+[node name="SM_Env_Sidewalk_84" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48, 0, -23)
+
+[node name="SM_Env_Sidewalk_85" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -53, 0, -8)
+
+[node name="SM_Env_Sidewalk_86" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -53, 0, -13)
+
+[node name="SM_Env_Sidewalk_87" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -53, 0, -18)
+
+[node name="SM_Env_Sidewalk_88" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -53, 0, -23)
+
+[node name="SM_Env_Sidewalk_89" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43, 0, -28)
+
+[node name="SM_Env_Sidewalk_90" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43, 0, -33)
+
+[node name="SM_Env_Sidewalk_91" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43, 0, -38)
+
+[node name="SM_Env_Sidewalk_92" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43, 0, -43)
+
+[node name="SM_Env_Sidewalk_93" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48, 0, -28)
+
+[node name="SM_Env_Sidewalk_94" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48, 0, -33)
+
+[node name="SM_Env_Sidewalk_95" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48, 0, -38)
+
+[node name="SM_Env_Sidewalk_96" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48, 0, -43)
+
+[node name="SM_Env_Sidewalk_97" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -53, 0, -28)
+
+[node name="SM_Env_Sidewalk_98" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -53, 0, -33)
+
+[node name="SM_Env_Sidewalk_99" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -53, 0, -38)
+
+[node name="SM_Env_Sidewalk_100" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -53, 0, -43)
+
+[node name="SM_Env_Sidewalk_101" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58, 0, -28)
+
+[node name="SM_Env_Sidewalk_102" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58, 0, -33)
+
+[node name="SM_Env_Sidewalk_103" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58, 0, -38)
+
+[node name="SM_Env_Sidewalk_104" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58, 0, -43)
+
+[node name="SM_Env_Sidewalk_105" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58, 0, -8)
+
+[node name="SM_Env_Sidewalk_106" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58, 0, -13)
+
+[node name="SM_Env_Sidewalk_107" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58, 0, -18)
+
+[node name="SM_Env_Sidewalk_108" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58, 0, -23)
+
+[node name="SM_Env_Sidewalk_109" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58, 0, 12)
+
+[node name="SM_Env_Sidewalk_110" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58, 0, 7)
+
+[node name="SM_Env_Sidewalk_111" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58, 0, 2)
+
+[node name="SM_Env_Sidewalk_112" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58, 0, -3)
+
+[node name="SM_Env_Sidewalk_113" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58, 0, 32)
+
+[node name="SM_Env_Sidewalk_114" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58, 0, 27)
+
+[node name="SM_Env_Sidewalk_115" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58, 0, 22)
+
+[node name="SM_Env_Sidewalk_116" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58, 0, 17)
+
+[node name="SM_Env_Sidewalk_117" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58, 0, 52)
+
+[node name="SM_Env_Sidewalk_118" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58, 0, 47)
+
+[node name="SM_Env_Sidewalk_119" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58, 0, 42)
+
+[node name="SM_Env_Sidewalk_120" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58, 0, 37)
+
+[node name="SM_Env_Sidewalk_21" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38, 0, -28)
+
+[node name="SM_Env_Sidewalk_22" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38, 0, -33)
+
+[node name="SM_Env_Sidewalk_23" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38, 0, -38)
+
+[node name="SM_Env_Sidewalk_24" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38, 0, -43)
+
+[node name="SM_Env_Sidewalk_25" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33, 0, -28)
+
+[node name="SM_Env_Sidewalk_26" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33, 0, -33)
+
+[node name="SM_Env_Sidewalk_27" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33, 0, -38)
+
+[node name="SM_Env_Sidewalk_28" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33, 0, -43)
+
+[node name="SM_Env_Sidewalk_29" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28, 0, -28)
+
+[node name="SM_Env_Sidewalk_30" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28, 0, -33)
+
+[node name="SM_Env_Sidewalk_31" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28, 0, -38)
+
+[node name="SM_Env_Sidewalk_32" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28, 0, -43)
+
+[node name="SM_Env_Sidewalk_33" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23, 0, -28)
+
+[node name="SM_Env_Sidewalk_34" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23, 0, -33)
+
+[node name="SM_Env_Sidewalk_35" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23, 0, -38)
+
+[node name="SM_Env_Sidewalk_36" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23, 0, -43)
+
+[node name="SM_Env_Sidewalk_37" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 0, -28)
+
+[node name="SM_Env_Sidewalk_38" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 0, -33)
+
+[node name="SM_Env_Sidewalk_39" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 0, -38)
+
+[node name="SM_Env_Sidewalk_40" parent="." instance=ExtResource("19_sx2rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 0, -43)
+
+[node name="SmBldRepairShopMedium01" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -45, 0, 19)
+mesh = ExtResource("20_qstrt")
+
+[node name="SmBldRepairShopMedium01GarageDoor01" type="MeshInstance3D" parent="SmBldRepairShopMedium01"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.36833, 0.62041, 6.09042)
+mesh = ExtResource("21_bgqpx")
+skeleton = NodePath("../..")
+
+[node name="SmBldRepairShopMedium01GarageDoor01Glass" type="MeshInstance3D" parent="SmBldRepairShopMedium01"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.36833, 0.62041, 6.09042)
+mesh = ExtResource("22_dp2vr")
+skeleton = NodePath("../..")
+
+[node name="SmBldRepairShopMedium01GarageDoor02" type="MeshInstance3D" parent="SmBldRepairShopMedium01"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.3584, 0.62041, 6.09042)
+mesh = ExtResource("21_bgqpx")
+skeleton = NodePath("../..")
+
+[node name="SmBldRepairShopMedium01GarageDoor01Glass2" type="MeshInstance3D" parent="SmBldRepairShopMedium01"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.3584, 0.62041, 6.09042)
+mesh = ExtResource("22_dp2vr")
+skeleton = NodePath("../..")
+
+[node name="SmBldRepairShopMedium01Glass" type="MeshInstance3D" parent="SmBldRepairShopMedium01"]
+mesh = ExtResource("23_m1akk")
+skeleton = NodePath("../..")
+
+[node name="SmEnvSidewalkDip01" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -33, 0, 27)
+mesh = ExtResource("24_d4iih")
+
+[node name="SmEnvSidewalkDip02" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -33, 0, 22)
+mesh = ExtResource("24_d4iih")
+
+[node name="SmEnvTreeMedium01Fbx" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -40, 0, 34)
+mesh = ExtResource("25_gi7vy")
+
+[node name="SmEnvTreeMedium01Fbx2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -50, 0, 42)
+mesh = ExtResource("25_gi7vy")
+
+[node name="SmEnvTreeMedium02Fbx" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1.07387, 0, -0.62, 0, 1.24, 0, 0.62, 0, -1.07387, -51, 0, 36)
+mesh = ExtResource("26_lyqg7")
+
+[node name="SmEnvTreeMedium02Fbx2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -50, 0, 48)
+mesh = ExtResource("26_lyqg7")
+
+[node name="SmEnvTreeSmall01Fbx" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.956958, 0, 0.5525, 0, 1.105, 0, -0.5525, 0, 0.956958, -39, 0, 41)
+mesh = ExtResource("27_fd2vv")
+
+[node name="SmEnvTreeSmall02Fbx" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.28, 0, 0, 0, 1.28, 0, 0, 0, 1.28, -45, 0, 48)
+mesh = ExtResource("28_c7k3x")
+
+[node name="SmEnvTreeSmall02Fbx3" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.58, 0, 1.00459, 0, 1.16, 0, -1.00459, 0, -0.58, -31, 0, 48)
+mesh = ExtResource("28_c7k3x")
+
+[node name="SmEnvTreeSmall02Fbx2" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.87382e-08, 0, -1.115, 0, 1.115, 0, 1.115, 0, -4.87382e-08, -47, 0, 37)
+mesh = ExtResource("28_c7k3x")
+
+[node name="SmBush" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.781353, 0, -0.781353, 0, 1.105, 0, 0.781353, 0, 0.781353, -40, 0, 48)
+mesh = ExtResource("29_4k2qa")
+
+[node name="SmBush2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43, 0, 49)
+mesh = ExtResource("29_4k2qa")
+
+[node name="SmBush3" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, -42, 0, 45)
+mesh = ExtResource("29_4k2qa")
+
+[node name="SmBush4" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, -36.89, 0, 42.0774)
+mesh = ExtResource("29_4k2qa")
+
+[node name="SmBush5" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -38.988, 0, 44.4434)
+mesh = ExtResource("29_4k2qa")
+
+[node name="SmBush6" type="MeshInstance3D" parent="."]
+transform = Transform3D(5.96046e-08, 0, -1, 0, 1, 0, 1, 0, 5.96046e-08, -40.122, 0, 40.4793)
+mesh = ExtResource("29_4k2qa")
+
+[node name="SmBush13" type="MeshInstance3D" parent="."]
+transform = Transform3D(5.96046e-08, 0, -1, 0, 1, 0, 1, 0, 5.96046e-08, -45.439, 0, 50.4924)
+mesh = ExtResource("29_4k2qa")
+
+[node name="SmBush14" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, -0.258819, -36.5371, 0, 49.8584)
+mesh = ExtResource("29_4k2qa")
+
+[node name="SmBush15" type="MeshInstance3D" parent="."]
+transform = Transform3D(5.96046e-08, 0, -1, 0, 1, 0, 1, 0, 5.96046e-08, -50.671, 0, 49.8943)
+mesh = ExtResource("29_4k2qa")
+
+[node name="SmBush16" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, -46.7069, 0, 45.8082)
+mesh = ExtResource("29_4k2qa")
+
+[node name="SmBush17" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, -47.3409, 0, 48.9063)
+mesh = ExtResource("29_4k2qa")
+
+[node name="SmBush18" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, -50.305, 0, 46.0403)
+mesh = ExtResource("29_4k2qa")
+
+[node name="SmBush19" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, -0.965926, -49.8943, 0, 36.1743)
+mesh = ExtResource("29_4k2qa")
+
+[node name="SmBush20" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, -0.866025, -47.7963, 0, 33.8082)
+mesh = ExtResource("29_4k2qa")
+
+[node name="SmBush21" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1.47027e-07, 0, 1, 0, 1, 0, -1, 0, -1.47027e-07, -46.6623, 0, 37.7723)
+mesh = ExtResource("29_4k2qa")
+
+[node name="SmBush22" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, -0.965926, -49.6264, 0, 42.8584)
+mesh = ExtResource("29_4k2qa")
+
+[node name="SmBush23" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, -48.9924, 0, 39.7604)
+mesh = ExtResource("29_4k2qa")
+
+[node name="SmBush24" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, -0.5, -46.0283, 0, 42.6264)
+mesh = ExtResource("29_4k2qa")
+
+[node name="SmBush7" type="MeshInstance3D" parent="."]
+transform = Transform3D(5.96046e-08, 0, -1, 0, 1, 0, 1, 0, 5.96046e-08, -42.9596, 0, 41.9832)
+mesh = ExtResource("29_4k2qa")
+
+[node name="SmBush8" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -45.788, 0, 40.569)
+mesh = ExtResource("29_4k2qa")
+
+[node name="SmBush9" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, -0.965926, -42.2525, 0, 38.4477)
+mesh = ExtResource("29_4k2qa")
+
+[node name="SmBush10" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, -0.965926, -43.4434, 0, 33.5893)
+mesh = ExtResource("29_4k2qa")
+
+[node name="SmBush11" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, -0.866025, -41.3453, 0, 31.2233)
+mesh = ExtResource("29_4k2qa")
+
+[node name="SmBush12" type="MeshInstance3D" parent="."]
+transform = Transform3D(-8.9407e-08, 0, 1, 0, 1, 0, -1, 0, -8.9407e-08, -40.2113, 0, 35.1874)
+mesh = ExtResource("29_4k2qa")
+
+[node name="SmEnvTreeMedium01Fbx3" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, -55.4249, 0, -48.3264)
+mesh = ExtResource("25_gi7vy")
+
+[node name="SmEnvTreeMedium01Fbx4" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, -56.0851, 0, -27.3982)
+mesh = ExtResource("25_gi7vy")
+
+[node name="SmEnvTreeMedium02Fbx3" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.5575, 0, 0.965618, 0, 1.115, 0, -0.965618, 0, 0.5575, -47.9512, 0, -47.0943)
+mesh = ExtResource("26_lyqg7")
+
+[node name="SmEnvTreeMedium02Fbx4" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.197997, 0, 0.738933, 0, 0.765, 0, -0.738933, 0, 0.197997, -44.0851, 0, -39.202)
+mesh = ExtResource("26_lyqg7")
+
+[node name="SmEnvTreeSmall01Fbx2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.6475, 0, 1.1215, 0, 1.295, 0, -1.1215, 0, 0.6475, -47.0589, 0, -33.7642)
+mesh = ExtResource("27_fd2vv")
+
+[node name="SmEnvTreeSmall02Fbx4" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.10851, 0, 0.64, 0, 1.28, 0, -0.64, 0, 1.10851, -58.755, 0, -24.702)
+mesh = ExtResource("28_c7k3x")
+
+[node name="SmEnvTreeSmall02Fbx5" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1.00459, 0, 0.58, 0, 1.16, 0, -0.58, 0, -1.00459, -57.255, 0, -39.4245)
+mesh = ExtResource("28_c7k3x")
+
+[node name="SmEnvTreeSmall02Fbx6" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.5575, 0, -0.965618, 0, 1.115, 0, 0.965618, 0, 0.5575, -55.9871, 0, -33.2283)
+mesh = ExtResource("28_c7k3x")
+
+[node name="SmBush25" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.06735, 0, -0.285995, 0, 1.105, 0, 0.285995, 0, 1.06735, -44.4249, 0, -27.202)
+mesh = ExtResource("29_4k2qa")
+
+[node name="SmBush26" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -46.523, 0, -24.836)
+mesh = ExtResource("29_4k2qa")
+
+[node name="SmBush27" type="MeshInstance3D" parent="."]
+transform = Transform3D(5.96046e-08, 0, -1, 0, 1, 0, 1, 0, 5.96046e-08, -47.6569, 0, -28.8001)
+mesh = ExtResource("29_4k2qa")
+
+[node name="SmBush28" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, -44.6928, 0, -33.8862)
+mesh = ExtResource("29_4k2qa")
+
+[node name="SmBush29" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, -45.3268, 0, -30.7881)
+mesh = ExtResource("29_4k2qa")
+
+[node name="SmBush30" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, -48.2909, 0, -33.6542)
+mesh = ExtResource("29_4k2qa")
+
+[node name="SmBush31" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, -47.889, 0, -22.324)
+mesh = ExtResource("29_4k2qa")
+
+[node name="SmBush32" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, -45.4967, 0, -40.324)
+mesh = ExtResource("29_4k2qa")
+
+[node name="SmBush33" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, -52.7191, 0, -20.226)
+mesh = ExtResource("29_4k2qa")
+
+[node name="SmBush34" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -51.3292, 0, -25.7467)
+mesh = ExtResource("29_4k2qa")
+
+[node name="SmBush35" type="MeshInstance3D" parent="."]
+transform = Transform3D(-2.98023e-08, 0, 1, 0, 1, 0, -1, 0, -2.98023e-08, -50.3292, 0, -22.7467)
+mesh = ExtResource("29_4k2qa")
+
+[node name="SmBush36" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.866026, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866026, -54.3292, 0, -23.7467)
+mesh = ExtResource("29_4k2qa")
+
+[node name="SmBush37" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.889566, 0.322709, 0.323314, 0.192566, 0.906721, -0.375199, -0.414236, -0.271505, -0.868731, -49.6758, 0.666776, -42.1096)
+mesh = ExtResource("29_4k2qa")
+
+[node name="SmBush38" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.857635, 0.322709, -0.4004, 0.401471, 0.906721, -0.129141, 0.321377, -0.271505, -0.907194, -47.5033, -0.666777, -43.9809)
+mesh = ExtResource("29_4k2qa")
+
+[node name="SmBush39" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, -0.5, -55.3084, 0, -32.7283)
+mesh = ExtResource("29_4k2qa")
+
+[node name="SmBush40" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, -55.3324, 0, -26.8415)
+mesh = ExtResource("29_4k2qa")
+
+[node name="SmBush41" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.19209e-07, 0, -1, 0, 1, 0, 1, 0, 1.19209e-07, -56.3324, 0, -29.8415)
+mesh = ExtResource("29_4k2qa")
+
+[node name="SmBush42" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.866026, 0, 0.5, 0, 1, 0, -0.5, 0, -0.866026, -52.3324, 0, -28.8416)
+mesh = ExtResource("29_4k2qa")
+
+[node name="SmBush43" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, -49.9963, 0, -30.9329)
+mesh = ExtResource("29_4k2qa")
+
+[node name="SmBush44" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, -53.1529, 0, -30.7434)
+mesh = ExtResource("29_4k2qa")
+
+[node name="SmBush45" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, -51.1517, 0, -34.3483)
+mesh = ExtResource("29_4k2qa")
+
+[node name="SmBush46" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, -0.965926, -54.6123, 0, -37.9604)
+mesh = ExtResource("29_4k2qa")
+
+[node name="SmBush47" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, -53.9783, 0, -41.0584)
+mesh = ExtResource("29_4k2qa")
+
+[node name="SmBush48" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, -0.5, -51.0142, 0, -38.1924)
+mesh = ExtResource("29_4k2qa")
+
+[node name="SmPropFenceConcrete01" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -57, 0, 52)
+mesh = ExtResource("30_lyqg7")
+
+[node name="SmPropFenceConcrete19" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -57, 0, 49.5)
+mesh = ExtResource("30_lyqg7")
+
+[node name="SmPropFenceConcrete02" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -57, 0, 52)
+mesh = ExtResource("30_lyqg7")
+
+[node name="SmPropFenceConcrete03" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -54.5, 0, 52)
+mesh = ExtResource("30_lyqg7")
+
+[node name="SmPropFenceConcrete04" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52, 0, 52)
+mesh = ExtResource("30_lyqg7")
+
+[node name="SmPropFenceConcrete05" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49.5, 0, 52)
+mesh = ExtResource("30_lyqg7")
+
+[node name="SmPropFenceConcrete06" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47, 0, 52)
+mesh = ExtResource("30_lyqg7")
+
+[node name="SmPropFenceConcrete07" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44.5, 0, 52)
+mesh = ExtResource("30_lyqg7")
+
+[node name="SmPropFenceConcrete08" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42, 0, 52)
+mesh = ExtResource("30_lyqg7")
+
+[node name="SmPropFenceConcrete09" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.5, 0, 52)
+mesh = ExtResource("30_lyqg7")
+
+[node name="SmPropFenceConcrete10" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37, 0, 52)
+mesh = ExtResource("30_lyqg7")
+
+[node name="SmPropFenceConcrete11" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.5, 0, 52)
+mesh = ExtResource("30_lyqg7")
+
+[node name="SmPropFenceConcrete12" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32, 0, 52)
+mesh = ExtResource("30_lyqg7")
+
+[node name="SmPropFenceConcrete13" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.5, 0, 52)
+mesh = ExtResource("30_lyqg7")
+
+[node name="SmPropFenceConcrete14" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27, 0, 52)
+mesh = ExtResource("30_lyqg7")
+
+[node name="SmPropFenceConcrete15" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.5, 0, 52)
+mesh = ExtResource("30_lyqg7")
+
+[node name="SmPropFenceConcrete16" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22, 0, 52)
+mesh = ExtResource("30_lyqg7")
+
+[node name="SmPropFenceConcrete17" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.5, 0, 52)
+mesh = ExtResource("30_lyqg7")
+
+[node name="SmPropFenceConcrete18" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 0, 52)
+mesh = ExtResource("30_lyqg7")
+
+[node name="SM_Prop_Fence_Concrete_Pillar_01" parent="." instance=ExtResource("31_fd2vv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -57, 0, 52)
+
+[node name="SM_Prop_Fence_Concrete_Pillar_11" parent="." instance=ExtResource("31_fd2vv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -57, 0, 47)
+
+[node name="SmPropFenceConcrete20" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -57, 0, 47)
+mesh = ExtResource("30_lyqg7")
+
+[node name="SmPropFenceConcrete21" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -57, 0, 44.5)
+mesh = ExtResource("30_lyqg7")
+
+[node name="SM_Prop_Fence_Concrete_Pillar_12" parent="." instance=ExtResource("31_fd2vv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -57, 0, 42)
+
+[node name="SmPropFenceConcrete22" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -57, 0, 42)
+mesh = ExtResource("30_lyqg7")
+
+[node name="SmPropFenceConcrete23" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -57, 0, 39.5)
+mesh = ExtResource("30_lyqg7")
+
+[node name="SM_Prop_Fence_Concrete_Pillar_13" parent="." instance=ExtResource("31_fd2vv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -57, 0, 37)
+
+[node name="SmPropFenceConcrete24" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -57, 0, 37)
+mesh = ExtResource("30_lyqg7")
+
+[node name="SmPropFenceConcrete25" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -57, 0, 34.5)
+mesh = ExtResource("30_lyqg7")
+
+[node name="SM_Prop_Fence_Concrete_Pillar_14" parent="." instance=ExtResource("31_fd2vv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -57, 0, 32)
+
+[node name="SmPropFenceConcrete26" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -57, 0, 32)
+mesh = ExtResource("30_lyqg7")
+
+[node name="SmPropFenceConcrete27" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -57, 0, 29.5)
+mesh = ExtResource("30_lyqg7")
+
+[node name="SM_Prop_Fence_Concrete_Pillar_15" parent="." instance=ExtResource("31_fd2vv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -57, 0, 27)
+
+[node name="SmPropFenceConcrete28" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -57, 0, 27)
+mesh = ExtResource("30_lyqg7")
+
+[node name="SmPropFenceConcrete29" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -57, 0, 24.5)
+mesh = ExtResource("30_lyqg7")
+
+[node name="SM_Prop_Fence_Concrete_Pillar_16" parent="." instance=ExtResource("31_fd2vv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -57, 0, 22)
+
+[node name="SmPropFenceConcrete30" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -57, 0, 22)
+mesh = ExtResource("30_lyqg7")
+
+[node name="SmPropFenceConcrete31" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -57, 0, 19.5)
+mesh = ExtResource("30_lyqg7")
+
+[node name="SM_Prop_Fence_Concrete_Pillar_17" parent="." instance=ExtResource("31_fd2vv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -57, 0, 17)
+
+[node name="SmPropFenceConcrete32" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -57, 0, 17)
+mesh = ExtResource("30_lyqg7")
+
+[node name="SmPropFenceConcrete33" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -57, 0, 14.5)
+mesh = ExtResource("30_lyqg7")
+
+[node name="SM_Prop_Fence_Concrete_Pillar_18" parent="." instance=ExtResource("31_fd2vv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -57, 0, 12)
+
+[node name="SmPropFenceConcrete34" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -57, 0, 12)
+mesh = ExtResource("30_lyqg7")
+
+[node name="SmPropFenceConcrete35" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -57, 0, 9.5)
+mesh = ExtResource("30_lyqg7")
+
+[node name="SM_Prop_Fence_Concrete_Pillar_19" parent="." instance=ExtResource("31_fd2vv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -57, 0, 7)
+
+[node name="SmPropFenceConcrete36" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -57, 0, 7)
+mesh = ExtResource("30_lyqg7")
+
+[node name="SmPropFenceConcrete37" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -57, 0, 4.5)
+mesh = ExtResource("30_lyqg7")
+
+[node name="SM_Prop_Fence_Concrete_Pillar_20" parent="." instance=ExtResource("31_fd2vv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -57, 0, 2)
+
+[node name="SmPropFenceConcrete38" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -57, 0, 2)
+mesh = ExtResource("30_lyqg7")
+
+[node name="SmPropFenceConcrete39" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -57, 0, -0.5)
+mesh = ExtResource("30_lyqg7")
+
+[node name="SM_Prop_Fence_Concrete_Pillar_21" parent="." instance=ExtResource("31_fd2vv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -57, 0, -3)
+
+[node name="SmPropFenceConcrete40" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -57, 0, -3)
+mesh = ExtResource("30_lyqg7")
+
+[node name="SmPropFenceConcrete41" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -57, 0, -5.5)
+mesh = ExtResource("30_lyqg7")
+
+[node name="SM_Prop_Fence_Concrete_Pillar_22" parent="." instance=ExtResource("31_fd2vv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -57, 0, -8)
+
+[node name="SmPropFenceConcrete42" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -57, 0, -8)
+mesh = ExtResource("30_lyqg7")
+
+[node name="SmPropFenceConcrete43" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -57, 0, -10.5)
+mesh = ExtResource("30_lyqg7")
+
+[node name="SM_Prop_Fence_Concrete_Pillar_23" parent="." instance=ExtResource("31_fd2vv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -57, 0, -13)
+
+[node name="SmPropFenceConcrete44" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -57, 0, -13)
+mesh = ExtResource("30_lyqg7")
+
+[node name="SmPropFenceConcrete45" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -57, 0, -15.5)
+mesh = ExtResource("30_lyqg7")
+
+[node name="SM_Prop_Fence_Concrete_Pillar_24" parent="." instance=ExtResource("31_fd2vv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -57, 0, -18)
+
+[node name="SmPropFenceConcrete46" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -57, 0, -18)
+mesh = ExtResource("30_lyqg7")
+
+[node name="SmPropFenceConcrete47" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -54.5, 0, -18)
+mesh = ExtResource("30_lyqg7")
+
+[node name="SM_Prop_Fence_Concrete_Pillar_25" parent="." instance=ExtResource("31_fd2vv")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -52, 0, -18)
+
+[node name="SmPropFenceConcrete48" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52, 0, -18)
+mesh = ExtResource("30_lyqg7")
+
+[node name="SmPropFenceConcrete49" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49.5, 0, -18)
+mesh = ExtResource("30_lyqg7")
+
+[node name="SM_Prop_Fence_Concrete_Pillar_26" parent="." instance=ExtResource("31_fd2vv")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -47, 0, -18)
+
+[node name="SmPropFenceConcrete50" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47, 0, -18)
+mesh = ExtResource("30_lyqg7")
+
+[node name="SmPropFenceConcrete51" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44.5, 0, -18)
+mesh = ExtResource("30_lyqg7")
+
+[node name="SM_Prop_Fence_Concrete_Pillar_27" parent="." instance=ExtResource("31_fd2vv")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -42, 0, -18)
+
+[node name="SmPropFenceConcrete52" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42, 0, -18)
+mesh = ExtResource("30_lyqg7")
+
+[node name="SmPropFenceConcrete53" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.5, 0, -18)
+mesh = ExtResource("30_lyqg7")
+
+[node name="SM_Prop_Fence_Concrete_Pillar_28" parent="." instance=ExtResource("31_fd2vv")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -37, 0, -18)
+
+[node name="SmPropFenceConcrete54" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -42, 0, -18)
+mesh = ExtResource("30_lyqg7")
+
+[node name="SmPropFenceConcrete55" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -42, 0, -20.5)
+mesh = ExtResource("30_lyqg7")
+
+[node name="SM_Prop_Fence_Concrete_Pillar_29" parent="." instance=ExtResource("31_fd2vv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42, 0, -23)
+
+[node name="SmPropFenceConcrete56" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -42, 0, -23)
+mesh = ExtResource("30_lyqg7")
+
+[node name="SmPropFenceConcrete57" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -42, 0, -25.5)
+mesh = ExtResource("30_lyqg7")
+
+[node name="SM_Prop_Fence_Concrete_Pillar_30" parent="." instance=ExtResource("31_fd2vv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42, 0, -28)
+
+[node name="SmPropFenceConcrete58" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -42, 0, -28)
+mesh = ExtResource("30_lyqg7")
+
+[node name="SmPropFenceConcrete59" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -42, 0, -30.5)
+mesh = ExtResource("30_lyqg7")
+
+[node name="SM_Prop_Fence_Concrete_Pillar_31" parent="." instance=ExtResource("31_fd2vv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42, 0, -33)
+
+[node name="SmPropFenceConcrete60" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -42, 0, -33)
+mesh = ExtResource("30_lyqg7")
+
+[node name="SmPropFenceConcrete61" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -42, 0, -35.5)
+mesh = ExtResource("30_lyqg7")
+
+[node name="SM_Prop_Fence_Concrete_Pillar_32" parent="." instance=ExtResource("31_fd2vv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42, 0, -38)
+
+[node name="SmPropFenceConcrete62" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -42, 0, -38)
+mesh = ExtResource("30_lyqg7")
+
+[node name="SmPropFenceConcrete63" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -42, 0, -40.5)
+mesh = ExtResource("30_lyqg7")
+
+[node name="SM_Prop_Fence_Concrete_Pillar_33" parent="." instance=ExtResource("31_fd2vv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42, 0, -43)
+
+[node name="SmPropFenceConcrete64" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -42, 0, -43)
+mesh = ExtResource("30_lyqg7")
+
+[node name="SmPropFenceConcrete65" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -42, 0, -45.5)
+mesh = ExtResource("30_lyqg7")
+
+[node name="SM_Prop_Fence_Concrete_Pillar_34" parent="." instance=ExtResource("31_fd2vv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42, 0, -48)
+
+[node name="SmPropFenceConcrete66" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42, 0, -48)
+mesh = ExtResource("30_lyqg7")
+
+[node name="SmPropFenceConcrete67" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.5, 0, -48)
+mesh = ExtResource("30_lyqg7")
+
+[node name="SM_Prop_Fence_Concrete_Pillar_35" parent="." instance=ExtResource("31_fd2vv")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -37, 0, -48)
+
+[node name="SmPropFenceConcrete68" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37, 0, -48)
+mesh = ExtResource("30_lyqg7")
+
+[node name="SmPropFenceConcrete69" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.5, 0, -48)
+mesh = ExtResource("30_lyqg7")
+
+[node name="SM_Prop_Fence_Concrete_Pillar_36" parent="." instance=ExtResource("31_fd2vv")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -32, 0, -48)
+
+[node name="SmPropFenceConcrete70" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32, 0, -48)
+mesh = ExtResource("30_lyqg7")
+
+[node name="SmPropFenceConcrete71" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.5, 0, -48)
+mesh = ExtResource("30_lyqg7")
+
+[node name="SM_Prop_Fence_Concrete_Pillar_37" parent="." instance=ExtResource("31_fd2vv")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -27, 0, -48)
+
+[node name="SmPropFenceConcrete72" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27, 0, -48)
+mesh = ExtResource("30_lyqg7")
+
+[node name="SmPropFenceConcrete73" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.5, 0, -48)
+mesh = ExtResource("30_lyqg7")
+
+[node name="SM_Prop_Fence_Concrete_Pillar_38" parent="." instance=ExtResource("31_fd2vv")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -22, 0, -48)
+
+[node name="SmPropFenceConcrete74" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22, 0, -48)
+mesh = ExtResource("30_lyqg7")
+
+[node name="SmPropFenceConcrete75" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.5, 0, -48)
+mesh = ExtResource("30_lyqg7")
+
+[node name="SM_Prop_Fence_Concrete_Pillar_39" parent="." instance=ExtResource("31_fd2vv")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -17, 0, -48)
+
+[node name="SmPropFenceConcrete76" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 0, -48)
+mesh = ExtResource("30_lyqg7")
+
+[node name="SM_Prop_Fence_Concrete_Pillar_40" parent="." instance=ExtResource("31_fd2vv")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -14.5, 0, -48)
+
+[node name="SM_Prop_Fence_Concrete_Pillar_02" parent="." instance=ExtResource("31_fd2vv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 0, 52)
+
+[node name="SM_Prop_Fence_Concrete_Pillar_10" parent="." instance=ExtResource("31_fd2vv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.5, 0, 52)
+
+[node name="SM_Prop_Fence_Concrete_Pillar_03" parent="." instance=ExtResource("31_fd2vv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22, 0, 52)
+
+[node name="SM_Prop_Fence_Concrete_Pillar_04" parent="." instance=ExtResource("31_fd2vv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27, 0, 52)
+
+[node name="SM_Prop_Fence_Concrete_Pillar_05" parent="." instance=ExtResource("31_fd2vv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32, 0, 52)
+
+[node name="SM_Prop_Fence_Concrete_Pillar_06" parent="." instance=ExtResource("31_fd2vv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37, 0, 52)
+
+[node name="SM_Prop_Fence_Concrete_Pillar_07" parent="." instance=ExtResource("31_fd2vv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42, 0, 52)
+
+[node name="SM_Prop_Fence_Concrete_Pillar_08" parent="." instance=ExtResource("31_fd2vv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47, 0, 52)
+
+[node name="SM_Prop_Fence_Concrete_Pillar_09" parent="." instance=ExtResource("31_fd2vv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52, 0, 52)
