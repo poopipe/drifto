@@ -858,13 +858,14 @@ force_up = true
 [node name="track_one_mountain" parent="." instance=ExtResource("15_jcyjv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.765, 0)
 
-[node name="manager" type="Node3D" parent="." node_paths=PackedStringArray("player", "road", "camera", "start_point")]
+[node name="manager" type="Node3D" parent="." node_paths=PackedStringArray("player", "road", "camera", "start_point", "finish_scene")]
 script = ExtResource("16_vmlud")
 player = NodePath("../VehicleController")
 road = NodePath("../road_path/mesh_road")
 camera = NodePath("../Camera3D")
 start_point = NodePath("../car_start")
 main_menu_scene = SubResource("PackedScene_8om8p")
+finish_scene = NodePath("../GasStation")
 vignette_material = ExtResource("21_iwa3l")
 road_material = ExtResource("12_6g7ee")
 armco_material = ExtResource("14_fccuq")
@@ -1028,7 +1029,7 @@ mesh = ExtResource("30_etpm2")
 skeleton = NodePath("../..")
 
 [node name="car_start" type="Node3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 52.9959, 199.069, -192.273)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 43.6189, 199.265, -188.957)
 
 [node name="GasStation" parent="." instance=ExtResource("40_mchsi")]
 transform = Transform3D(-0.923879, 0, 0.382684, 0, 1, 0, -0.382684, 0, -0.923879, -646.835, -150.016, 879.89)

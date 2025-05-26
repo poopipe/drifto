@@ -4,6 +4,7 @@ extends Node3D
 @export var camera: Camera3D
 @export var start_point: Node3D
 @export var main_menu_scene: PackedScene
+@export var finish_scene: Node3D
 
 @export_group("skid thresholds")
 @export var longitudinal_slip_threshold := 0.7
@@ -96,16 +97,29 @@ var current_skid:Skid
 func _ready() -> void:
 	# get proximity areas 
 	var proximity_areas := get_tree().get_nodes_in_group("proximity_areas")
+	var finish_areas := get_tree().get_nodes_in_group("finish_area")
+	
+	print(finish_scene)
+	
 	for pa in proximity_areas:
 		if pa.has_signal("body_entered"):
 			pa.body_entered.connect(_on_area_3d_front_body_entered.bind(pa.front) )
 		if pa.has_signal("body_exited"):
 			pa.body_exited.connect(_on_area_3d_front_body_exited.bind(pa.front) )
+	
+	for fa in finish_areas:
+		print(fa)
+		if fa.has_signal("body_entered"):
+			print("HAS SIGNAL")
+			fa.body_entered.connect(_on_area_3d_finish_body_entered.bind())
+	
 	var vehicle_node = player.vehicle_node
+	
 	if vehicle_node.has_signal("body_entered"):
 		vehicle_node.body_entered.connect(_on_vehicle_body_entered.bind())
 	if vehicle_node.has_signal("body_exited"):
 		vehicle_node.body_exited.connect(_on_vehicle_body_exited.bind())
+		
 	# init run
 	init_run()
 
@@ -148,7 +162,9 @@ func _input(event: InputEvent) -> void:
 				
 	if event.is_action_pressed("action_menu"):
 		print("menu", main_menu_scene)
+		go_main_menu()
 		
+func go_main_menu() -> void:		
 		#var s := get_tree().change_scene_to_packed(main_menu_scene)
 		get_tree().change_scene_to_file("res://resources/Scenes/main_menu.tscn")
 
@@ -334,3 +350,10 @@ func _on_area_3d_front_body_exited(body: Node3D, source) -> void:
 			front_close = false
 		else:
 			rear_close = false
+			
+func _on_area_3d_finish_body_entered(body: Node3D)->void:
+	if body == player.vehicle_node:
+		print("FIHNNIISHHH")
+		await get_tree().create_timer(2.0).timeout
+		go_main_menu()
+		

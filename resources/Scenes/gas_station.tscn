@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://dr4mkrvh76pjq"]
+[gd_scene load_steps=41 format=3 uid="uid://dr4mkrvh76pjq"]
 
 [ext_resource type="ArrayMesh" uid="uid://df5nrt4tlven2" path="res://resources/gd_meshes/SM_Prop_Gaspump_Base_01.res" id="1_agd45"]
 [ext_resource type="ArrayMesh" uid="uid://cfqro7nbflhhv" path="res://resources/gd_meshes/SM_Prop_Gaspump_01.res" id="2_n3id3"]
@@ -32,6 +32,7 @@
 [ext_resource type="ArrayMesh" uid="uid://n285xammm65q" path="res://resources/gd_meshes/SM_Prop_Fence_Concrete_01.res" id="30_lyqg7"]
 [ext_resource type="PackedScene" uid="uid://cwu5fc7jofjhs" path="res://resources/meshes/SM_Prop_Fence_Concrete_Pillar_01.fbx" id="31_fd2vv"]
 [ext_resource type="Script" uid="uid://dvh3u3mdgvlsy" path="res://resources/scripts/instance_meshes_along_path.gd" id="32_fd2vv"]
+[ext_resource type="Script" uid="uid://co188j0w1j832" path="res://resources/scripts/area_finish.gd" id="33_c7k3x"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1s3we"]
 albedo_color = Color(0.25, 0.25, 0.25, 1)
@@ -53,6 +54,9 @@ _data = {
 }
 point_count = 3
 up_vector_enabled = false
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fd2vv"]
+size = Vector3(84, 21, 117)
 
 [node name="GasStation" type="Node3D"]
 
@@ -1932,6 +1936,14 @@ rotate_random = 260.0
 [node name="SmEnvSidewalkDip03" type="MeshInstance3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -8, 0, -38)
 mesh = ExtResource("24_d4iih")
+
+[node name="Area_Finish" type="Area3D" parent="." node_paths=PackedStringArray("finish_area") groups=["finish_area"]]
+script = ExtResource("33_c7k3x")
+finish_area = NodePath("..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area_Finish"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.5, 8, 4)
+shape = SubResource("BoxShape3D_fd2vv")
 
 [connection signal="curve_changed" from="Path3D" to="trees_gas_station" method="_on_path_changed"]
 [connection signal="curve_changed" from="Path3D" to="bushes_gas_station" method="_on_path_changed"]

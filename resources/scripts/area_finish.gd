@@ -1,6 +1,6 @@
 extends Area3D
-@export var vehicle: Vehicle
-@export var front: bool
+
+@export var finish_area:Node3D
 signal proximity_area_entered(emitter)
 
 func _on_body_entered(_body):
