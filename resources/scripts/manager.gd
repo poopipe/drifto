@@ -4,6 +4,7 @@ extends Node3D
 @export var camera: Camera3D
 @export var start_point: Node3D
 @export var main_menu_scene: PackedScene
+@export var settings_menu_node: Control
 
 @export_group("skid thresholds")
 @export var longitudinal_slip_threshold := 0.7
@@ -147,10 +148,20 @@ func _input(event: InputEvent) -> void:
 		init_run()
 				
 	if event.is_action_pressed("action_menu"):
-		print("menu", main_menu_scene)
+		if settings_menu_node.visible:
+			settings_menu_node.visible = false
+		else:
+			settings_menu_node.visible = true
+		print("settings menu", settings_menu_node.visible)
+		
+		
+		# hide or unhide settings menu
+		
+		
+
 		
 		#var s := get_tree().change_scene_to_packed(main_menu_scene)
-		get_tree().change_scene_to_file("res://resources/Scenes/main_menu.tscn")
+		#get_tree().change_scene_to_file("res://resources/Scenes/main_menu.tscn")
 
 func get_crashing_state(now)-> bool:
 	# crash start and end times are set by signals
