@@ -5,6 +5,7 @@ extends Node3D
 @export var start_point: Node3D
 @export var main_menu_scene: PackedScene
 @export var finish_scene: Node3D
+@export var settings_menu_node: Control
 
 @export_group("skid thresholds")
 @export var longitudinal_slip_threshold := 0.7
@@ -162,7 +163,19 @@ func _input(event: InputEvent) -> void:
 				
 	if event.is_action_pressed("action_menu"):
 		print("menu", main_menu_scene)
-		go_main_menu()
+		#go_main_menu()
+		
+		if settings_menu_node.visible:
+			settings_menu_node.visible = false
+		else:
+			settings_menu_node.visible = true
+		print("settings menu", settings_menu_node.visible)
+		
+		
+		# hide or unhide settings menu
+		
+		
+
 		
 func go_main_menu() -> void:		
 		#var s := get_tree().change_scene_to_packed(main_menu_scene)

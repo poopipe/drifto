@@ -1914,6 +1914,7 @@ curve = SubResource("Curve3D_c7k3x")
 
 [node name="trees_gas_station" type="Node3D" parent="." node_paths=PackedStringArray("path")]
 script = ExtResource("32_fd2vv")
+is_dirty = true
 meshes = Array[ArrayMesh]([ExtResource("27_fd2vv"), ExtResource("28_c7k3x"), ExtResource("25_gi7vy"), ExtResource("26_lyqg7")])
 path = NodePath("../Path3D")
 instance_spacing = 4.0
@@ -1923,6 +1924,7 @@ force_up = true
 
 [node name="bushes_gas_station" type="Node3D" parent="." node_paths=PackedStringArray("path")]
 script = ExtResource("32_fd2vv")
+is_dirty = true
 meshes = Array[ArrayMesh]([ExtResource("29_4k2qa")])
 path = NodePath("../Path3D")
 instance_spacing = 3.3

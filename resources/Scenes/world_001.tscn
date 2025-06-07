@@ -1,4 +1,4 @@
-[gd_scene load_steps=82 format=3 uid="uid://bvsi0mjnlulyx"]
+[gd_scene load_steps=83 format=3 uid="uid://bvsi0mjnlulyx"]
 
 [ext_resource type="PackedScene" uid="uid://c3ixqkc6k13yi" path="res://addons/gevp/scenes/vehicle_controller.tscn" id="1_5d8ml"]
 [ext_resource type="PackedScene" uid="uid://3c0vtybx44g8" path="res://resources/Scenes/car_86.tscn" id="2_6g7ee"]
@@ -40,6 +40,7 @@
 [ext_resource type="ArrayMesh" uid="uid://bl1qp6oc1luwg" path="res://resources/gd_meshes/retaining_wall_end_a.res" id="29_vmlud"]
 [ext_resource type="ArrayMesh" uid="uid://cy4usxc517bq0" path="res://resources/gd_meshes/retaining_wall_end_b.res" id="30_etpm2"]
 [ext_resource type="PackedScene" uid="uid://dr4mkrvh76pjq" path="res://resources/Scenes/gas_station.tscn" id="40_mchsi"]
+[ext_resource type="PackedScene" uid="uid://ctn6uvausqd03" path="res://resources/Scenes/settings.tscn" id="42_fflle"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_g5e6g"]
 
@@ -858,7 +859,7 @@ force_up = true
 [node name="track_one_mountain" parent="." instance=ExtResource("15_jcyjv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.765, 0)
 
-[node name="manager" type="Node3D" parent="." node_paths=PackedStringArray("player", "road", "camera", "start_point", "finish_scene")]
+[node name="manager" type="Node3D" parent="." node_paths=PackedStringArray("player", "road", "camera", "start_point", "finish_scene", "settings_menu_node")]
 script = ExtResource("16_vmlud")
 player = NodePath("../VehicleController")
 road = NodePath("../road_path/mesh_road")
@@ -866,6 +867,7 @@ camera = NodePath("../Camera3D")
 start_point = NodePath("../car_start")
 main_menu_scene = SubResource("PackedScene_8om8p")
 finish_scene = NodePath("../GasStation")
+settings_menu_node = NodePath("../Settings")
 vignette_material = ExtResource("21_iwa3l")
 road_material = ExtResource("12_6g7ee")
 armco_material = ExtResource("14_fccuq")
@@ -1033,6 +1035,9 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 43.618
 
 [node name="GasStation" parent="." instance=ExtResource("40_mchsi")]
 transform = Transform3D(-0.923879, 0, 0.382684, 0, 1, 0, -0.382684, 0, -0.923879, -646.835, -150.016, 879.89)
+
+[node name="Settings" parent="." instance=ExtResource("42_fflle")]
+visible = false
 
 [connection signal="path_changed" from="road_path" to="road_path/sub_path_armco_left" method="_on_parent_path_changed"]
 [connection signal="path_changed" from="road_path" to="road_path/sub_path_armco_right" method="_on_parent_path_changed"]
