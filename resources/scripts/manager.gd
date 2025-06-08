@@ -162,9 +162,7 @@ func _input(event: InputEvent) -> void:
 		init_run()
 				
 	if event.is_action_pressed("action_menu"):
-		print("menu", main_menu_scene)
-		#go_main_menu()
-		
+		# hide or unhide settings menu
 		if settings_menu_node.visible:
 			settings_menu_node.visible = false
 		else:
@@ -172,7 +170,6 @@ func _input(event: InputEvent) -> void:
 		print("settings menu", settings_menu_node.visible)
 		
 		
-		# hide or unhide settings menu
 		
 		
 

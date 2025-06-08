@@ -11,8 +11,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_1qpvc")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-custom_minimum_size = Vector2(320, 0)
+[node name="TabContainer" type="TabContainer" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -25,18 +24,81 @@ offset_right = 20.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
+current_tab = 1
+use_hidden_tabs_for_min_size = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="game" type="VBoxContainer" parent="TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="button_reset" type="Button" parent="TabContainer/game"]
+layout_mode = 2
+text = "reset"
+
+[node name="button_quit" type="Button" parent="TabContainer/game"]
+layout_mode = 2
+text = "quit	"
+
+[node name="graphics" type="VBoxContainer" parent="TabContainer"]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="shadows" type="HBoxContainer" parent="TabContainer/graphics"]
 layout_mode = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer"]
+[node name="label_shadows" type="Label" parent="TabContainer/graphics/shadows"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "shadows"
 
-[node name="menubutton_shadow_quality" type="MenuButton" parent="VBoxContainer/HBoxContainer"]
+[node name="menubutton_shadow_quality" type="MenuButton" parent="TabContainer/graphics/shadows"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "poop
+text = "quality
 "
+
+[node name="antialiasing" type="HBoxContainer" parent="TabContainer/graphics"]
+layout_mode = 2
+alignment = 1
+
+[node name="label_aa" type="Label" parent="TabContainer/graphics/antialiasing"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "antialiasing"
+
+[node name="menubutton_aa" type="MenuButton" parent="TabContainer/graphics/antialiasing"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "method
+"
+
+[node name="upscaler" type="HBoxContainer" parent="TabContainer/graphics"]
+layout_mode = 2
+alignment = 1
+
+[node name="label_upscaler" type="Label" parent="TabContainer/graphics/upscaler"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "upscaling"
+
+[node name="menubutton_resolution_scaler" type="MenuButton" parent="TabContainer/graphics/upscaler"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "method"
+
+[node name="upscaling" type="HBoxContainer" parent="TabContainer/graphics"]
+layout_mode = 2
+alignment = 1
+
+[node name="label_upscaler" type="Label" parent="TabContainer/graphics/upscaling"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "resolution scale"
+
+[node name="menubutton_resolution_scaling" type="MenuButton" parent="TabContainer/graphics/upscaling"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "amount"
