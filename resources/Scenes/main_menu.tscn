@@ -1,4 +1,4 @@
-[gd_scene load_steps=107 format=3 uid="uid://da641jgfpuude"]
+[gd_scene load_steps=108 format=3 uid="uid://da641jgfpuude"]
 
 [ext_resource type="Script" uid="uid://dw273uohu0f4m" path="res://resources/Scenes/main_menu.gd" id="1_76dr2"]
 [ext_resource type="Shader" uid="uid://cqutm1cdjtr77" path="res://resources/materials/main_menu_material.gdshader" id="1_byeb1"]
@@ -42,6 +42,7 @@
 [ext_resource type="ArrayMesh" uid="uid://bl1qp6oc1luwg" path="res://resources/gd_meshes/retaining_wall_end_a.res" id="39_rhev4"]
 [ext_resource type="ArrayMesh" uid="uid://cy4usxc517bq0" path="res://resources/gd_meshes/retaining_wall_end_b.res" id="40_jtvqk"]
 [ext_resource type="Texture2D" uid="uid://btt1de20par5q" path="res://resources/textures/title_skid_color.png" id="41_im22h"]
+[ext_resource type="PackedScene" uid="uid://ctn6uvausqd03" path="res://resources/Scenes/settings.tscn" id="43_ublpb"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ublpb"]
 shader = ExtResource("1_byeb1")
@@ -775,12 +776,11 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -24.5
-offset_top = 53.995
+offset_top = 43.98
 offset_right = 24.5
-offset_bottom = 119.995
+offset_bottom = 113.98
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(1, 0.978019)
 
 [node name="button_go" type="Button" parent="VBoxContainer"]
 layout_mode = 2
@@ -792,6 +792,23 @@ target_scene = SubResource("PackedScene_44y6q")
 layout_mode = 2
 text = "STOP"
 script = ExtResource("3_wmgoi")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -24.5
+offset_top = -111.635
+offset_right = 24.5
+offset_bottom = -111.635
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Settings" parent="VBoxContainer2" instance=ExtResource("43_ublpb")]
+layout_mode = 2
 
 [connection signal="pressed" from="VBoxContainer/button_go" to="VBoxContainer/button_go" method="_on_pressed"]
 [connection signal="pressed" from="VBoxContainer/button_stop" to="VBoxContainer/button_stop" method="_on_pressed"]

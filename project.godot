@@ -15,9 +15,17 @@ run/main_scene="uid://da641jgfpuude"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+SimpleSettings="*res://addons/simple-settings/simple-settings.gd"
+
 [debug]
 
 shader_language/warnings/treat_warnings_as_errors=true
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/simple-settings/plugin.cfg")
 
 [filesystem]
 
