@@ -160,15 +160,30 @@ func _update_instances():
 			continue
 			
 		# get transform at point on curve
-		var sample_point_transform := curve.sample_baked_with_rotation(distance, true, true)
+		var sample_point_transform:Transform3D
 		var sample_point_location := curve.sample_baked(distance, true)
-		
+		if curve.up_vector_enabled == true:
+			sample_point_transform = curve.sample_baked_with_rotation(distance, true, true)
+		else:
+			sample_point_transform.origin = sample_point_location
+
 		var left_target_local = path_left.to_local(sample_point_location)
 		var left_offset := curve_left.get_closest_offset(left_target_local)
-		var left_transform := curve_left.sample_baked_with_rotation(left_offset)
+		var left_transform: Transform3D
+		if curve_left.up_vector_enabled == true:
+			left_transform = curve_left.sample_baked_with_rotation(left_offset)
+		else:
+			left_transform.origin = curve_left.sample_baked(left_offset)
+		
 		var right_target_local = path_right.to_local(sample_point_location)
 		var right_offset := curve_right.get_closest_offset(right_target_local)
-		var right_transform := curve_right.sample_baked_with_rotation(right_offset)
+		
+		var right_transform: Transform3D
+		if curve_right.up_vector_enabled == true:
+			right_transform = curve_left.sample_baked_with_rotation(left_offset)
+		else:
+			right_transform.origin = curve_left.sample_baked(left_offset)
+		#var right_transform := curve_right.sample_baked(right_offset)
 		var final_rotate = instance_rotate
 		var this_transform = Transform3D()
 		if alternate_sides:
@@ -178,7 +193,7 @@ func _update_instances():
 			else: 
 				this_transform = left_transform.translated_local(Vector3(-h, v, 0.0))
 				final_rotate = 0.0 - instance_rotate
-			#h = h if i % 2 == 0 else 0.0-h
+
 		else:
 			this_transform = sample_point_transform.translated_local(Vector3(h, v, 0.0))	
 			# set xform before rotating

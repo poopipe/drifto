@@ -59,6 +59,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "quality
 "
+alignment = 2
 
 [node name="antialiasing" type="HBoxContainer" parent="TabContainer/graphics"]
 layout_mode = 2
@@ -74,6 +75,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "method
 "
+alignment = 2
 
 [node name="upscaler" type="HBoxContainer" parent="TabContainer/graphics"]
 layout_mode = 2
@@ -88,6 +90,7 @@ text = "upscaling"
 layout_mode = 2
 size_flags_horizontal = 3
 text = "method"
+alignment = 2
 
 [node name="upscaling" type="HBoxContainer" parent="TabContainer/graphics"]
 layout_mode = 2
@@ -102,3 +105,4 @@ text = "resolution scale"
 layout_mode = 2
 size_flags_horizontal = 3
 text = "amount"
+alignment = 2

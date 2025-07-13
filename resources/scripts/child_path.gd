@@ -29,8 +29,12 @@ func _update_points_baked():
 	curve.clear_points()
 	
 	var baked_points:PackedVector3Array = source_curve.get_baked_points()
+	var baked_tilts:PackedFloat32Array = source_curve.get_baked_tilts()
 	for i in range(len(baked_points)):
 		var source_pos:Vector3 = baked_points.get(i)
+		var source_tilt:float = baked_tilts.get(i)
+
+		
 		var distance:float = source_pos.x + start_offset
 		# we want to bail if we're trying to add a point after the end of the parent curve
 		var parent_length = parent_curve.get_baked_length()
@@ -42,6 +46,10 @@ func _update_points_baked():
 			target_transform = target_transform.translated_local(Vector3(source_pos.z, source_pos.y, 0.0))
 			# add a point to this curve 
 			curve.add_point(target_transform.origin)
+	
+
+		
+
 		
 
 func _on_parent_path_changed() -> void:
