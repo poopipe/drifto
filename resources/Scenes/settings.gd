@@ -1,39 +1,27 @@
 extends Control
-'''
-func _on_shadow_size_option_button_item_selected(index):
-	if index == 0: # Minimum
-		RenderingServer.directional_shadow_atlas_set_size(512, true)
-		# Adjust shadow bias according to shadow resolution.
-		# Higher resultions can use a lower bias without suffering from shadow acne.
-		directional_light.shadow_bias = 0.06
 
-		# Disable positional (omni/spot) light shadows entirely to further improve performance.
-		# These often don't contribute as much to a scene compared to directional light shadows.
-		get_viewport().positional_shadow_atlas_size = 0
-	if index == 1: # Very Low
-		RenderingServer.directional_shadow_atlas_set_size(1024, true)
-		directional_light.shadow_bias = 0.04
-		get_viewport().positional_shadow_atlas_size = 1024
-	if index == 2: # Low
-		RenderingServer.directional_shadow_atlas_set_size(2048, true)
-		directional_light.shadow_bias = 0.03
-		get_viewport().positional_shadow_atlas_size = 2048
-	if index == 3: # Medium (default)
-		RenderingServer.directional_shadow_atlas_set_size(4096, true)
-		directional_light.shadow_bias = 0.02
-		get_viewport().positional_shadow_atlas_size = 4096
-	if index == 4: # High
-		RenderingServer.directional_shadow_atlas_set_size(8192, true)
-		directional_light.shadow_bias = 0.01
-		get_viewport().positional_shadow_atlas_size = 8192
-	if index == 5: # Ultra
-		RenderingServer.directional_shadow_atlas_set_size(16384, true)
-		directional_light.shadow_bias = 0.005
-		get_viewport().positional_shadow_atlas_size = 16384
-
-'''
+# TODO:  THERE IS PROBABLY A BUG WHEN SWITCHING FSR ON AND OFF BUT I CANT BE ARSED 
+#		 CHECKING ATM
+# 		 TEST IT  AT SOME POINT
 
 
+@onready
+var menu_shadow_quality = $TabContainer/graphics/shadows/menubutton_shadow_quality
+@onready
+var menu_aa = $TabContainer/graphics/antialiasing/menubutton_aa
+@onready
+var menu_upscaler = $TabContainer/graphics/upscaler/menubutton_resolution_scaler
+@onready
+var menu_upscaling = $TabContainer/graphics/upscaling/menubutton_resolution_scaling
+
+@onready
+var popup_shadow_quality = menu_shadow_quality.get_popup()
+@onready
+var popup_aa = menu_aa.get_popup()
+@onready
+var popup_upscaler = menu_upscaler.get_popup()
+@onready
+var popup_upscaling = menu_upscaling.get_popup()
 
 func _ready():
 	# define and load settings	
@@ -47,35 +35,47 @@ func _ready():
 	}
 	# load settings library
 	SimpleSettings.load();
-
-	var popup_shadow_quality = $TabContainer/graphics/shadows/menubutton_shadow_quality.get_popup()
+	
+	# init the menus
 	popup_shadow_quality.add_item("really low", 1)
 	popup_shadow_quality.add_item("low", 2)
 	popup_shadow_quality.add_item("less low", 3)
 	popup_shadow_quality.id_pressed.connect(_on_popup_shadow_menu_item_pressed)
-	popup_shadow_quality.set_focused_item(int(SimpleSettings.get_value('game','graphics/shadows',true)))
+	var shadow_id = int(SimpleSettings.get_value('game','graphics/shadows',true))
+	popup_shadow_quality.set_focused_item(shadow_id)
+	var shadow_index = popup_shadow_quality.get_item_index(shadow_id)
+	menu_shadow_quality.text = str(popup_shadow_quality.get_item_text(shadow_index))
 	
-	var popup_aa = $TabContainer/graphics/antialiasing/menubutton_aa.get_popup()
 	popup_aa.add_item("temporal", 0) 		# viewport_set_use_taa
 	popup_aa.add_item("screen space", 1) 	# viewport_set_screen_space_aa
 	popup_aa.add_item("msaa", 2)			# viewport_set_msaa_3d
 	popup_aa.id_pressed.connect(_on_popup_aa_menu_item_pressed)
-	popup_aa.set_focused_item(int(SimpleSettings.get_value('game','graphics/antialiasing',true)))		
+	var aa_id = int(SimpleSettings.get_value('game','graphics/antialiasing',true))
+	popup_aa.set_focused_item(aa_id)		
+	var aa_index = popup_aa.get_item_index(aa_id)
+	menu_aa.text = str(popup_aa.get_item_text(aa_index))
 	
-	var popup_upscaler = $TabContainer/graphics/upscaler/menubutton_resolution_scaler.get_popup()
 	popup_upscaler.add_item("normal", 0)
 	popup_upscaler.add_item("fsr1", 1)
 	popup_upscaler.add_item("fsr2", 2)
 	popup_upscaler.id_pressed.connect(_on_popup_upscaler_menu_item_pressed)
-	popup_upscaler.set_focused_item(int(SimpleSettings.get_value('game','graphics/upscaler',true)))
+	var upscaler_id = int(SimpleSettings.get_value('game','graphics/upscaler',true))
+	popup_upscaler.set_focused_item(upscaler_id)
+	var upscaler_index = popup_upscaler.get_item_index(upscaler_id)
+	menu_upscaler.text = str(popup_upscaler.get_item_text(upscaler_index))
 	
-	var popup_upscaling = $TabContainer/graphics/upscaling/menubutton_resolution_scaling.get_popup()
 	popup_upscaling.add_item("100%", 0)
 	popup_upscaling.add_item("75%", 1)
 	popup_upscaling.add_item("50%", 2)
 	popup_upscaling.add_item("25%", 3)
 	popup_upscaling.id_pressed.connect(_on_popup_upscaling_menu_item_pressed)
-	popup_upscaling.set_focused_item(int(SimpleSettings.get_value('game','graphics/upscaling',true)))
+	var upscaling_id = int(SimpleSettings.get_value('game','graphics/upscaling',true))
+	popup_upscaling.set_focused_item(upscaling_id)
+	var upscaling_index = popup_upscaling.get_item_index(upscaling_id)
+	menu_upscaling.text = str(popup_upscaling.get_item_text(upscaling_index))
+	
+	
+	
 	
 
 func _on_popup_aa_menu_item_pressed(pressed_id):
@@ -96,7 +96,9 @@ func _on_popup_aa_menu_item_pressed(pressed_id):
 		RenderingServer.viewport_set_screen_space_aa(rid, RenderingServer.VIEWPORT_SCREEN_SPACE_AA_DISABLED)
 		RenderingServer.viewport_set_msaa_3d(rid, RenderingServer.VIEWPORT_MSAA_4X)
 	SimpleSettings.set_value('game', 'graphics/antialiasing', pressed_id)
-		
+	var index = popup_aa.get_item_index(pressed_id)
+	menu_aa.text = str(popup_aa.get_item_text(index))
+			
 func _on_popup_upscaling_menu_item_pressed(pressed_id):
 	# viewport scaling
 	var rid:RID = get_viewport().get_viewport_rid()	
@@ -109,7 +111,8 @@ func _on_popup_upscaling_menu_item_pressed(pressed_id):
 	elif pressed_id == 3:
 		RenderingServer.viewport_set_scaling_3d_scale(rid, 0.25)
 	SimpleSettings.set_value('game', 'graphics/upscaling', pressed_id)
-	
+	var index = popup_upscaling.get_item_index(pressed_id)
+	menu_upscaling.text = str(popup_upscaling.get_item_text(index))
 	
 func _on_popup_upscaler_menu_item_pressed(pressed_id):
 	# upscaler selection
@@ -127,6 +130,8 @@ func _on_popup_upscaler_menu_item_pressed(pressed_id):
 	# TODO: 
 	#	Metal support one day?
 	SimpleSettings.set_value('game', 'graphics/upscaler', pressed_id)
+	var index = popup_upscaler.get_item_index(pressed_id)
+	menu_upscaler.text = str(popup_upscaler.get_item_text(index))
 		
 func _on_popup_shadow_menu_item_pressed(pressed_id):
 	# shadow quality
@@ -152,3 +157,5 @@ func _on_popup_shadow_menu_item_pressed(pressed_id):
 		RenderingServer.directional_soft_shadow_filter_set_quality(RenderingServer.SHADOW_QUALITY_SOFT_MEDIUM)
 		RenderingServer.positional_soft_shadow_filter_set_quality(RenderingServer.SHADOW_QUALITY_SOFT_MEDIUM)
 	SimpleSettings.set_value('game', 'graphics/shadows', pressed_id)
+	var index = popup_shadow_quality.get_item_index(pressed_id)
+	menu_shadow_quality.text = str(popup_shadow_quality.get_item_text(index))
