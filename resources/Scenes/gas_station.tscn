@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://dr4mkrvh76pjq"]
+[gd_scene load_steps=42 format=3 uid="uid://dr4mkrvh76pjq"]
 
 [ext_resource type="ArrayMesh" uid="uid://df5nrt4tlven2" path="res://resources/gd_meshes/SM_Prop_Gaspump_Base_01.res" id="1_agd45"]
 [ext_resource type="ArrayMesh" uid="uid://cfqro7nbflhhv" path="res://resources/gd_meshes/SM_Prop_Gaspump_01.res" id="2_n3id3"]
@@ -53,7 +53,14 @@ _data = {
 "tilts": PackedFloat32Array(0, 0, 0)
 }
 point_count = 3
-up_vector_enabled = false
+
+[sub_resource type="Curve3D" id="Curve3D_4k2qa"]
+bake_interval = 1.0
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 5.309, 0, -52.857, 0, 0, 0, 0, 0, 0, 7.061, 0, 50.777, 0, 0, 0, 0, 0, 0, 3.164, 0, 64.062),
+"tilts": PackedFloat32Array(0, 0, 0)
+}
+point_count = 3
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fd2vv"]
 size = Vector3(84, 21, 117)
@@ -1912,28 +1919,33 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52, 0, 52)
 [node name="Path3D" type="Path3D" parent="."]
 curve = SubResource("Curve3D_c7k3x")
 
-[node name="trees_gas_station" type="Node3D" parent="." node_paths=PackedStringArray("path")]
+[node name="Path3D2" type="Path3D" parent="."]
+curve = SubResource("Curve3D_4k2qa")
+
+[node name="trees_gas_station" type="Node3D" parent="." node_paths=PackedStringArray("path", "road_path")]
 script = ExtResource("32_fd2vv")
 is_dirty = true
 meshes = Array[ArrayMesh]([ExtResource("27_fd2vv"), ExtResource("28_c7k3x"), ExtResource("25_gi7vy"), ExtResource("26_lyqg7")])
 path = NodePath("../Path3D")
+road_path = NodePath("../Path3D2")
 instance_spacing = 4.0
-h_offset_random = 2.96
-v_offset_random = 0.145
-force_up = true
+h_offset = 1.0
+v_offset = -1.0
+h_offset_random = 2.0
+v_offset_random = 2.0
 
-[node name="bushes_gas_station" type="Node3D" parent="." node_paths=PackedStringArray("path")]
+[node name="bushes_gas_station" type="Node3D" parent="." node_paths=PackedStringArray("path", "road_path")]
 script = ExtResource("32_fd2vv")
 is_dirty = true
 meshes = Array[ArrayMesh]([ExtResource("29_4k2qa")])
 path = NodePath("../Path3D")
+road_path = NodePath("../Path3D2")
 instance_spacing = 3.3
-h_offset = 1.36
-h_offset_random = 0.335
+v_offset = -0.5
+h_offset_random = 1.0
+v_offset_random = 0.5
 scaling = Vector3(2, 2, 2)
 scale_random = Vector3(1, 1, 1)
-force_up = true
-rotate_random = 260.0
 
 [node name="SmEnvSidewalkDip03" type="MeshInstance3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -8, 0, -38)
@@ -1949,3 +1961,5 @@ shape = SubResource("BoxShape3D_fd2vv")
 
 [connection signal="curve_changed" from="Path3D" to="trees_gas_station" method="_on_path_changed"]
 [connection signal="curve_changed" from="Path3D" to="bushes_gas_station" method="_on_path_changed"]
+[connection signal="curve_changed" from="Path3D2" to="trees_gas_station" method="_on_path_changed"]
+[connection signal="curve_changed" from="Path3D2" to="bushes_gas_station" method="_on_path_changed"]

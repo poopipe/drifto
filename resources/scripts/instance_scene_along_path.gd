@@ -1,10 +1,12 @@
 @tool
 extends Node3D
 
-var is_dirty := false
+@export  var is_dirty := false
 
 @export var instance_scene:PackedScene 
 @export var path:	Path3D
+@export var path_left:	Path3D
+@export var path_right:	Path3D
 
 @export var instance_spacing: float:
 	# TODO: Why the fuck cant i generalise this?
@@ -84,19 +86,12 @@ var is_dirty := false
 		if value != alternate_sides:
 			alternate_sides = value
 			is_dirty = true
-@export var force_up: bool:
+@export var this_seed: int = 69:
 	get:
-		return force_up
+		return this_seed
 	set(value):
-		if value != force_up:
-			force_up = value
-			is_dirty = true
-@export var seed: int = 69:
-	get:
-		return seed
-	set(value):
-		if value != seed:
-			seed = value
+		if value != this_seed:
+			this_seed = value
 			is_dirty = true
 @export var instance_rotate: float = 0.0:
 	get:
@@ -124,9 +119,12 @@ func _process(_delta):
 		is_dirty = false
 
 func _update_instances():
-	rng.seed = seed
+	rng.seed = this_seed
 
 	var curve = path.curve
+	var curve_left = path_left.curve
+	var curve_right = path_right.curve
+	
 	var curve_length:float = curve.get_baked_length()
 	var end: float
 	
@@ -146,39 +144,62 @@ func _update_instances():
 		scene_instances.append(instance_scene.instantiate())
 	
 	for i in range(0, len(scene_instances)):
+		
+		# offsets
 		var h = h_offset + rng.randf_range(-h_offset_random, h_offset_random)
 		var v = v_offset + rng.randf_range(-v_offset_random, v_offset_random)
-		
+		# get separations
 		var distance = start_offset + (instance_spacing) * i 
 		# bail if outside start and end bounds
 		if distance > end or distance < start_offset:
 			continue
+			
 		# get transform at point on curve
-		var sample_point_transform := curve.sample_baked_with_rotation(distance, true, true)
+		var sample_point_transform:Transform3D
 		var sample_point_location := curve.sample_baked(distance, true)
-	
-		if alternate_sides:
-			h = h if i % 2 == 0 else 0.0-h
-		# set xform before rotating
-		var transform = sample_point_transform.translated_local(Vector3(h, v, 0.0))
+		sample_point_transform.origin = sample_point_location
+
+		# get sample points on left curve
+		var left_target_local = path_left.to_local(sample_point_location)
+		var left_offset := curve_left.get_closest_offset(left_target_local)
+		var left_transform: Transform3D
+		left_transform.origin = curve_left.sample_baked(left_offset)
+		# get sample points on right curve
+		var right_target_local = path_right.to_local(sample_point_location)
+		var right_offset := curve_right.get_closest_offset(right_target_local)
+		var right_transform: Transform3D
+		right_transform.origin = curve_right.sample_baked(right_offset)
 		
-		if force_up:
-			# create a new transform k
-			var t:Transform3D
-			t.basis = Basis.looking_at(transform.origin - sample_point_location - Vector3(0.0, v, 0.0), Vector3(0.0, 100.0, 0.0), false)
-			t.origin = transform.origin
-			transform = t
+		var final_rotate = instance_rotate
+		var this_transform = Transform3D()
+
+		var t:Transform3D
+		if alternate_sides:
+			if i % 2 == 0:
+				this_transform = right_transform
+			else: 
+				this_transform = left_transform
+			# look at road curve
+			t.basis = Basis.looking_at(this_transform.origin - sample_point_location - Vector3(0.0, v, 0.0), Vector3(0.0, 100.0, 0.0), false)
+		else:
+			this_transform = sample_point_transform	
+			# look at right curve
+			t.basis = Basis.looking_at(this_transform.origin - right_transform.origin - Vector3(0.0, v, 0.0), Vector3(0.0, 100.0, 0.0), false)
+		
+		t.origin = this_transform.origin
+		t = t.translated_local(Vector3(0.0, v, h))
+		this_transform = t
 			
 		var s = scaling
-		transform = transform.scaled_local(s)			
+		this_transform = this_transform.scaled_local(s)			
 		
-		var r = deg_to_rad(instance_rotate) + rng.randf_range(-rotate_random, rotate_random)
-		transform = transform.rotated_local(Vector3(0.0, 1.0, 0.0), r)
+		var r = deg_to_rad(final_rotate) + rng.randf_range(-rotate_random, rotate_random)
+		this_transform = this_transform.rotated_local(Vector3(0.0, 1.0, 0.0), r)
 		
 		var inst = scene_instances[i]
 
 		add_child(inst)
-		inst.transform = transform
+		inst.transform = this_transform
 
 		
 

@@ -31,7 +31,7 @@
 [ext_resource type="Script" uid="uid://cm3jg8dcs7r35" path="res://resources/scripts/ui/button_go.gd" id="28_swibt"]
 [ext_resource type="Script" uid="uid://de5w0qsirswbv" path="res://resources/scripts/ui/button_stop.gd" id="29_duukg"]
 [ext_resource type="Material" uid="uid://bve0pcutdikid" path="res://resources/materials/post_process/pp_vignette.tres" id="30_5pnsq"]
-[ext_resource type="Script" uid="uid://b8knuj3vbp1pf" path="res://resources/scripts/streetlights.gd" id="31_7ysa5"]
+[ext_resource type="Script" uid="uid://b8knuj3vbp1pf" path="res://resources/scripts/instance_scene_along_path.gd" id="31_7ysa5"]
 [ext_resource type="PackedScene" uid="uid://bmg25k4thniva" path="res://resources/Scenes/lamp_post.tscn" id="32_q2c42"]
 [ext_resource type="Script" uid="uid://dvh3u3mdgvlsy" path="res://resources/scripts/instance_meshes_along_path.gd" id="33_2jj1s"]
 [ext_resource type="ArrayMesh" uid="uid://deic8m0en25qe" path="res://resources/gd_meshes/SM_Env_Tree_Medium_01_fbx.res" id="34_wbter"]

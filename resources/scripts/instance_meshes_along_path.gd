@@ -6,6 +6,7 @@ extends Node3D
 @export var meshes: Array[ArrayMesh] = []
 
 @export var path:	Path3D
+@export var road_path:	Path3D
 @export var instance_spacing: float:
 	# TODO: Why the fuck cant i generalise this?
 	get:
@@ -77,20 +78,6 @@ extends Node3D
 		if value != scale_random:
 			scale_random = value
 			is_dirty = true
-@export var alternate_sides: bool:
-	get:
-		return alternate_sides
-	set(value):
-		if value != alternate_sides:
-			alternate_sides = value
-			is_dirty = true
-@export var force_up: bool:
-	get:
-		return force_up
-	set(value):
-		if value != force_up:
-			force_up = value
-			is_dirty = true
 @export var this_seed: int = 69:
 	get:
 		return this_seed
@@ -117,6 +104,9 @@ var rng = RandomNumberGenerator.new()
 
 var mesh_instances : Array[MeshInstance3D]
 
+var debug_gizmo : EditorNode3DGizmo 
+
+
 func _process(_delta):
 	if is_dirty:
 		for m in mesh_instances:
@@ -130,6 +120,7 @@ func _update_instances():
 	rng.seed = this_seed
 
 	var curve = path.curve
+	var road_curve = road_path.curve
 	var curve_length:float = curve.get_baked_length()
 	var end: float
 	
@@ -158,22 +149,29 @@ func _update_instances():
 		# bail if outside start and end bounds
 		if distance > end or distance < start_offset:
 			continue
-		# get transform at point on curve
-		var sample_point_transform := curve.sample_baked_with_rotation(distance, true, true)
-		var sample_point_location := curve.sample_baked(distance, true)
-	
-		if alternate_sides:
-			h = h if i % 2 == 0 else 0.0-h
-		# set xform before rotating
-		var this_transform = sample_point_transform.translated_local(Vector3(h, v, 0.0))
-		
-		if force_up:
-			# create a new transform k
-			var t:Transform3D
-			t.basis = Basis.looking_at(this_transform.origin - sample_point_location - Vector3(0.0, v, 0.0), Vector3(0.0, 100.0, 0.0), false)
-			t.origin = this_transform.origin
-			this_transform = t
 			
+		# get transform at point on curves
+		var sample_point_location := curve.sample_baked(distance, true)
+		# sample on road curve probably wont be out of range, let's see
+		var road_point_location := road_curve.sample_baked(road_curve.get_closest_offset(sample_point_location), true)
+		
+		
+		
+		var this_transform = Transform3D()
+		var t:Transform3D
+
+		# set xform before rotating
+		t.origin = sample_point_location
+		t.basis = Basis.looking_at(sample_point_location - road_point_location, Vector3(0.0, 100.0, 0.0), true)
+		add_gizmo(debug_gizmo)
+		
+		this_transform = t.translated_local(Vector3(0.0, v, h))
+		
+		#DebugDraw3D.draw_box(road_point_location,Quaternion.IDENTITY,Vector3(1.0, 1.0, 1.0), Color(1, 0, 0),true, 5.0)
+		#DebugDraw3D.draw_box(sample_point_location,Quaternion.IDENTITY,Vector3(1.0, 1.0, 1.0), Color(0, 1, 0), true, 5.0)
+		#DebugDraw3D.draw_line(sample_point_location, this_transform.origin, Color(1, 0, 0),5.0)
+		#DebugDraw3D.draw_arrow(sample_point_location, road_point_location, Color(0, 0, 1), 1.0, true, 5.0)
+		
 		var s = scaling
 		this_transform = this_transform.scaled_local(s)			
 		
