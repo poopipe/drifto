@@ -45,7 +45,10 @@ var current_skid_score: float = 0.0
 #var skid_cooldown_active:bool = false
 var skid_start_delta:float = 0.0
 var skid_end_delta:float = 0.0
+var can_skid:bool = false
 
+var skid_check_time = 0.2
+var skid_check_timer = 0.0
 
 # crash tracking
 var is_crashing: bool = false
@@ -96,7 +99,10 @@ class Skid:
 var current_skid:Skid
 var total_skids:Array[Skid]			# store all the skids for stats
 
+
+
 func _ready() -> void:
+	
 	# get proximity areas 
 	var proximity_areas := get_tree().get_nodes_in_group("proximity_areas")
 	var finish_areas := get_tree().get_nodes_in_group("finish_area")
@@ -296,7 +302,13 @@ func _process(_delta: float) -> void:
 		
 		# can car skid on this frame?
 		# TODO: this check needs to be smoothed out.  probably dont check every frame
-		var can_skid:bool = skid_conditions_met()	
+		# the solution below hasn't fully helped.  
+		# I tihnk it's mostly a problem when going mostly straight or on slow corners  - 
+		# might be worth looking at the sheel slip detection
+		
+		skid_check_timer += _delta 
+		if skid_check_timer >= skid_check_time:
+			can_skid = skid_conditions_met()	
 		
 		# is car crashing
 		is_crashing = get_crashing_state(now)
