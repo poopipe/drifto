@@ -1,4 +1,4 @@
-extends Control
+extends Control	
 
 @export var vehicle : Vehicle
 @export var game_manager: Node3D
@@ -34,7 +34,9 @@ func _process(delta):
 		skid_end_label.text = 	"end time:    " + str(game_manager.current_skid.end_time)
 		skid_ended_label.text = "ended:       " + str(game_manager.current_skid.ended)
 		skid_len_label.text =	"skid length  " + str(game_manager.current_skid.length)
-	crash_state_label.text = 	"crash state: " + str(game_manager.crashing)
+		time_bonus_label.text =		"cooldown:  " + str(game_manager.current_skid.remaining_cooldown)
+		speed_bonus_label.text =    "linked skids: " + str(game_manager.current_skid.chain_length)
+	crash_state_label.text = 	"crash state: " + str(game_manager.is_crashing)
 	prox_state_label.text =     "prox state:  " + str(game_manager.proximity_bonus)
-	time_bonus_label.text =		"time bonus:  " + str(game_manager.skid_time_bonus)
-	speed_bonus_label.text =    "speed bonus: " + str(game_manager.skid_speed_bonus)
+
+	

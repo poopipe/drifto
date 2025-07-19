@@ -38,17 +38,17 @@ var total_score: float = 0.0
 var current_skid_score: float = 0.0
 
 # skid tracking
-var skidding: bool = false
-var skids_initiated: int = 0
-var skid_start_time  := Time.get_unix_time_from_system()
-var skid_end_time:float = Time.get_unix_time_from_system()
-var skid_cooldown_active:bool = false
+#var skidding: bool = false
+#var skids_initiated: int = 0
+#var skid_start_time  := Time.get_unix_time_from_system()
+#var skid_end_time:float = Time.get_unix_time_from_system()
+#var skid_cooldown_active:bool = false
 var skid_start_delta:float = 0.0
 var skid_end_delta:float = 0.0
 
 
 # crash tracking
-var crashing: bool = false
+var is_crashing: bool = false
 var crash_start_time := Time.get_unix_time_from_system()
 var crash_end_time := Time.get_unix_time_from_system()
 var crash_impulse:Vector3 = Vector3(0.0, 0.0, 0.0)
@@ -63,11 +63,10 @@ var proximity_bonus:float = 1.0
 
 # score multipliers
 var skid_time_bonus_default:float = 1.0
-var skid_time_bonus:float = 1.0
+
 var skid_speed_bonus_default:float = 1.0
-var skid_speed_bonus:float = 1.0
+
 var skid_link_bonus_default:float = 1.0
-var skid_link_bonus:float = 1.0
 
 # visuals
 var effect_amount:float = 0.0	 # use this for any timed effects that are connected to skiddin
@@ -86,14 +85,16 @@ class Skid:
 	var start_time:float
 	var end_time:float
 	var score:float
-	var active:bool			# if inactive no score is accumulated but can be reactivated
-	var ended:bool			# if ended it's actually dead
+	var active:bool					# if inactive no score is accumulated but can be reactivated
+	var ended:bool					# if ended it's actually dead
 	var length:float
-
+	var remaining_cooldown:float	# cooldown is to enable extending skid if new one starts soon enough
+	var chain_length:int			# every time we extend we add to this for bunuses
+	var skid_time_bonus:float = 	1.0
+	var skid_speed_bonus:float = 	1.0
 # skidz
-var previous_skid:Skid
 var current_skid:Skid
-
+var total_skids:Array[Skid]			# store all the skids for stats
 
 func _ready() -> void:
 	# get proximity areas 
@@ -134,11 +135,9 @@ func init_run()-> void:
 	camera.is_resetting = true
 	# reset scores and bonuses
 	total_score = 0
-	skid_time_bonus = skid_time_bonus_default
+
 	crash_bonus = crash_bonus_default
 	proximity_bonus = proximity_bonus_default
-	skid_speed_bonus = skid_speed_bonus_default
-	current_skid = new_skid()
 
 func get_wheels_spinning()-> bool:
 	# are any wheels spinning / sliding
@@ -169,11 +168,6 @@ func _input(event: InputEvent) -> void:
 			settings_menu_node.visible = true
 		print("settings menu", settings_menu_node.visible)
 		
-		
-		
-		
-
-		
 func go_main_menu() -> void:		
 		#var s := get_tree().change_scene_to_packed(main_menu_scene)
 		get_tree().change_scene_to_file("res://resources/Scenes/main_menu.tscn")
@@ -201,7 +195,7 @@ func terminate_crash()->void:
 func get_speed_bonus() -> float:
 	# bonus hsould be a function of speed when greater than threshold
 	# for now we just return 0 if less than threshold
-	if crashing:
+	if is_crashing:
 		return skid_speed_bonus_default
 	if not current_skid.active:
 		return skid_speed_bonus_default
@@ -223,7 +217,7 @@ func get_proximity_bonus()->float:
 	return proximity_bonus_default
 
 func accumulate_skid_score()->void:
-	current_skid.score += skid_score * skid_time_bonus * skid_speed_bonus * skid_link_bonus
+	current_skid.score += 1.0
 
 func commit_skid_score()->void:
 	total_score += current_skid.score
@@ -267,24 +261,89 @@ func new_skid()->Skid:
 	skid.active = false
 	skid.ended = false
 	skid.length = 0.0
+	skid.remaining_cooldown = skid_cooldown	# from exported var
+	skid.chain_length = 0
+
 	return skid 
+
+func restart_current_skid():
+	print("restarting")
+	current_skid.remaining_cooldown = skid_cooldown
+	current_skid.active = true
+	current_skid.ended = false
+	current_skid.chain_length += 1
+
+func pause_current_skid():
+	print("pausing")
+	# pause skid - can still be reactivated
+	var now = Time.get_unix_time_from_system()
+	current_skid.active = false
+	current_skid.end_time = now
+	
+func end_current_skid():
+	print("ending")
+	var now  = Time.get_unix_time_from_system()
+	current_skid.active = false
+	current_skid.end_time = now
+	current_skid.ended = true
+	total_skids.append(current_skid)
 	
 func _process(_delta: float) -> void:
 	var vehicle_node = player.vehicle_node
-	if is_instance_valid(vehicle_node):	
-		
+	if is_instance_valid(vehicle_node):			
 		# time stuff
 		var now = Time.get_unix_time_from_system()
-		skid_start_delta = now - skid_start_time
-		# can car skid on this frame?
-		var can_skid:bool = skid_conditions_met()	
-		# is car crashing
-		crashing = get_crashing_state(now)
 		
-		# we need a current skid regardless
-		if not current_skid:
-			current_skid = new_skid()
+		# can car skid on this frame?
+		# TODO: this check needs to be smoothed out.  probably dont check every frame
+		var can_skid:bool = skid_conditions_met()	
+		
+		# is car crashing
+		is_crashing = get_crashing_state(now)
+		
+		# if we can skid and we are not already skidding
+		if can_skid:
+			# we need a new skid if there isnt one, or our current one has ended
+			if not current_skid or current_skid.ended:
+				print("initiating new skid")
+				current_skid = new_skid()
+			# if our current skid is paused we reactivate it
+			else:
+				if not current_skid.ended and not current_skid.active:
+					restart_current_skid()
+			current_skid.active = true		# TODO: probably unnecessary
+		# if we cant skid we deactivate current skid and allow it to complete cooldown
+		else: 
+			if current_skid and current_skid.active and not current_skid.ended:
+				pause_current_skid()	
+				
+		# check for crash if we have an active skid:
+		if current_skid and current_skid.active and is_crashing:
+			# a crash should immediately end our skid
+			print("crashing")
+			if not current_skid.ended:
+				end_current_skid()
 
+		
+		# all checks that could result in an inactive skid should have happened by now
+		# so this is a successful skid state
+		if current_skid and current_skid.active:
+			# extend current skid length
+			# end time is set when skid is paused or ended
+			current_skid.length += _delta
+			accumulate_skid_score()
+			
+		# if skid is not active we handle cooldown and end the skid if it has passed
+		if current_skid and not current_skid.active:
+			if not current_skid.ended:
+			# if cooldown has ended, kill the skid properly
+				if current_skid.remaining_cooldown <= 0.0: 
+					current_skid.remaining_cooldown = 0
+					total_score += current_skid.score
+					end_current_skid()
+				else:
+					current_skid.remaining_cooldown -= _delta
+		'''
 		skid_end_delta = now - current_skid.end_time
 		
 		# if cooldown time reached burn current skid
@@ -295,8 +354,9 @@ func _process(_delta: float) -> void:
 		
 		# if crashed burn current skid
 		if crashing:
+
 			current_skid = new_skid()
-		
+
 		# if skid conditions aren't met, set the end time 
 		# but do not end the skid this is successful skid exit and can be reactivated
 		if not can_skid:
@@ -323,7 +383,8 @@ func _process(_delta: float) -> void:
 			accumulate_skid_score()
 
 
-
+		'''
+		
 		# attach effect amount to speed 
 		effect_amount = remap(vehicle_node.speed,10.0, 25.0, 0.0, 1.0)
 		effect_amount = clamp(effect_amount, 0.0, 1.0)

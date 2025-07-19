@@ -117,6 +117,13 @@ func _process(_delta):
 
 func _update_instances():
 	
+	if get_child_count() > 0:
+		var children = get_children()
+		for c in children:
+			remove_child(c)
+			c.queue_free()
+	
+	
 	rng.seed = this_seed
 
 	var curve = path.curve

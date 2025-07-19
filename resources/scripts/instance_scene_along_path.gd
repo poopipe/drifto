@@ -108,17 +108,26 @@ extends Node3D
 			rotate_random = value
 			is_dirty = true
 			
-			
 var rng = RandomNumberGenerator.new()
-
 var scene_instances : Array = []
+
+#TODO: Something is not working right with this,  when it gets dirty it 
+#		doesn't generate any child nodes but they'll be there if you reload the scene
+
 
 func _process(_delta):
 	if is_dirty:
 		_update_instances()
 		is_dirty = false
 
-func _update_instances():
+func _update_instances():		
+		
+	if get_child_count() > 0:
+		var children = get_children()
+		for c in children:
+			remove_child(c)
+			c.queue_free()
+	
 	rng.seed = this_seed
 
 	var curve = path.curve
@@ -136,10 +145,12 @@ func _update_instances():
 	var active_length : float = end - start_offset
 
 	var num_instances = floor(active_length / instance_spacing)
+	print(num_instances)
 	
-	for si in scene_instances:
-		remove_child(si)
-	
+	#for si in scene_instances:
+	#	remove_child(si)
+	#	si.queue_free() 
+		
 	for i in range(0, num_instances):
 		scene_instances.append(instance_scene.instantiate())
 	
@@ -195,6 +206,12 @@ func _update_instances():
 		
 		var r = deg_to_rad(final_rotate) + rng.randf_range(-rotate_random, rotate_random)
 		this_transform = this_transform.rotated_local(Vector3(0.0, 1.0, 0.0), r)
+		
+		
+		#DebugDraw3D.draw_box(sample_point_location,Quaternion.IDENTITY,Vector3(1.0, 1.0, 1.0), Color(0, 1, 0), true, 5.0)
+		#DebugDraw3D.draw_line(sample_point_location, this_transform.origin, Color(1, 0, 0),5.0)
+		
+		
 		
 		var inst = scene_instances[i]
 
