@@ -29,7 +29,7 @@
 [ext_resource type="Material" uid="uid://cmdsso7tw6djb" path="res://resources/materials/asset/armco_post.tres" id="20_vwumr"]
 [ext_resource type="Material" uid="uid://bve0pcutdikid" path="res://resources/materials/post_process/pp_vignette.tres" id="21_iwa3l"]
 [ext_resource type="Script" uid="uid://b8knuj3vbp1pf" path="res://resources/scripts/streetlights.gd" id="21_jcyjv"]
-[ext_resource type="Script" uid="uid://dw273uohu0f4m" path="res://resources/Scenes/main_menu.gd" id="25_8om8p"]
+[ext_resource type="Script" uid="uid://dw273uohu0f4m" path="res://resources/scripts/ui/main_menu.gd" id="25_8om8p"]
 [ext_resource type="Script" uid="uid://cm3jg8dcs7r35" path="res://resources/scripts/ui/button_go.gd" id="26_mchsi"]
 [ext_resource type="PackedScene" uid="uid://bmg25k4thniva" path="res://resources/Scenes/lamp_post.tscn" id="26_wp37n"]
 [ext_resource type="ArrayMesh" uid="uid://cx0jsnadgxpub" path="res://resources/gd_meshes/SM_Bush.res" id="27_320bu"]
@@ -40,7 +40,7 @@
 [ext_resource type="ArrayMesh" uid="uid://bl1qp6oc1luwg" path="res://resources/gd_meshes/retaining_wall_end_a.res" id="29_vmlud"]
 [ext_resource type="ArrayMesh" uid="uid://cy4usxc517bq0" path="res://resources/gd_meshes/retaining_wall_end_b.res" id="30_etpm2"]
 [ext_resource type="PackedScene" uid="uid://dr4mkrvh76pjq" path="res://resources/Scenes/gas_station.tscn" id="40_mchsi"]
-[ext_resource type="PackedScene" uid="uid://ctn6uvausqd03" path="res://resources/Scenes/settings.tscn" id="42_fflle"]
+[ext_resource type="PackedScene" uid="uid://ctn6uvausqd03" path="res://resources/Scenes/ui/settings.tscn" id="42_fflle"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_g5e6g"]
 
