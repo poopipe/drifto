@@ -200,6 +200,7 @@ func _update_instances():
 
 		add_child(inst)
 		inst.transform = this_transform
+		inst.owner = get_tree().edited_scene_root
 
 		
 
