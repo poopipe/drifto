@@ -4,6 +4,9 @@
 class_name Vehicle
 extends RigidBody3D
 
+signal skid_activated
+signal skid_deactivated
+
 @export_group("Wheel Nodes")
 ## Assign this to the Wheel [RayCast3D] that is this vehicle's front left wheel.
 @export var front_left_wheel : Wheel
@@ -1093,3 +1096,10 @@ func calculate_damping(weight : float, spring_rate : float, damping_ratio : floa
 
 func calculate_axle_spring_force(compression : float, spring_length : float, spring_rate : float) -> float:
 	return spring_length * compression * 1000.0 * spring_rate * 2.0
+
+# pass signals on to smoke particles
+func _on_manager_skid_activated() -> void:
+	skid_activated.emit()
+
+func _on_manager_skid_deactivated() -> void:
+	skid_deactivated.emit()

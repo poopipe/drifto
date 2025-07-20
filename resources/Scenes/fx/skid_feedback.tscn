@@ -1,0 +1,60 @@
+[gd_scene load_steps=10 format=3 uid="uid://ccxb5rghu3yue"]
+
+[ext_resource type="Script" uid="uid://bpo5a87syychy" path="res://resources/scripts/fx_skid_feedback.gd" id="1_76g1j"]
+[ext_resource type="Shader" uid="uid://861u6l1ugo8f" path="res://resources/shaders/smoke_shader.gdshader" id="1_kflmh"]
+
+[sub_resource type="Gradient" id="Gradient_wywko"]
+offsets = PackedFloat32Array(0, 0.772152, 1)
+colors = PackedColorArray(1, 1, 1, 0.501961, 1, 1, 1, 0.501961, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_5rs2r"]
+gradient = SubResource("Gradient_wywko")
+
+[sub_resource type="Curve" id="Curve_w4wou"]
+_data = [Vector2(0, 0.263736), 0.0, 3.06593, 0, 0, Vector2(1e-05, 0.274725), 2.35875, 2.35875, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_h3kqi"]
+curve = SubResource("Curve_w4wou")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kflmh"]
+particle_flag_align_y = true
+angle_min = 18.2
+angle_max = 313.4
+direction = Vector3(0, 0.8, 1)
+spread = 20.518
+initial_velocity_min = 6.0
+initial_velocity_max = 6.0
+damping_min = 0.5
+damping_max = 0.5
+attractor_interaction_enabled = false
+scale_min = 4.0
+scale_max = 4.0
+scale_curve = SubResource("CurveTexture_h3kqi")
+color_ramp = SubResource("GradientTexture1D_5rs2r")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kflmh"]
+render_priority = 0
+shader = ExtResource("1_kflmh")
+shader_parameter/albedo = Color(0.38, 0.38, 0.38, 1)
+shader_parameter/albedo_texture_size = Vector2i(0, 0)
+shader_parameter/point_size = 0.0
+shader_parameter/roughness = 0.0
+shader_parameter/metallic_texture_channel = Vector4(0, 0, 0, 0)
+shader_parameter/specular = 0.0
+shader_parameter/metallic = 0.0
+shader_parameter/uv1_scale = Vector3(0, 0, 0)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(0, 0, 0)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+
+[sub_resource type="BoxMesh" id="BoxMesh_pkd8w"]
+material = SubResource("ShaderMaterial_kflmh")
+size = Vector3(0.05, 0.05, 0.05)
+
+[node name="skid_feedback" type="GPUParticles3D"]
+cast_shadow = 0
+randomness = 0.45
+process_material = SubResource("ParticleProcessMaterial_kflmh")
+draw_pass_1 = SubResource("BoxMesh_pkd8w")
+script = ExtResource("1_76g1j")

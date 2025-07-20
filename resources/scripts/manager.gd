@@ -1,4 +1,9 @@
 extends Node3D
+
+# 
+signal skid_activated
+signal skid_deactivated
+
 @export var player: VehicleController
 @export var road:CSGPolygon3D
 @export var camera: Camera3D
@@ -105,7 +110,6 @@ func _ready() -> void:
 	var proximity_areas := get_tree().get_nodes_in_group("proximity_areas")
 	var finish_areas := get_tree().get_nodes_in_group("finish_area")
 	
-	print(finish_scene)
 	
 	for pa in proximity_areas:
 		if pa.has_signal("body_entered"):
@@ -114,9 +118,7 @@ func _ready() -> void:
 			pa.body_exited.connect(_on_area_3d_front_body_exited.bind(pa.front) )
 	
 	for fa in finish_areas:
-		print(fa)
 		if fa.has_signal("body_entered"):
-			print("HAS SIGNAL")
 			fa.body_entered.connect(_on_area_3d_finish_body_entered.bind())
 	
 	var vehicle_node = player.vehicle_node
@@ -173,7 +175,7 @@ func _input(event: InputEvent) -> void:
 			settings_menu_node.visible = false
 		else:
 			settings_menu_node.visible = true
-		print("settings menu", settings_menu_node.visible)
+		#print("settings menu", settings_menu_node.visible)
 		
 func go_main_menu() -> void:		
 		#var s := get_tree().change_scene_to_packed(main_menu_scene)
@@ -233,7 +235,7 @@ func commit_skid_score()->void:
 	var time_bonus = get_time_bonus()
 	var link_bonus = get_link_bonus()
 	total_score += current_skid.score * time_bonus * link_bonus
-	print("commit score: ", current_skid.score, " time: ", time_bonus, " link: ", link_bonus)
+	#print("commit score: ", current_skid.score, " time: ", time_bonus, " link: ", link_bonus)
 
 func skid_conditions_met()->bool:
 	var enough_yaw := false
@@ -274,7 +276,9 @@ func new_skid()->Skid:
 	skid.length = 0.0
 	skid.remaining_cooldown = skid_cooldown	# from exported var
 	skid.chain_length = 0
-
+	
+	skid_activated.emit()
+	
 	return skid 
 
 func restart_current_skid():
@@ -286,12 +290,14 @@ func restart_current_skid():
 	var now = Time.get_unix_time_from_system()
 	if now - current_skid.end_time >= 1.0:
 		current_skid.chain_length += 1
+	skid_activated.emit()
 	
 func pause_current_skid():
 	# pause skid - can still be reactivated
 	var now = Time.get_unix_time_from_system()
 	current_skid.active = false
 	current_skid.end_time = now
+	skid_deactivated.emit()
 	
 func end_current_skid():
 	var now  = Time.get_unix_time_from_system()
@@ -299,6 +305,7 @@ func end_current_skid():
 	current_skid.end_time = now
 	current_skid.ended = true
 	total_skids.append(current_skid)
+	skid_deactivated.emit()
 	
 func _process(_delta: float) -> void:
 	var vehicle_node = player.vehicle_node
@@ -337,7 +344,6 @@ func _process(_delta: float) -> void:
 		# check for crash if we have an active skid:
 		if current_skid and current_skid.active and is_crashing:
 			# a crash should immediately end our skid
-			print("crashing")
 			if not current_skid.ended:
 				end_current_skid()
 
@@ -400,7 +406,6 @@ func _on_area_3d_front_body_exited(body: Node3D, source) -> void:
 			
 func _on_area_3d_finish_body_entered(body: Node3D)->void:
 	if body == player.vehicle_node:
-		print("FIHNNIISHHH")
 		await get_tree().create_timer(2.0).timeout
 		go_main_menu()
 		
