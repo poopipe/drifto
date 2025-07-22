@@ -11,7 +11,7 @@
 [ext_resource type="Script" uid="uid://1i2a37vp6oay" path="res://resources/scripts/skidmark_generator.gd" id="9_k6que"]
 [ext_resource type="Script" uid="uid://cu3rydur0l7t1" path="res://resources/scripts/proximity_detector.gd" id="10_w4st2"]
 [ext_resource type="Texture2D" uid="uid://b7ya4yn41io58" path="res://resources/textures/shadow_mask.png" id="11_fke1n"]
-[ext_resource type="PackedScene" uid="uid://ccxb5rghu3yue" path="res://resources/Scenes/fx/skid_feedback.tscn" id="12_k6que"]
+[ext_resource type="PackedScene" uid="uid://c1t2il45esvvt" path="res://resources/Scenes/fx/light_trail.tscn" id="13_obfs4"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mkuwc"]
 size = Vector3(2.1, 1.13304, 5.09586)
@@ -143,14 +143,6 @@ vehicle = NodePath("..")
 [node name="Smoke" parent="." node_paths=PackedStringArray("vehicle") instance=ExtResource("7_w4st2")]
 vehicle = NodePath("..")
 
-[node name="skid_feedback_left" parent="." node_paths=PackedStringArray("vehicle") instance=ExtResource("12_k6que")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.903, -0.179, 1.487)
-vehicle = NodePath("..")
-
-[node name="skid_feedback_right" parent="." node_paths=PackedStringArray("vehicle") instance=ExtResource("12_k6que")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.902786, -0.178989, 1.48655)
-vehicle = NodePath("..")
-
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.984808, 0.173648, 0, -0.173648, 0.984808, 0, 0.341629, -2.65599)
 light_color = Color(0.94, 0.99, 1, 1)
@@ -199,9 +191,49 @@ size = Vector3(3, 0.51, 4.73446)
 texture_albedo = ExtResource("11_fke1n")
 albedo_mix = 0.71
 
+[node name="TrailEmitter2" parent="." instance=ExtResource("13_obfs4")]
+geometry_nodepath = NodePath("../WheelRearLeft")
+transform = Transform3D(1.31749e-07, 4.18069e-08, -1, 0.999895, -0.0144885, 1.3113e-07, -0.0144885, -0.999895, -4.37114e-08, 1.112, -0.103838, 1.44836)
+
+[node name="TrailEmitter" parent="." instance=ExtResource("13_obfs4")]
+geometry_nodepath = NodePath("../WheelRearRight")
+transform = Transform3D(1.31749e-07, 4.18069e-08, -1, 0.999895, -0.0144885, 1.3113e-07, -0.0144885, -0.999895, -4.37114e-08, -1.11235, -0.103549, 1.44867)
+
+[node name="TrailEmitter3" parent="." instance=ExtResource("13_obfs4")]
+geometry_nodepath = NodePath("../WheelFrontLeft")
+num_points = 2
+update_interval = 0.01
+transform = Transform3D(1.31749e-07, 4.18069e-08, -1, 0.999895, -0.0144885, 1.3113e-07, -0.0144885, -0.999895, -4.37114e-08, -1.11235, 0.336467, -1.43319)
+
+[node name="TrailEmitter5" parent="." instance=ExtResource("13_obfs4")]
+geometry_nodepath = NodePath("../WheelRearRight")
+num_points = 2
+update_interval = 0.01
+transform = Transform3D(1.31749e-07, 4.18069e-08, -1, 0.999895, -0.0144885, 1.3113e-07, -0.0144885, -0.999895, -4.37114e-08, -0.614656, 1.16613, 1.08133)
+
+[node name="TrailEmitter6" parent="." instance=ExtResource("13_obfs4")]
+num_points = 2
+update_interval = 0.01
+transform = Transform3D(1.31749e-07, 4.18069e-08, -1, 0.999895, -0.0144885, 1.3113e-07, -0.0144885, -0.999895, -4.37114e-08, 0.615, 1.166, 1.081)
+
+[node name="TrailEmitter7" parent="." instance=ExtResource("13_obfs4")]
+geometry_nodepath = NodePath("../WheelRearRight")
+num_points = 2
+update_interval = 0.01
+transform = Transform3D(1.31749e-07, 4.18069e-08, -1, 0.999895, -0.0144885, 1.3113e-07, -0.0144885, -0.999895, -4.37114e-08, -0.614656, 1.16613, -0.0129035)
+
+[node name="TrailEmitter8" parent="." instance=ExtResource("13_obfs4")]
+num_points = 2
+update_interval = 0.01
+transform = Transform3D(1.31749e-07, 4.18069e-08, -1, 0.999895, -0.0144885, 1.3113e-07, -0.0144885, -0.999895, -4.37114e-08, 0.615, 1.166, -0.0132352)
+
+[node name="TrailEmitter4" parent="." instance=ExtResource("13_obfs4")]
+geometry_nodepath = NodePath("../WheelFrontRight")
+num_points = 2
+update_interval = 0.01
+transform = Transform3D(1.31749e-07, 4.18069e-08, -1, 0.999895, -0.0144885, 1.3113e-07, -0.0144885, -0.999895, -4.37114e-08, 1.112, 0.336, -1.433)
+
+[connection signal="skid_activated" from="." to="TrailEmitter" method="_on_vehicle_rigid_body_skid_activated"]
 [connection signal="skid_activated" from="." to="Smoke" method="_on_skid_activated"]
-[connection signal="skid_activated" from="." to="skid_feedback_left" method="_on_skid_activated"]
-[connection signal="skid_activated" from="." to="skid_feedback_right" method="_on_skid_activated"]
+[connection signal="skid_deactivated" from="." to="TrailEmitter" method="_on_vehicle_rigid_body_skid_deactivated"]
 [connection signal="skid_deactivated" from="." to="Smoke" method="_on_skid_deactivated"]
-[connection signal="skid_deactivated" from="." to="skid_feedback_left" method="_on_skid_deactivated"]
-[connection signal="skid_deactivated" from="." to="skid_feedback_right" method="_on_skid_deactivated"]

@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://c1t2il45esvvt"]
+
+[ext_resource type="Script" uid="uid://co0eiwc3rl805" path="res://resources/Scenes/light_trail.gd" id="1_atd00"]
+[ext_resource type="Material" uid="uid://bojeyilorrcim" path="res://resources/materials/light_trail.tres" id="1_ytjy4"]
+
+[sub_resource type="Curve" id="Curve_6jm0v"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.91198, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.994102), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[node name="LightTrail" type="TrailEmitter"]
+material = ExtResource("1_ytjy4")
+curve = SubResource("Curve_6jm0v")
+geometry_nodepath = NodePath("..")
+num_points = 3
+size = 0.02
+update_interval = 0.005
+transform = Transform3D(1.31125e-07, -1.26663e-09, -1, 0.999895, -0.0144885, 1.3113e-07, -0.0144885, -0.999895, -6.33313e-10, 0, 0, 0)
+script = ExtResource("1_atd00")
+trail_material = ExtResource("1_ytjy4")

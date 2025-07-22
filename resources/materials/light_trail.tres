@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://bojeyilorrcim"]
+
+[ext_resource type="Shader" uid="uid://c7ut7uxaou0ou" path="res://resources/shaders/light_trail.gdshader" id="1_ntnpf"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_ntnpf")
+shader_parameter/opacity = 0.0
+shader_parameter/basecolor = Color(0, 0, 0, 1)
