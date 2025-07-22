@@ -3,6 +3,8 @@ extends Node3D
 # 
 signal skid_activated
 signal skid_deactivated
+signal commit_score
+
 
 @export var player: VehicleController
 @export var road:CSGPolygon3D
@@ -235,7 +237,9 @@ func commit_skid_score()->void:
 	var time_bonus = get_time_bonus()
 	var link_bonus = get_link_bonus()
 	total_score += current_skid.score * time_bonus * link_bonus
+	commit_score.emit()
 	#print("commit score: ", current_skid.score, " time: ", time_bonus, " link: ", link_bonus)
+	
 
 func skid_conditions_met()->bool:
 	var enough_yaw := false

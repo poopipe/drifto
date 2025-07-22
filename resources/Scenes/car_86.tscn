@@ -233,7 +233,7 @@ num_points = 2
 update_interval = 0.01
 transform = Transform3D(1.31749e-07, 4.18069e-08, -1, 0.999895, -0.0144885, 1.3113e-07, -0.0144885, -0.999895, -4.37114e-08, 1.112, 0.336, -1.433)
 
-[connection signal="skid_activated" from="." to="TrailEmitter" method="_on_vehicle_rigid_body_skid_activated"]
 [connection signal="skid_activated" from="." to="Smoke" method="_on_skid_activated"]
-[connection signal="skid_deactivated" from="." to="TrailEmitter" method="_on_vehicle_rigid_body_skid_deactivated"]
+[connection signal="skid_activated" from="." to="TrailEmitter" method="_on_vehicle_rigid_body_skid_activated"]
 [connection signal="skid_deactivated" from="." to="Smoke" method="_on_skid_deactivated"]
+[connection signal="skid_deactivated" from="." to="TrailEmitter" method="_on_vehicle_rigid_body_skid_deactivated"]
