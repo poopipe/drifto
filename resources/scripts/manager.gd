@@ -3,8 +3,8 @@ extends Node3D
 # 
 signal skid_activated
 signal skid_deactivated
-signal commit_score
 
+signal commit_score
 
 @export var player: VehicleController
 @export var road:CSGPolygon3D

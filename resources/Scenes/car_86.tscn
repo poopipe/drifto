@@ -201,7 +201,6 @@ transform = Transform3D(1.31749e-07, 4.18069e-08, -1, 0.999895, -0.0144885, 1.31
 
 [node name="TrailEmitter3" parent="." instance=ExtResource("13_obfs4")]
 geometry_nodepath = NodePath("../WheelFrontLeft")
-num_points = 2
 update_interval = 0.01
 transform = Transform3D(1.31749e-07, 4.18069e-08, -1, 0.999895, -0.0144885, 1.3113e-07, -0.0144885, -0.999895, -4.37114e-08, -1.11235, 0.336467, -1.43319)
 
@@ -229,7 +228,6 @@ transform = Transform3D(1.31749e-07, 4.18069e-08, -1, 0.999895, -0.0144885, 1.31
 
 [node name="TrailEmitter4" parent="." instance=ExtResource("13_obfs4")]
 geometry_nodepath = NodePath("../WheelFrontRight")
-num_points = 2
 update_interval = 0.01
 transform = Transform3D(1.31749e-07, 4.18069e-08, -1, 0.999895, -0.0144885, 1.3113e-07, -0.0144885, -0.999895, -4.37114e-08, 1.112, 0.336, -1.433)
 
