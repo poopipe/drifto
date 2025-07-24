@@ -14,14 +14,14 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -400.0
-offset_top = 35.385
+offset_left = 162.0
 offset_right = 400.0
-offset_bottom = 123.385
+offset_bottom = 88.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 64
 text = "000000"
 horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="label_skid_score" type="Label" parent="."]
 modulate = Color(1, 1, 1, 0.552941)
@@ -29,10 +29,25 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -400.0
-offset_right = 400.0
+offset_left = -119.0
+offset_right = 119.0
 offset_bottom = 88.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 44
 text = "000000"
 horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="label_skid_slider" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -119.0
+offset_right = 119.0
+offset_bottom = 88.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 50
+text = "000000"
+horizontal_alignment = 1
+vertical_alignment = 1
