@@ -294,14 +294,14 @@ func restart_current_skid():
 	var now = Time.get_unix_time_from_system()
 	if now - current_skid.end_time >= 1.0:
 		current_skid.chain_length += 1
-	skid_activated.emit()
+	#skid_activated.emit()
 	
 func pause_current_skid():
 	# pause skid - can still be reactivated
 	var now = Time.get_unix_time_from_system()
 	current_skid.active = false
 	current_skid.end_time = now
-	skid_deactivated.emit()
+	#skid_deactivated.emit()
 	
 func end_current_skid():
 	var now  = Time.get_unix_time_from_system()

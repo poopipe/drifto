@@ -432,7 +432,10 @@ func _ready():
 
 func _integrate_forces(state : PhysicsDirectBodyState3D):
 	current_gravity = state.total_gravity
-	current_impulse = state.get_contact_impulse(0)
+	if state.get_contact_count() > 0:
+		current_impulse = state.get_contact_impulse(0)
+	else:
+		current_impulse = Vector3(0.0, 0.0, 0.0)
 
 	if is_resetting:
 		PhysicsServer3D.body_set_mode(self.get_rid(), PhysicsServer3D.BODY_MODE_KINEMATIC)

@@ -7,13 +7,13 @@ extends GPUParticles3D
 
 var skid_active: bool = false
 
-func _on_skid_activated():
+func _on_skid_activated()->void:
 	skid_active = true
 
-func _on_skid_deactivated():
+func _on_skid_deactivated()->void:
 	skid_active = false
 
-func _process(delta):\
+func _process(delta)->void:
 	#what we really want to do is have smoke when wheels are spinning and do something more dramatic 
 	#when there's a skid but save that for a bit later
 	if skid_active:

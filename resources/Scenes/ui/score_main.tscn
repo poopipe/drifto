@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://b18cjrvf0m3bp"]
+[gd_scene load_steps=2 format=3 uid="uid://b18cjrvf0m3bp"]
+
+[ext_resource type="Script" uid="uid://df0536o4ov0py" path="res://resources/scripts/score_main.gd" id="1_xlqpg"]
 
 [node name="ScoreMain" type="Control"]
 layout_mode = 3
@@ -7,6 +9,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_xlqpg")
 
 [node name="label_total_score" type="Label" parent="."]
 modulate = Color(1, 1, 1, 0.552941)
@@ -51,3 +54,31 @@ theme_override_font_sizes/font_size = 50
 text = "000000"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 885.0
+offset_top = 579.0
+offset_right = 998.0
+offset_bottom = 615.0
+text = "commit score"
+
+[node name="Button2" type="Button" parent="."]
+layout_mode = 0
+offset_left = 588.0
+offset_top = 581.0
+offset_right = 706.0
+offset_bottom = 617.0
+text = "skid activated"
+
+[node name="Button3" type="Button" parent="."]
+layout_mode = 0
+offset_left = 722.0
+offset_top = 577.0
+offset_right = 840.0
+offset_bottom = 613.0
+text = "skid deactivated"
+
+[connection signal="pressed" from="Button" to="." method="_on_manager_commit_score"]
+[connection signal="pressed" from="Button2" to="." method="_on_manager_skid_activated"]
+[connection signal="pressed" from="Button3" to="." method="_on_manager_skid_deactivated"]
