@@ -22,6 +22,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	# update skid score all the time - might as well
 	if game_manager:
+		
 		if game_manager.current_skid:
 			label_skid_score.text = str(game_manager.current_skid.score)
 	
@@ -35,7 +36,7 @@ func _on_manager_commit_score() -> void:
 func slide_score() -> void:
 	if game_manager:
 		label_total_score.text = str(game_manager.total_score)
-	
+		label_skid_slider.text = label_skid_score.text	
 	label_skid_slider.set_position(label_skid_score.position)
 	
 	tween = get_tree().create_tween() 	
@@ -51,7 +52,7 @@ func show_total_score()->void:
 
 func on_faded_in()->void:
 	tween = get_tree().create_tween() 
-	#tween.tween_property(label_skid_slider,"position", label_skid_score.position, 0.05).set_trans(Tween.TRANS_LINEAR)
+	
 	tween.tween_property(label_total_score, "modulate", transparent, 1.0).set_trans(Tween.EASE_IN)
 
 
@@ -69,5 +70,8 @@ func _on_manager_skid_activated() -> void:
 
 
 func _on_manager_skid_deactivated() -> void:
+	pass	
+
+func _on_skid_ended() -> void:
 	tween = get_tree().create_tween() 
 	tween.tween_property(label_skid_score, "modulate", transparent, 0.2).set_trans(Tween.TRANS_LINEAR)

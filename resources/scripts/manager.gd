@@ -3,7 +3,7 @@ extends Node3D
 # 
 signal skid_activated
 signal skid_deactivated
-
+signal skid_ended
 signal commit_score
 
 @export var player: VehicleController
@@ -23,6 +23,7 @@ signal commit_score
 @export_group("scores and stuff")
 @export var skid_cooldown: float = 1.0
 @export var skid_score:float = 1.0	# base amount to increase score
+@export var skid_speed_bonus_threshold:float = 40.0	# corrected speed - not raw speed
 
 @export_group("crashing")
 @export var crash_cooldown: float = 0.5
@@ -207,18 +208,20 @@ func get_speed_bonus() -> float:
 	# skid must be active and we must be over speed threshold
 	var speed = player.vehicle_node.speed * speed_correction
 	# multiplier is how many x threshold speed 
-	return max(floor(speed / skid_speed_threshold), 1.0)
+	var bonus = max(floor(speed / skid_speed_bonus_threshold), 1.0)
+	return bonus
 	
 	
 func get_time_bonus()->float:
-	
 	return max(floor(current_skid.length), 1.0)
 
 func get_proximity_bonus()->float:
+	var bonus = proximity_bonus_default
 	if current_skid.active:
 		if front_close or rear_close:
-			return 2.0 * proximity_bonus_default
-	return proximity_bonus_default
+			bonus = 2.0 * proximity_bonus_default
+	print(bonus)
+	return bonus
 
 func get_link_bonus()->float:
 	# link bonus is a function of how many skids are linked
@@ -228,7 +231,7 @@ func get_link_bonus()->float:
 func accumulate_skid_score()->void:
 	# apply realtime score bonuses
 	var speed_bonus = get_speed_bonus()
-	var proximity_bonus = get_proximity_bonus()
+	proximity_bonus = get_proximity_bonus()
 	# increase current skid score
 	current_skid.score += (skid_score * speed_bonus * proximity_bonus )
 
@@ -294,14 +297,14 @@ func restart_current_skid():
 	var now = Time.get_unix_time_from_system()
 	if now - current_skid.end_time >= 1.0:
 		current_skid.chain_length += 1
-	#skid_activated.emit()
+	skid_activated.emit()
 	
 func pause_current_skid():
 	# pause skid - can still be reactivated
 	var now = Time.get_unix_time_from_system()
 	current_skid.active = false
 	current_skid.end_time = now
-	#skid_deactivated.emit()
+	skid_deactivated.emit()
 	
 func end_current_skid():
 	var now  = Time.get_unix_time_from_system()
@@ -310,6 +313,7 @@ func end_current_skid():
 	current_skid.ended = true
 	total_skids.append(current_skid)
 	skid_deactivated.emit()
+	skid_ended.emit()
 	
 func _process(_delta: float) -> void:
 	var vehicle_node = player.vehicle_node

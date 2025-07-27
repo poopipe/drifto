@@ -6,6 +6,7 @@ extends RigidBody3D
 
 signal skid_activated
 signal skid_deactivated
+signal skid_ended
 
 @export_group("Wheel Nodes")
 ## Assign this to the Wheel [RayCast3D] that is this vehicle's front left wheel.
@@ -1106,3 +1107,7 @@ func _on_manager_skid_activated() -> void:
 
 func _on_manager_skid_deactivated() -> void:
 	skid_deactivated.emit()
+
+
+func _on_skid_ended() -> void:
+	skid_ended.emit()
