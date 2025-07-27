@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://buxw5671mmchu"]
 
-[ext_resource type="Shader" uid="uid://cm02o3kyx867n" path="res://resources/shaders/toonlight_clip.gdshader" id="1_1vf8s"]
+[ext_resource type="Shader" uid="uid://clttm8slapotk" path="res://resources/shaders/toonlight_clip_foliage.gdshader" id="1_1vf8s"]
 [ext_resource type="Texture2D" uid="uid://b40cf04ld5ovw" path="res://resources/textures/leaves_generic_flat_basecolor.png" id="2_a2sw7"]
 
 [resource]
@@ -9,3 +9,6 @@ shader = ExtResource("1_1vf8s")
 shader_parameter/basecolor = Color(0.231373, 0.270588, 0.2, 1)
 shader_parameter/texture_alpha = ExtResource("2_a2sw7")
 shader_parameter/alpha_scissor_threshold = 0.5
+shader_parameter/sway_speed = 3.0
+shader_parameter/sway_strength = 0.2
+shader_parameter/sway_phase_len = 8.0

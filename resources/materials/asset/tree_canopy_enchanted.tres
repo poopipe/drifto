@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://c4arc1gkpulj"]
 
-[ext_resource type="Shader" uid="uid://cm02o3kyx867n" path="res://resources/shaders/toonlight_clip.gdshader" id="1_qqr1s"]
+[ext_resource type="Shader" uid="uid://clttm8slapotk" path="res://resources/shaders/toonlight_clip_foliage.gdshader" id="1_qqr1s"]
 [ext_resource type="Texture2D" uid="uid://cwom4f5n3xty5" path="res://resources/textures/enchantedLeaves_01.tga" id="2_qqr1s"]
 
 [resource]
@@ -9,3 +9,6 @@ shader = ExtResource("1_qqr1s")
 shader_parameter/basecolor = Color(0.232514, 0.270571, 0.201428, 1)
 shader_parameter/texture_alpha = ExtResource("2_qqr1s")
 shader_parameter/alpha_scissor_threshold = 0.5
+shader_parameter/sway_speed = 2.0
+shader_parameter/sway_strength = 0.2
+shader_parameter/sway_phase_len = 2.0
