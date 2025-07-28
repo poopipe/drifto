@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://3c0vtybx44g8"]
+[gd_scene load_steps=20 format=3 uid="uid://3c0vtybx44g8"]
 
 [ext_resource type="Script" uid="uid://bfh8s2401t8tp" path="res://addons/gevp/scripts/vehicle.gd" id="1_oiavp"]
 [ext_resource type="Script" uid="uid://bdcfho6lohmi3" path="res://addons/gevp/scripts/wheel.gd" id="2_b2ojy"]
@@ -11,7 +11,9 @@
 [ext_resource type="Script" uid="uid://1i2a37vp6oay" path="res://resources/scripts/skidmark_generator.gd" id="9_k6que"]
 [ext_resource type="Script" uid="uid://cu3rydur0l7t1" path="res://resources/scripts/proximity_detector.gd" id="10_w4st2"]
 [ext_resource type="Texture2D" uid="uid://b7ya4yn41io58" path="res://resources/textures/shadow_mask.png" id="11_fke1n"]
+[ext_resource type="Material" uid="uid://bogw07r4awo74" path="res://resources/materials/exhaust_flash.tres" id="13_emthu"]
 [ext_resource type="PackedScene" uid="uid://c1t2il45esvvt" path="res://resources/Scenes/fx/light_trail.tscn" id="13_obfs4"]
+[ext_resource type="Script" uid="uid://bhqawer5lueet" path="res://resources/scripts/exhaust_flash.gd" id="14_emthu"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mkuwc"]
 size = Vector3(2.1, 1.13304, 5.09586)
@@ -21,6 +23,26 @@ size = Vector3(3, 1, 3)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_k6que"]
 size = Vector3(3, 1, 3)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_k6que"]
+lifetime_randomness = 0.55
+emission_shape = 2
+emission_sphere_radius = 0.05
+inherit_velocity_ratio = 1.0
+direction = Vector3(0, 0, 1)
+spread = 9.326
+initial_velocity_max = 2.0
+gravity = Vector3(0, 0, 0)
+attractor_interaction_enabled = false
+scale_min = 0.5
+scale_max = 8.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_emthu"]
+material = ExtResource("13_emthu")
+radius = 0.1
+height = 0.2
+radial_segments = 32
+rings = 16
 
 [node name="VehicleRigidBody" type="RigidBody3D" node_paths=PackedStringArray("front_left_wheel", "front_right_wheel", "rear_left_wheel", "rear_right_wheel") groups=["vehicle_body_collision"]]
 contact_monitor = true
@@ -231,6 +253,21 @@ geometry_nodepath = NodePath("../WheelFrontRight")
 update_interval = 0.01
 transform = Transform3D(1.31749e-07, 4.18069e-08, -1, 0.999895, -0.0144885, 1.3113e-07, -0.0144885, -0.999895, -4.37114e-08, 1.112, 0.336, -1.433)
 
+[node name="exhaust_flash" type="GPUParticles3D" parent="." node_paths=PackedStringArray("vehicle")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.557345, 0.0083898, 2.61298)
+emitting = false
+amount = 1
+lifetime = 0.05
+one_shot = true
+explosiveness = 1.0
+randomness = 0.37
+transform_align = 1
+process_material = SubResource("ParticleProcessMaterial_k6que")
+draw_pass_1 = SubResource("SphereMesh_emthu")
+script = ExtResource("14_emthu")
+vehicle = NodePath("..")
+
+[connection signal="exhaust_flame" from="." to="exhaust_flash" method="_on_exhaust_flame"]
 [connection signal="skid_activated" from="." to="Smoke" method="_on_skid_activated"]
 [connection signal="skid_activated" from="." to="SkidmarkLeft" method="_on_skid_activated"]
 [connection signal="skid_activated" from="." to="SkidmarkRight" method="_on_skid_activated"]

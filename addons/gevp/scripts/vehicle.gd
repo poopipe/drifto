@@ -8,6 +8,8 @@ signal skid_activated
 signal skid_deactivated
 signal skid_ended
 
+signal exhaust_flame
+
 @export_group("Wheel Nodes")
 ## Assign this to the Wheel [RayCast3D] that is this vehicle's front left wheel.
 @export var front_left_wheel : Wheel
@@ -778,6 +780,7 @@ func process_motor(delta : float) -> void:
 		torque_output = 0.0
 		if new_rpm > max_rpm * 1.1:
 			motor_is_redline = true
+			exhaust_flame.emit()
 	
 	motor_rpm += ANGULAR_VELOCITY_TO_RPM * delta * (torque_output - drag_torque) / motor_moment
 	

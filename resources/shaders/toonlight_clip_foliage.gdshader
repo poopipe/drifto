@@ -20,7 +20,7 @@ void fragment() {
 	vec2 pos = UV;
 
 	vec4 alpha = texture(texture_alpha, pos);
-	ALBEDO = basecolor.xyz;
+	ALBEDO = alpha.xyz * basecolor.xyz;
 	vec3 fn = NORMAL;
 	vec3 bn = -NORMAL;
 	vec3 n = fn;

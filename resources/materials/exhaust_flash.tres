@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://bogw07r4awo74"]
+
+[ext_resource type="Shader" uid="uid://o6lwlynrydct" path="res://resources/shaders/exhaust_flash.gdshader" id="1_e0bx8"]
+[ext_resource type="Texture2D" uid="uid://qdtsuyytors1" path="res://resources/textures/noise.png" id="2_lyfa8"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_e0bx8")
+shader_parameter/noise = ExtResource("2_lyfa8")
