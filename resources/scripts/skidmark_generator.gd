@@ -2,7 +2,7 @@ extends Node3D
 
 @export var vehicle: Vehicle
 @export var drive_wheel_index: int
-@export var longitudinal_slip_threshold:= 0.5
+@export var longitudinal_slip_threshold:= 0.75
 @export var lateral_slip_threshold:= 1.0
 
 var skidmark_scene:Resource = load("res://resources/Scenes/skidmark.tscn")

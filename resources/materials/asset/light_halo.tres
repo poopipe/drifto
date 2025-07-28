@@ -1,13 +1,14 @@
 [gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://c0ascp4xrlv3b"]
 
 [ext_resource type="Shader" uid="uid://c80xjk7arrma4" path="res://resources/shaders/billboard_glow.gdshader" id="1_vqkt0"]
-[ext_resource type="Texture2D" uid="uid://dckl6jtvm6ojq" path="res://resources/textures/streetlight_halo_mask.png" id="2_vqkt0"]
+[ext_resource type="Texture2D" uid="uid://qdtsuyytors1" path="res://resources/textures/noise.png" id="3_bhnyh"]
 
 [resource]
 render_priority = 0
 shader = ExtResource("1_vqkt0")
-shader_parameter/uv1_scale = Vector3(1, 1, 1)
-shader_parameter/uv1_offset = Vector3(1, 1, 1)
 shader_parameter/billboard_scale = 2.0
 shader_parameter/intensity = 4.0
-shader_parameter/mask_texture = ExtResource("2_vqkt0")
+shader_parameter/noise = ExtResource("3_bhnyh")
+shader_parameter/v_curve = 0.71
+shader_parameter/v_offset1 = 0.935
+shader_parameter/v_offset2 = 0.18
