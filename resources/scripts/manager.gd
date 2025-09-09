@@ -173,8 +173,7 @@ func _input(event: InputEvent) -> void:
 		init_run()	
 		
 func go_main_menu() -> void:		
-		#var s := get_tree().change_scene_to_packed(main_menu_scene)
-		get_tree().change_scene_to_file("res://resources/Scenes/main_menu.tscn")
+		get_tree().change_scene_to_file("res://resources/Scenes/ui/main_menu.tscn")
 
 func get_crashing_state(now)-> bool:
 	# crash start and end times are set by signals
@@ -212,7 +211,6 @@ func get_proximity_bonus()->float:
 	if current_skid.active:
 		if front_close or rear_close:
 			bonus = 2.0 * proximity_bonus_default
-	print(bonus)
 	return bonus
 
 func get_link_bonus()->float:
@@ -233,7 +231,6 @@ func commit_skid_score()->void:
 	var link_bonus = get_link_bonus()
 	total_score += current_skid.score * time_bonus * link_bonus
 	commit_score.emit()
-	#print("commit score: ", current_skid.score, " time: ", time_bonus, " link: ", link_bonus)
 	
 
 func skid_conditions_met()->bool:
@@ -405,8 +402,8 @@ func _on_area_3d_front_body_exited(body: Node3D, source) -> void:
 		else:
 			rear_close = false
 			
+			
 func _on_area_3d_finish_body_entered(body: Node3D)->void:
 	if body == player.vehicle_node:
 		await get_tree().create_timer(2.0).timeout
 		go_main_menu()
-		

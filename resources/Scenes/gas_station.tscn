@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://dr4mkrvh76pjq"]
+[gd_scene load_steps=40 format=3 uid="uid://dr4mkrvh76pjq"]
 
 [ext_resource type="ArrayMesh" uid="uid://df5nrt4tlven2" path="res://resources/gd_meshes/SM_Prop_Gaspump_Base_01.res" id="1_agd45"]
 [ext_resource type="ArrayMesh" uid="uid://cfqro7nbflhhv" path="res://resources/gd_meshes/SM_Prop_Gaspump_01.res" id="2_n3id3"]
@@ -32,7 +32,6 @@
 [ext_resource type="ArrayMesh" uid="uid://n285xammm65q" path="res://resources/gd_meshes/SM_Prop_Fence_Concrete_01.res" id="30_lyqg7"]
 [ext_resource type="PackedScene" uid="uid://cwu5fc7jofjhs" path="res://resources/meshes/SM_Prop_Fence_Concrete_Pillar_01.fbx" id="31_fd2vv"]
 [ext_resource type="Script" uid="uid://dvh3u3mdgvlsy" path="res://resources/scripts/instance_meshes_along_path.gd" id="32_fd2vv"]
-[ext_resource type="Script" uid="uid://co188j0w1j832" path="res://resources/scripts/area_finish.gd" id="33_c7k3x"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1s3we"]
 albedo_color = Color(0.25, 0.25, 0.25, 1)
@@ -61,9 +60,6 @@ _data = {
 "tilts": PackedFloat32Array(0, 0, 0)
 }
 point_count = 3
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_fd2vv"]
-size = Vector3(84, 21, 117)
 
 [node name="GasStation" type="Node3D"]
 
@@ -1924,7 +1920,6 @@ curve = SubResource("Curve3D_4k2qa")
 
 [node name="trees_gas_station" type="Node3D" parent="." node_paths=PackedStringArray("path", "road_path")]
 script = ExtResource("32_fd2vv")
-is_dirty = true
 meshes = Array[ArrayMesh]([ExtResource("27_fd2vv"), ExtResource("28_c7k3x"), ExtResource("25_gi7vy"), ExtResource("26_lyqg7")])
 path = NodePath("../Path3D")
 road_path = NodePath("../Path3D2")
@@ -1934,159 +1929,158 @@ v_offset = -1.0
 h_offset_random = 2.0
 v_offset_random = 2.0
 
-[node name="@MeshInstance3D@44951" type="MeshInstance3D" parent="trees_gas_station"]
+[node name="@MeshInstance3D@76966" type="MeshInstance3D" parent="trees_gas_station"]
 transform = Transform3D(-0.0119256, 0, 0.999929, 0, 1, 0, -0.999929, 0, -0.0119256, 17.1203, 0.0477874, -52.8667)
 visibility_range_end = 200.0
 mesh = ExtResource("27_fd2vv")
 
-[node name="@MeshInstance3D@44952" type="MeshInstance3D" parent="trees_gas_station"]
+[node name="@MeshInstance3D@76967" type="MeshInstance3D" parent="trees_gas_station"]
 transform = Transform3D(-0.0165738, 0, 0.999863, 0, 1, 0, -0.999863, 0, -0.0165738, 15.316, -1.78151, -48.8341)
 visibility_range_end = 200.0
 mesh = ExtResource("25_gi7vy")
 
-[node name="@MeshInstance3D@44953" type="MeshInstance3D" parent="trees_gas_station"]
+[node name="@MeshInstance3D@76968" type="MeshInstance3D" parent="trees_gas_station"]
 transform = Transform3D(-0.0168307, 0, 0.999858, 0, 1, 0, -0.999858, 0, -0.0168307, 15.2995, 0.297728, -44.8447)
 visibility_range_end = 200.0
 mesh = ExtResource("28_c7k3x")
 
-[node name="@MeshInstance3D@44954" type="MeshInstance3D" parent="trees_gas_station"]
+[node name="@MeshInstance3D@76969" type="MeshInstance3D" parent="trees_gas_station"]
 transform = Transform3D(-0.0166703, 0, 0.999861, 0, 1, 0, -0.999861, 0, -0.0166703, 16.1507, -1.23218, -40.8603)
 visibility_range_end = 200.0
 mesh = ExtResource("26_lyqg7")
 
-[node name="@MeshInstance3D@44955" type="MeshInstance3D" parent="trees_gas_station"]
+[node name="@MeshInstance3D@76970" type="MeshInstance3D" parent="trees_gas_station"]
 transform = Transform3D(-0.0168876, 0, 0.999857, 0, 1, 0, -0.999857, 0, -0.0168875, 19.0534, -1.04493, -36.9078)
 visibility_range_end = 200.0
 mesh = ExtResource("28_c7k3x")
 
-[node name="@MeshInstance3D@44956" type="MeshInstance3D" parent="trees_gas_station"]
+[node name="@MeshInstance3D@76971" type="MeshInstance3D" parent="trees_gas_station"]
 transform = Transform3D(-0.0175205, 0, 0.999847, 0, 1, 0, -0.999847, 0, -0.0175205, 16.4392, -2.01526, -32.8649)
 visibility_range_end = 200.0
 mesh = ExtResource("25_gi7vy")
 
-[node name="@MeshInstance3D@44957" type="MeshInstance3D" parent="trees_gas_station"]
+[node name="@MeshInstance3D@76972" type="MeshInstance3D" parent="trees_gas_station"]
 transform = Transform3D(-0.0168694, 0, 0.999858, 0, 1, 0, -0.999858, 0, -0.0168694, 17.8197, -0.656609, -28.889)
 visibility_range_end = 200.0
 mesh = ExtResource("27_fd2vv")
 
-[node name="@MeshInstance3D@44958" type="MeshInstance3D" parent="trees_gas_station"]
+[node name="@MeshInstance3D@76973" type="MeshInstance3D" parent="trees_gas_station"]
 transform = Transform3D(-0.0168743, 0, 0.999858, 0, 1, 0, -0.999858, 0, -0.0168743, 17.421, -1.46619, -24.8831)
 visibility_range_end = 200.0
 mesh = ExtResource("26_lyqg7")
 
-[node name="@MeshInstance3D@44959" type="MeshInstance3D" parent="trees_gas_station"]
+[node name="@MeshInstance3D@76974" type="MeshInstance3D" parent="trees_gas_station"]
 transform = Transform3D(-0.0168937, 0, 0.999857, 0, 1, 0, -0.999857, 0, -0.0168937, 16.8901, -1.24502, -20.8752)
 visibility_range_end = 200.0
 mesh = ExtResource("27_fd2vv")
 
-[node name="@MeshInstance3D@44960" type="MeshInstance3D" parent="trees_gas_station"]
+[node name="@MeshInstance3D@76975" type="MeshInstance3D" parent="trees_gas_station"]
 transform = Transform3D(-0.0168917, 0, 0.999857, 0, 1, 0, -0.999857, 0, -0.0168917, 18.1372, -0.542847, -16.8975)
 visibility_range_end = 200.0
 mesh = ExtResource("25_gi7vy")
 
-[node name="@MeshInstance3D@44961" type="MeshInstance3D" parent="trees_gas_station"]
+[node name="@MeshInstance3D@76976" type="MeshInstance3D" parent="trees_gas_station"]
 transform = Transform3D(-0.0168875, 0, 0.999857, 0, 1, 0, -0.999857, 0, -0.0168875, 16.7647, 0.923004, -12.8753)
 visibility_range_end = 200.0
 mesh = ExtResource("28_c7k3x")
 
-[node name="@MeshInstance3D@44962" type="MeshInstance3D" parent="trees_gas_station"]
+[node name="@MeshInstance3D@76977" type="MeshInstance3D" parent="trees_gas_station"]
 transform = Transform3D(-0.0168929, 0, 0.999857, 0, 1, 0, -0.999857, 0, -0.0168929, 17.8645, -2.77002, -8.89485)
 visibility_range_end = 200.0
 mesh = ExtResource("26_lyqg7")
 
-[node name="@MeshInstance3D@44963" type="MeshInstance3D" parent="trees_gas_station"]
+[node name="@MeshInstance3D@76978" type="MeshInstance3D" parent="trees_gas_station"]
 transform = Transform3D(-0.0169031, 0, 0.999857, 0, 1, 0, -0.999857, 0, -0.0169031, 18.0009, -0.620192, -4.89811)
 visibility_range_end = 200.0
 mesh = ExtResource("27_fd2vv")
 
-[node name="@MeshInstance3D@44964" type="MeshInstance3D" parent="trees_gas_station"]
+[node name="@MeshInstance3D@76979" type="MeshInstance3D" parent="trees_gas_station"]
 transform = Transform3D(-0.0169036, 0, 0.999857, 0, 1, 0, -0.999857, 0, -0.0169036, 16.1864, -2.6372, -0.868483)
 visibility_range_end = 200.0
 mesh = ExtResource("25_gi7vy")
 
-[node name="@MeshInstance3D@44965" type="MeshInstance3D" parent="trees_gas_station"]
+[node name="@MeshInstance3D@76980" type="MeshInstance3D" parent="trees_gas_station"]
 transform = Transform3D(-0.0169079, 0, 0.999857, 0, 1, 0, -0.999857, 0, -0.0169079, 17.4018, 0.952591, 3.10997)
 visibility_range_end = 200.0
 mesh = ExtResource("28_c7k3x")
 
-[node name="@MeshInstance3D@44966" type="MeshInstance3D" parent="trees_gas_station"]
+[node name="@MeshInstance3D@76981" type="MeshInstance3D" parent="trees_gas_station"]
 transform = Transform3D(-0.0169124, 0, 0.999857, 0, 1, 0, -0.999857, 0, -0.0169124, 15.6363, -1.9099, 7.13879)
 visibility_range_end = 200.0
 mesh = ExtResource("28_c7k3x")
 
-[node name="@MeshInstance3D@44967" type="MeshInstance3D" parent="trees_gas_station"]
+[node name="@MeshInstance3D@76982" type="MeshInstance3D" parent="trees_gas_station"]
 transform = Transform3D(-0.0169234, 0, 0.999857, 0, 1, 0, -0.999857, 0, -0.0169234, 15.2011, 0.844618, 11.1452)
 visibility_range_end = 200.0
 mesh = ExtResource("28_c7k3x")
 
-[node name="@MeshInstance3D@44968" type="MeshInstance3D" parent="trees_gas_station"]
+[node name="@MeshInstance3D@76983" type="MeshInstance3D" parent="trees_gas_station"]
 transform = Transform3D(-0.0169274, 0, 0.999857, 0, 1, 0, -0.999857, 0, -0.0169274, 14.9633, -1.29286, 15.1482)
 visibility_range_end = 200.0
 mesh = ExtResource("26_lyqg7")
 
-[node name="@MeshInstance3D@44969" type="MeshInstance3D" parent="trees_gas_station"]
+[node name="@MeshInstance3D@76984" type="MeshInstance3D" parent="trees_gas_station"]
 transform = Transform3D(-0.0169328, 0, 0.999857, 0, 1, 0, -0.999857, 0, -0.0169328, 16.014, 0.955027, 19.1294)
 visibility_range_end = 200.0
 mesh = ExtResource("25_gi7vy")
 
-[node name="@MeshInstance3D@44970" type="MeshInstance3D" parent="trees_gas_station"]
+[node name="@MeshInstance3D@76985" type="MeshInstance3D" parent="trees_gas_station"]
 transform = Transform3D(-0.0169475, 0, 0.999856, 0, 1, 0, -0.999856, 0, -0.0169475, 17.0333, -1.37248, 23.111)
 visibility_range_end = 200.0
 mesh = ExtResource("25_gi7vy")
 
-[node name="@MeshInstance3D@44971" type="MeshInstance3D" parent="trees_gas_station"]
+[node name="@MeshInstance3D@76986" type="MeshInstance3D" parent="trees_gas_station"]
 transform = Transform3D(-0.0169142, 0, 0.999857, 0, 1, 0, -0.999857, 0, -0.0169142, 15.8851, -2.50636, 27.1296)
 visibility_range_end = 200.0
 mesh = ExtResource("27_fd2vv")
 
-[node name="@MeshInstance3D@44972" type="MeshInstance3D" parent="trees_gas_station"]
+[node name="@MeshInstance3D@76987" type="MeshInstance3D" parent="trees_gas_station"]
 transform = Transform3D(-0.0171469, 0, 0.999853, 0, 1, 0, -0.999853, 0, -0.0171469, 16.5183, 0.50802, 31.1173)
 visibility_range_end = 200.0
 mesh = ExtResource("27_fd2vv")
 
-[node name="@MeshInstance3D@44973" type="MeshInstance3D" parent="trees_gas_station"]
+[node name="@MeshInstance3D@76988" type="MeshInstance3D" parent="trees_gas_station"]
 transform = Transform3D(-0.0171032, 0, 0.999854, 0, 1, 0, -0.999854, 0, -0.0171032, 17.4777, 0.878092, 35.1004)
 visibility_range_end = 200.0
 mesh = ExtResource("25_gi7vy")
 
-[node name="@MeshInstance3D@44974" type="MeshInstance3D" parent="trees_gas_station"]
+[node name="@MeshInstance3D@76989" type="MeshInstance3D" parent="trees_gas_station"]
 transform = Transform3D(-0.0172343, 0, 0.999851, 0, 1, 0, -0.999851, 0, -0.0172343, 17.2596, -1.20151, 39.1046)
 visibility_range_end = 200.0
 mesh = ExtResource("28_c7k3x")
 
-[node name="@MeshInstance3D@44975" type="MeshInstance3D" parent="trees_gas_station"]
+[node name="@MeshInstance3D@76990" type="MeshInstance3D" parent="trees_gas_station"]
 transform = Transform3D(-0.0169978, 0, 0.999856, 0, 1, 0, -0.999856, 0, -0.0169978, 15.6439, -2.32207, 43.1311)
 visibility_range_end = 200.0
 mesh = ExtResource("26_lyqg7")
 
-[node name="@MeshInstance3D@44976" type="MeshInstance3D" parent="trees_gas_station"]
+[node name="@MeshInstance3D@76991" type="MeshInstance3D" parent="trees_gas_station"]
 transform = Transform3D(-0.0148158, 0, 0.99989, 0, 1, 0, -0.99989, 0, -0.0148158, 16.5192, 0.728972, 47.118)
 visibility_range_end = 200.0
 mesh = ExtResource("26_lyqg7")
 
-[node name="@MeshInstance3D@44977" type="MeshInstance3D" parent="trees_gas_station"]
+[node name="@MeshInstance3D@76992" type="MeshInstance3D" parent="trees_gas_station"]
 transform = Transform3D(0.0446331, 0, 0.999004, 0, 1, 0, -0.999003, 0, 0.0446331, 15.6337, -1.61697, 51.16)
 visibility_range_end = 200.0
 mesh = ExtResource("28_c7k3x")
 
-[node name="@MeshInstance3D@44978" type="MeshInstance3D" parent="trees_gas_station"]
+[node name="@MeshInstance3D@76993" type="MeshInstance3D" parent="trees_gas_station"]
 transform = Transform3D(0.279142, 0, 0.96025, 0, 1, 0, -0.96025, 0, 0.279142, 16.9666, -2.5584, 55.7215)
 visibility_range_end = 200.0
 mesh = ExtResource("26_lyqg7")
 
-[node name="@MeshInstance3D@44979" type="MeshInstance3D" parent="trees_gas_station"]
+[node name="@MeshInstance3D@76994" type="MeshInstance3D" parent="trees_gas_station"]
 transform = Transform3D(0.281582, 0, 0.959537, 0, 1, 0, -0.959537, 0, 0.281582, 13.6455, -0.294697, 58.8565)
 visibility_range_end = 200.0
 mesh = ExtResource("28_c7k3x")
 
-[node name="@MeshInstance3D@44980" type="MeshInstance3D" parent="trees_gas_station"]
+[node name="@MeshInstance3D@76995" type="MeshInstance3D" parent="trees_gas_station"]
 transform = Transform3D(0.281219, 0, 0.959644, 0, 1, 0, -0.959644, 0, 0.281219, 15.2943, -2.25757, 63.5064)
 visibility_range_end = 200.0
 mesh = ExtResource("25_gi7vy")
 
 [node name="bushes_gas_station" type="Node3D" parent="." node_paths=PackedStringArray("path", "road_path")]
 script = ExtResource("32_fd2vv")
-is_dirty = true
 meshes = Array[ArrayMesh]([ExtResource("29_4k2qa")])
 path = NodePath("../Path3D")
 road_path = NodePath("../Path3D2")
@@ -2097,182 +2091,182 @@ v_offset_random = 0.5
 scaling = Vector3(2, 2, 2)
 scale_random = Vector3(1, 1, 1)
 
-[node name="@MeshInstance3D@44981" type="MeshInstance3D" parent="bushes_gas_station"]
+[node name="@MeshInstance3D@76996" type="MeshInstance3D" parent="bushes_gas_station"]
 transform = Transform3D(-0.0238512, 0, 1.99986, 0, 2, 0, -1.99986, 0, -0.0238512, 16.19, -0.168337, -52.8556)
 visibility_range_end = 200.0
 mesh = ExtResource("29_4k2qa")
 
-[node name="@MeshInstance3D@44982" type="MeshInstance3D" parent="bushes_gas_station"]
+[node name="@MeshInstance3D@76997" type="MeshInstance3D" parent="bushes_gas_station"]
 transform = Transform3D(-0.0373094, 0, 1.99965, 0, 2, 0, -1.99965, 0, -0.0373094, 16.9951, -0.82386, -49.5447)
 visibility_range_end = 200.0
 mesh = ExtResource("29_4k2qa")
 
-[node name="@MeshInstance3D@44983" type="MeshInstance3D" parent="bushes_gas_station"]
+[node name="@MeshInstance3D@76998" type="MeshInstance3D" parent="bushes_gas_station"]
 transform = Transform3D(-0.0337359, 0, 1.99972, 0, 2, 0, -1.99972, 0, -0.0337359, 16.6001, -0.459188, -46.2658)
 visibility_range_end = 200.0
 mesh = ExtResource("29_4k2qa")
 
-[node name="@MeshInstance3D@44984" type="MeshInstance3D" parent="bushes_gas_station"]
+[node name="@MeshInstance3D@76999" type="MeshInstance3D" parent="bushes_gas_station"]
 transform = Transform3D(-0.0333375, 0, 1.99972, 0, 2, 0, -1.99972, 0, -0.0333375, 16.5162, -0.115361, -42.9647)
 visibility_range_end = 200.0
 mesh = ExtResource("29_4k2qa")
 
-[node name="@MeshInstance3D@44985" type="MeshInstance3D" parent="bushes_gas_station"]
+[node name="@MeshInstance3D@77000" type="MeshInstance3D" parent="bushes_gas_station"]
 transform = Transform3D(-0.0334886, 0, 1.99972, 0, 2, 0, -1.99972, 0, -0.0334886, 16.0617, -0.175624, -39.6576)
 visibility_range_end = 200.0
 mesh = ExtResource("29_4k2qa")
 
-[node name="@MeshInstance3D@44986" type="MeshInstance3D" parent="bushes_gas_station"]
+[node name="@MeshInstance3D@77001" type="MeshInstance3D" parent="bushes_gas_station"]
 transform = Transform3D(-0.0333647, 0, 1.99972, 0, 2, 0, -1.99972, 0, -0.0333647, 16.0252, -0.238053, -36.359)
 visibility_range_end = 200.0
 mesh = ExtResource("29_4k2qa")
 
-[node name="@MeshInstance3D@44987" type="MeshInstance3D" parent="bushes_gas_station"]
+[node name="@MeshInstance3D@77002" type="MeshInstance3D" parent="bushes_gas_station"]
 transform = Transform3D(-0.0337938, 0, 1.99971, 0, 2, 0, -1.99971, 0, -0.0337938, 15.1081, -0.695378, -33.0423)
 visibility_range_end = 200.0
 mesh = ExtResource("29_4k2qa")
 
-[node name="@MeshInstance3D@44988" type="MeshInstance3D" parent="bushes_gas_station"]
+[node name="@MeshInstance3D@77003" type="MeshInstance3D" parent="bushes_gas_station"]
 transform = Transform3D(-0.0337163, 0, 1.99972, 0, 2, 0, -1.99972, 0, -0.0337163, 15.0849, -0.175568, -29.7426)
 visibility_range_end = 200.0
 mesh = ExtResource("29_4k2qa")
 
-[node name="@MeshInstance3D@44989" type="MeshInstance3D" parent="bushes_gas_station"]
+[node name="@MeshInstance3D@77004" type="MeshInstance3D" parent="bushes_gas_station"]
 transform = Transform3D(-0.0337546, 0, 1.99972, 0, 2, 0, -1.99972, 0, -0.0337546, 15.4956, -0.558045, -26.4504)
 visibility_range_end = 200.0
 mesh = ExtResource("29_4k2qa")
 
-[node name="@MeshInstance3D@44990" type="MeshInstance3D" parent="bushes_gas_station"]
+[node name="@MeshInstance3D@77005" type="MeshInstance3D" parent="bushes_gas_station"]
 transform = Transform3D(-0.0337633, 0, 1.99972, 0, 2, 0, -1.99971, 0, -0.0337633, 16.932, -0.511233, -23.1753)
 visibility_range_end = 200.0
 mesh = ExtResource("29_4k2qa")
 
-[node name="@MeshInstance3D@44991" type="MeshInstance3D" parent="bushes_gas_station"]
+[node name="@MeshInstance3D@77006" type="MeshInstance3D" parent="bushes_gas_station"]
 transform = Transform3D(-0.0337557, 0, 1.99972, 0, 2, 0, -1.99972, 0, -0.0337557, 15.61, -0.753814, -19.8541)
 visibility_range_end = 200.0
 mesh = ExtResource("29_4k2qa")
 
-[node name="@MeshInstance3D@44992" type="MeshInstance3D" parent="bushes_gas_station"]
+[node name="@MeshInstance3D@77007" type="MeshInstance3D" parent="bushes_gas_station"]
 transform = Transform3D(-0.0337622, 0, 1.99972, 0, 2, 0, -1.99971, 0, -0.0337622, 16.2853, -0.414152, -16.5662)
 visibility_range_end = 200.0
 mesh = ExtResource("29_4k2qa")
 
-[node name="@MeshInstance3D@44993" type="MeshInstance3D" parent="bushes_gas_station"]
+[node name="@MeshInstance3D@77008" type="MeshInstance3D" parent="bushes_gas_station"]
 transform = Transform3D(-0.0338026, 0, 1.99971, 0, 2, 0, -1.99971, 0, -0.0338026, 16.071, -0.616548, -13.2635)
 visibility_range_end = 200.0
 mesh = ExtResource("29_4k2qa")
 
-[node name="@MeshInstance3D@44994" type="MeshInstance3D" parent="bushes_gas_station"]
+[node name="@MeshInstance3D@77009" type="MeshInstance3D" parent="bushes_gas_station"]
 transform = Transform3D(-0.0337789, 0, 1.99971, 0, 2, 0, -1.99971, 0, -0.0337789, 15.7906, -0.561256, -9.95943)
 visibility_range_end = 200.0
 mesh = ExtResource("29_4k2qa")
 
-[node name="@MeshInstance3D@44995" type="MeshInstance3D" parent="bushes_gas_station"]
+[node name="@MeshInstance3D@77010" type="MeshInstance3D" parent="bushes_gas_station"]
 transform = Transform3D(-0.0338056, 0, 1.99971, 0, 2, 0, -1.99971, 0, -0.0338056, 16.3992, -0.385712, -6.67062)
 visibility_range_end = 200.0
 mesh = ExtResource("29_4k2qa")
 
-[node name="@MeshInstance3D@44996" type="MeshInstance3D" parent="bushes_gas_station"]
+[node name="@MeshInstance3D@77011" type="MeshInstance3D" parent="bushes_gas_station"]
 transform = Transform3D(-0.0337992, 0, 1.99971, 0, 2, 0, -1.99971, 0, -0.0337992, 15.698, -0.019249, -3.35962)
 visibility_range_end = 200.0
 mesh = ExtResource("29_4k2qa")
 
-[node name="@MeshInstance3D@44997" type="MeshInstance3D" parent="bushes_gas_station"]
+[node name="@MeshInstance3D@77012" type="MeshInstance3D" parent="bushes_gas_station"]
 transform = Transform3D(-0.0338092, 0, 1.99971, 0, 2, 0, -1.99971, 0, -0.0338092, 16.233, -0.942506, -0.0694699)
 visibility_range_end = 200.0
 mesh = ExtResource("29_4k2qa")
 
-[node name="@MeshInstance3D@44998" type="MeshInstance3D" parent="bushes_gas_station"]
+[node name="@MeshInstance3D@77013" type="MeshInstance3D" parent="bushes_gas_station"]
 transform = Transform3D(-0.0338211, 0, 1.99971, 0, 2, 0, -1.99971, 0, -0.0338211, 16.2863, -0.405048, 3.2288)
 visibility_range_end = 200.0
 mesh = ExtResource("29_4k2qa")
 
-[node name="@MeshInstance3D@44999" type="MeshInstance3D" parent="bushes_gas_station"]
+[node name="@MeshInstance3D@77014" type="MeshInstance3D" parent="bushes_gas_station"]
 transform = Transform3D(-0.0338258, 0, 1.99971, 0, 2, 0, -1.99971, 0, -0.0338258, 15.3641, -0.9093, 6.54353)
 visibility_range_end = 200.0
 mesh = ExtResource("29_4k2qa")
 
-[node name="@MeshInstance3D@45000" type="MeshInstance3D" parent="bushes_gas_station"]
+[node name="@MeshInstance3D@77015" type="MeshInstance3D" parent="bushes_gas_station"]
 transform = Transform3D(-0.0338375, 0, 1.99971, 0, 2, 0, -1.99971, 0, -0.0338375, 15.9569, -0.0118521, 9.83272)
 visibility_range_end = 200.0
 mesh = ExtResource("29_4k2qa")
 
-[node name="@MeshInstance3D@45001" type="MeshInstance3D" parent="bushes_gas_station"]
+[node name="@MeshInstance3D@77016" type="MeshInstance3D" parent="bushes_gas_station"]
 transform = Transform3D(-0.0338279, 0, 1.99971, 0, 2, 0, -1.99971, 0, -0.0338279, 15.0592, -0.727474, 13.1471)
 visibility_range_end = 200.0
 mesh = ExtResource("29_4k2qa")
 
-[node name="@MeshInstance3D@45002" type="MeshInstance3D" parent="bushes_gas_station"]
+[node name="@MeshInstance3D@77017" type="MeshInstance3D" parent="bushes_gas_station"]
 transform = Transform3D(-0.0338662, 0, 1.99971, 0, 2, 0, -1.99971, 0, -0.0338662, 14.8267, -0.0388454, 16.4502)
 visibility_range_end = 200.0
 mesh = ExtResource("29_4k2qa")
 
-[node name="@MeshInstance3D@45003" type="MeshInstance3D" parent="bushes_gas_station"]
+[node name="@MeshInstance3D@77018" type="MeshInstance3D" parent="bushes_gas_station"]
 transform = Transform3D(-0.0338734, 0, 1.99971, 0, 2, 0, -1.99971, 0, -0.0338734, 14.6928, -0.573215, 19.7517)
 visibility_range_end = 200.0
 mesh = ExtResource("29_4k2qa")
 
-[node name="@MeshInstance3D@45004" type="MeshInstance3D" parent="bushes_gas_station"]
+[node name="@MeshInstance3D@77019" type="MeshInstance3D" parent="bushes_gas_station"]
 transform = Transform3D(-0.0338854, 0, 1.99971, 0, 2, 0, -1.99971, 0, -0.0338854, 15.2032, -0.0112432, 23.0422)
 visibility_range_end = 200.0
 mesh = ExtResource("29_4k2qa")
 
-[node name="@MeshInstance3D@45005" type="MeshInstance3D" parent="bushes_gas_station"]
+[node name="@MeshInstance3D@77020" type="MeshInstance3D" parent="bushes_gas_station"]
 transform = Transform3D(-0.0339073, 0, 1.99971, 0, 2, 0, -1.99971, 0, -0.0339072, 15.6979, -0.59312, 26.3331)
 visibility_range_end = 200.0
 mesh = ExtResource("29_4k2qa")
 
-[node name="@MeshInstance3D@45006" type="MeshInstance3D" parent="bushes_gas_station"]
+[node name="@MeshInstance3D@77021" type="MeshInstance3D" parent="bushes_gas_station"]
 transform = Transform3D(-0.0316486, 0, 1.99975, 0, 2, 0, -1.99975, 0, -0.0316486, 15.1089, -0.87659, 29.6419)
 visibility_range_end = 200.0
 mesh = ExtResource("29_4k2qa")
 
-[node name="@MeshInstance3D@45007" type="MeshInstance3D" parent="bushes_gas_station"]
+[node name="@MeshInstance3D@77022" type="MeshInstance3D" parent="bushes_gas_station"]
 transform = Transform3D(-0.0343017, 0, 1.99971, 0, 2, 0, -1.99971, 0, -0.0343017, 15.4106, -0.122995, 32.9363)
 visibility_range_end = 200.0
 mesh = ExtResource("29_4k2qa")
 
-[node name="@MeshInstance3D@45008" type="MeshInstance3D" parent="bushes_gas_station"]
+[node name="@MeshInstance3D@77023" type="MeshInstance3D" parent="bushes_gas_station"]
 transform = Transform3D(-0.0338433, 0, 1.99971, 0, 2, 0, -1.99971, 0, -0.0338433, 15.8754, -0.0304769, 36.2275)
 visibility_range_end = 200.0
 mesh = ExtResource("29_4k2qa")
 
-[node name="@MeshInstance3D@45009" type="MeshInstance3D" parent="bushes_gas_station"]
+[node name="@MeshInstance3D@77024" type="MeshInstance3D" parent="bushes_gas_station"]
 transform = Transform3D(-0.0338276, 0, 1.99971, 0, 2, 0, -1.99971, 0, -0.0338276, 15.7514, -0.550378, 39.5301)
 visibility_range_end = 200.0
 mesh = ExtResource("29_4k2qa")
 
-[node name="@MeshInstance3D@45010" type="MeshInstance3D" parent="bushes_gas_station"]
+[node name="@MeshInstance3D@77025" type="MeshInstance3D" parent="bushes_gas_station"]
 transform = Transform3D(-0.034565, 0, 1.9997, 0, 2, 0, -1.9997, 0, -0.034565, 14.9285, -0.830518, 42.8443)
 visibility_range_end = 200.0
 mesh = ExtResource("29_4k2qa")
 
-[node name="@MeshInstance3D@45011" type="MeshInstance3D" parent="bushes_gas_station"]
+[node name="@MeshInstance3D@77026" type="MeshInstance3D" parent="bushes_gas_station"]
 transform = Transform3D(-0.0340716, 0, 1.99971, 0, 2, 0, -1.99971, 0, -0.0340716, 15.3513, -0.067757, 46.1365)
 visibility_range_end = 200.0
 mesh = ExtResource("29_4k2qa")
 
-[node name="@MeshInstance3D@45012" type="MeshInstance3D" parent="bushes_gas_station"]
+[node name="@MeshInstance3D@77027" type="MeshInstance3D" parent="bushes_gas_station"]
 transform = Transform3D(-0.0323507, 0, 1.99974, 0, 2, 0, -1.99974, 0, -0.0323507, 14.8938, -0.654243, 49.4424)
 visibility_range_end = 200.0
 mesh = ExtResource("29_4k2qa")
 
-[node name="@MeshInstance3D@45013" type="MeshInstance3D" parent="bushes_gas_station"]
+[node name="@MeshInstance3D@77028" type="MeshInstance3D" parent="bushes_gas_station"]
 transform = Transform3D(0.471575, 0, 1.94361, 0, 2, 0, -1.94361, 0, 0.471575, 15.5709, -0.889601, 52.8417)
 visibility_range_end = 200.0
 mesh = ExtResource("29_4k2qa")
 
-[node name="@MeshInstance3D@45014" type="MeshInstance3D" parent="bushes_gas_station"]
+[node name="@MeshInstance3D@77029" type="MeshInstance3D" parent="bushes_gas_station"]
 transform = Transform3D(0.563572, 0, 1.91895, 0, 2, 0, -1.91895, 0, 0.563572, 14.3487, -0.323674, 55.8186)
 visibility_range_end = 200.0
 mesh = ExtResource("29_4k2qa")
 
-[node name="@MeshInstance3D@45015" type="MeshInstance3D" parent="bushes_gas_station"]
+[node name="@MeshInstance3D@77030" type="MeshInstance3D" parent="bushes_gas_station"]
 transform = Transform3D(0.563093, 0, 1.9191, 0, 2, 0, -1.9191, 0, 0.563093, 14.7381, -0.814393, 59.3845)
 visibility_range_end = 200.0
 mesh = ExtResource("29_4k2qa")
 
-[node name="@MeshInstance3D@45016" type="MeshInstance3D" parent="bushes_gas_station"]
+[node name="@MeshInstance3D@77031" type="MeshInstance3D" parent="bushes_gas_station"]
 transform = Transform3D(0.562747, 0, 1.9192, 0, 2, 0, -1.9192, 0, 0.562747, 12.3468, -0.782614, 62.1216)
 visibility_range_end = 200.0
 mesh = ExtResource("29_4k2qa")
@@ -2280,14 +2274,6 @@ mesh = ExtResource("29_4k2qa")
 [node name="SmEnvSidewalkDip03" type="MeshInstance3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -8, 0, -38)
 mesh = ExtResource("24_d4iih")
-
-[node name="Area_Finish" type="Area3D" parent="." node_paths=PackedStringArray("finish_area") groups=["finish_area"]]
-script = ExtResource("33_c7k3x")
-finish_area = NodePath("..")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area_Finish"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.5, 8, 4)
-shape = SubResource("BoxShape3D_fd2vv")
 
 [connection signal="curve_changed" from="Path3D" to="trees_gas_station" method="_on_path_changed"]
 [connection signal="curve_changed" from="Path3D" to="bushes_gas_station" method="_on_path_changed"]
