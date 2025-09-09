@@ -5,15 +5,24 @@ extends Control
 # 		 TEST IT  AT SOME POINT
 
 
-@onready
-var menu_shadow_quality = $TabContainer/graphics/shadows/menubutton_shadow_quality
-@onready
-var menu_aa = $TabContainer/graphics/antialiasing/menubutton_aa
-@onready
-var menu_upscaler = $TabContainer/graphics/upscaler/menubutton_resolution_scaler
-@onready
-var menu_upscaling = $TabContainer/graphics/upscaling/menubutton_resolution_scaling
 
+@onready
+var button_main_menu = $VBoxContainer/button_exit
+
+@onready
+var menu_window_mode = $VBoxContainer/TabContainer/graphics/window_mode/menubutton_window_mode
+@onready
+var menu_shadow_quality = $VBoxContainer/TabContainer/graphics/shadows/menubutton_shadow_quality
+@onready
+var menu_aa = $VBoxContainer/TabContainer/graphics/antialiasing/menubutton_aa
+@onready
+var menu_upscaler = $VBoxContainer/TabContainer/graphics/upscaler/menubutton_resolution_scaler
+@onready
+var menu_upscaling = $VBoxContainer/TabContainer/graphics/upscaling/menubutton_resolution_scaling
+
+
+@onready
+var popup_window_mode = menu_window_mode.get_popup()
 @onready
 var popup_shadow_quality = menu_shadow_quality.get_popup()
 @onready
@@ -36,7 +45,16 @@ func _ready():
 	# load settings library
 	SimpleSettings.load();
 	
+	# connect buttons to handlers
+	button_main_menu.pressed.connect(_on_button_main_menu_pressed)
+
 	# init the menus
+	popup_window_mode.add_item("fullscreen",0)
+	popup_window_mode.add_item("windowed",1)
+	popup_window_mode.id_pressed.connect(_on_popup_window_mode_pressed)
+	var window_mode_id = int(SimpleSettings.get_value('game', 'graphics/window_mode', true))
+	popup_window_mode.set_focused_item(window_mode_id)
+	
 	popup_shadow_quality.add_item("really low", 1)
 	popup_shadow_quality.add_item("low", 2)
 	popup_shadow_quality.add_item("less low", 3)
@@ -74,6 +92,15 @@ func _ready():
 	var upscaling_index = popup_upscaling.get_item_index(upscaling_id)
 	menu_upscaling.text = str(popup_upscaling.get_item_text(upscaling_index))
 	
+func _on_popup_window_mode_pressed(pressed_id):
+	if pressed_id == 0:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+	if pressed_id == 1:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+	
+	SimpleSettings.set_value('game', 'graphics/window_mode', pressed_id)
+	var index = popup_window_mode.get_item_index(pressed_id)
+	menu_window_mode.text = str(popup_window_mode.get_item_text(index))
 	
 func _on_popup_aa_menu_item_pressed(pressed_id):
 	# antialiasing method
@@ -156,3 +183,25 @@ func _on_popup_shadow_menu_item_pressed(pressed_id):
 	SimpleSettings.set_value('game', 'graphics/shadows', pressed_id)
 	var index = popup_shadow_quality.get_item_index(pressed_id)
 	menu_shadow_quality.text = str(popup_shadow_quality.get_item_text(index))
+
+func _on_button_main_menu_pressed():
+	get_tree().change_scene_to_file("res://resources/Scenes/ui/main_menu.tscn")
+	
+func _input(event: InputEvent) -> void:
+	# this smells 
+	var in_main_menu: bool  = false
+	if get_tree().get_current_scene().name == "Settings":
+		in_main_menu = true
+		print("Only the UI scene is loaded.")
+		
+	if event.is_action_pressed("action_menu"):
+		if in_main_menu:
+			_on_button_main_menu_pressed()
+		else:
+			# hide or unhide settings menu
+			if self.visible:
+				self.visible = false
+				get_tree().paused = false
+			else:
+				self.visible = true
+				get_tree().paused = true

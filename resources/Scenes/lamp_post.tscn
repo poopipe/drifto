@@ -13,7 +13,7 @@ mesh = ExtResource("1_vktqb")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -0.378794, 0.925481, 0, -0.925481, -0.378794, 0, 6.0426, 1.98035)
-light_energy = 2.0
+light_energy = 0.1
 light_projector = ExtResource("3_0sj5e")
 shadow_enabled = true
 shadow_caster_mask = 4293918720

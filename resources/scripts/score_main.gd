@@ -14,10 +14,10 @@ var transparent:= Color(1.0, 1.0, 1.0, 0.0)
 var tween = Tween
 
 func _ready() -> void:
-	pass
-
-# TODO: Fade in a skid score gui when skid starts and display current skid score
-#		On commit score update multipliers and total score
+	label_skid_score.modulate.a = 0.0
+	label_skid_slider.modulate.a = 0.0
+	label_total_score.modulate.a = 1.0
+	
 
 func _process(delta: float) -> void:
 	# update skid score all the time - might as well

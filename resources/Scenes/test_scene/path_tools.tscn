@@ -46,6 +46,7 @@ point_count = 3
 
 [node name="Node3D" type="Node3D" parent="." node_paths=PackedStringArray("path", "path_left", "path_right")]
 script = ExtResource("1_e40k0")
+is_dirty = true
 instance_scene = SubResource("PackedScene_vy30w")
 path = NodePath("../road")
 path_left = NodePath("../otherpath2")
@@ -105,6 +106,7 @@ transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 7.82085, 0, 5)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.111848)
 visible = false
 script = ExtResource("1_6h3hl")
+is_dirty = true
 meshes = Array[ArrayMesh]([ExtResource("2_dam5r")])
 path = NodePath("../otherpath")
 road_path = NodePath("../road")

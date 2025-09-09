@@ -170,15 +170,7 @@ func get_yaw_angle()-> float:
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("action_back"):
-		init_run()
-				
-	if event.is_action_pressed("action_menu"):
-		# hide or unhide settings menu
-		if settings_menu_node.visible:
-			settings_menu_node.visible = false
-		else:
-			settings_menu_node.visible = true
-		#print("settings menu", settings_menu_node.visible)
+		init_run()	
 		
 func go_main_menu() -> void:		
 		#var s := get_tree().change_scene_to_packed(main_menu_scene)
