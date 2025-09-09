@@ -304,7 +304,8 @@ func pause_current_skid():
 	var now = Time.get_unix_time_from_system()
 	current_skid.active = false
 	current_skid.end_time = now
-	skid_deactivated.emit()
+	# do we want this?
+	#skid_deactivated.emit()
 	
 func end_current_skid():
 	var now  = Time.get_unix_time_from_system()

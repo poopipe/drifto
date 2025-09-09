@@ -19,7 +19,8 @@ void fragment() {
 	
 	
 	ALBEDO = vec3(1.0, 0.3, 0.0);
-	ALPHA = nv;
+	ALBEDO = COLOR.xyz;
+	//ALPHA = nv;
 }
 
 //void light() {

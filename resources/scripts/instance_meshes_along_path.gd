@@ -109,6 +109,7 @@ var debug_gizmo : EditorNode3DGizmo
 
 func _process(_delta):
 	if is_dirty:
+		print("dirty")
 		for m in mesh_instances:
 			remove_child(m)
 		mesh_instances.clear()	

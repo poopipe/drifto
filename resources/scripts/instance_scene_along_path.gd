@@ -117,17 +117,23 @@ var scene_instances : Array = []
 
 func _process(_delta):
 	if is_dirty:
+		for s in scene_instances:
+			remove_child(s)
+		scene_instances = []
+			
 		_update_instances()
 		is_dirty = false
 
 func _update_instances():		
-		
+	print("update")
+	print(get_child_count())
+	"""
 	if get_child_count() > 0:
 		var children = get_children()
 		for c in children:
 			remove_child(c)
 			c.queue_free()
-	
+	"""
 	rng.seed = this_seed
 
 	var curve = path.curve
@@ -143,13 +149,7 @@ func _update_instances():
 		end = start_offset + curve_length - end_offset
 		
 	var active_length : float = end - start_offset
-
 	var num_instances = floor(active_length / instance_spacing)
-	print(num_instances)
-	
-	#for si in scene_instances:
-	#	remove_child(si)
-	#	si.queue_free() 
 		
 	for i in range(0, num_instances):
 		scene_instances.append(instance_scene.instantiate())

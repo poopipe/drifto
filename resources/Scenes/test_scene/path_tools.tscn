@@ -1,0 +1,179 @@
+[gd_scene load_steps=11 format=3 uid="uid://dj4xta6hb2jmj"]
+
+[ext_resource type="Script" uid="uid://dvh3u3mdgvlsy" path="res://resources/scripts/instance_meshes_along_path.gd" id="1_6h3hl"]
+[ext_resource type="Script" uid="uid://b8knuj3vbp1pf" path="res://resources/scripts/instance_scene_along_path.gd" id="1_e40k0"]
+[ext_resource type="ArrayMesh" uid="uid://d0g2k53wcqrjp" path="res://resources/gd_meshes/SM_Prop_LightPole_Base_01.res" id="2_dam5r"]
+[ext_resource type="Texture2D" uid="uid://h3egs8im4wph" path="res://resources/textures/streetlight_projection_mask.png" id="3_alkbl"]
+[ext_resource type="Material" uid="uid://c0ascp4xrlv3b" path="res://resources/materials/asset/light_halo.tres" id="4_b82nb"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_nieim"]
+
+[sub_resource type="PackedScene" id="PackedScene_vy30w"]
+_bundled = {
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"names": PackedStringArray("LampPost", "Node3D", "SmPropLightPoleBase01", "mesh", "MeshInstance3D", "SpotLight3D", "transform", "light_energy", "light_projector", "shadow_enabled", "shadow_caster_mask", "distance_fade_enabled", "distance_fade_begin", "distance_fade_shadow", "distance_fade_length", "spot_range", "spot_attenuation", "spot_angle", "spot_angle_attenuation", "MeshInstance3D2", "material_override", "visibility_range_begin_margin", "visibility_range_end", "visibility_range_end_margin", "visibility_range_fade_mode", "skeleton"),
+"node_count": 4,
+"node_paths": [],
+"nodes": PackedInt32Array(-1, -1, 1, 0, -1, 0, 0, 0, 0, 4, 2, -1, 1, 3, 0, 0, 0, 0, 5, 5, -1, 13, 6, 1, 7, 2, 8, 3, 9, 4, 10, 5, 11, 4, 12, 6, 13, 7, 14, 8, 15, 8, 16, 9, 17, 10, 18, 11, 0, 0, 0, 4, 19, -1, 8, 6, 12, 20, 13, 21, 14, 22, 6, 23, 14, 24, 15, 3, 16, 25, 17, 0),
+"variants": [ExtResource("2_dam5r"), Transform3D(1, 0, 0, 0, -0.378794, 0.925481, 0, -0.925481, -0.378794, 0, 6.0426, 1.98035), 2.0, ExtResource("3_alkbl"), true, 4293918720, 150.0, 100.0, 20.0, 0.0, 50.0, 1e-05, Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.273, 1.99153), ExtResource("4_b82nb"), 10.0, 1, SubResource("PlaneMesh_nieim"), NodePath("../SpotLight3D")],
+"version": 3
+}
+
+[sub_resource type="Curve3D" id="Curve3D_fc23s"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 1.07651, 0, 0, 0, 0, 0, 0, 10, 0, 0),
+"tilts": PackedFloat32Array(0, 0, 0)
+}
+point_count = 3
+
+[sub_resource type="Curve3D" id="Curve3D_8y7ln"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, -5, 0, 0, 0, 0, 0, 0, 5, 0, -4.24888, 0, 0, 0, 0, 0, 0, 10, 0, -5),
+"tilts": PackedFloat32Array(0, 0, 0)
+}
+point_count = 3
+
+[sub_resource type="Curve3D" id="Curve3D_dam5r"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 5, 0, 5, 0, 0, 0, 0, 0, 0, 10, 0, 5),
+"tilts": PackedFloat32Array(0, 0, 0)
+}
+point_count = 3
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Node3D" type="Node3D" parent="." node_paths=PackedStringArray("path", "path_left", "path_right")]
+script = ExtResource("1_e40k0")
+instance_scene = SubResource("PackedScene_vy30w")
+path = NodePath("../road")
+path_left = NodePath("../otherpath2")
+path_right = NodePath("../otherpath")
+instance_spacing = 2.0
+alternate_sides = true
+
+[node name="LampPost" type="Node3D" parent="Node3D"]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, 5)
+
+[node name="@Node3D@114785" type="Node3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.99784, 0, -5)
+
+[node name="@Node3D@114786" type="Node3D" parent="Node3D"]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 3.99516, 0, 5)
+
+[node name="@Node3D@114787" type="Node3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.99405, 0, -5)
+
+[node name="@Node3D@114788" type="Node3D" parent="Node3D"]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 7.99187, 0, 5)
+
+[node name="@Node3D@114799" type="Node3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.99456, 0, -5)
+
+[node name="@Node3D@120580" type="Node3D" parent="Node3D"]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, 5)
+
+[node name="@Node3D@120581" type="Node3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.95508, 0, -5)
+
+[node name="@Node3D@120582" type="Node3D" parent="Node3D"]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 3.9107, 0, 5)
+
+[node name="@Node3D@120583" type="Node3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.86957, 0, -5)
+
+[node name="@Node3D@120584" type="Node3D" parent="Node3D"]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 7.82085, 0, 5)
+
+[node name="@Node3D@33210" type="Node3D" parent="Node3D"]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, 5)
+
+[node name="@Node3D@33211" type="Node3D" parent="Node3D"]
+transform = Transform3D(0.987702, 0, -0.156349, 0, 1, 0, 0.156349, 0, 0.987702, 2.74785, 0, -4.58721)
+
+[node name="@Node3D@33212" type="Node3D" parent="Node3D"]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 3.9107, 0, 5)
+
+[node name="@Node3D@33213" type="Node3D" parent="Node3D"]
+transform = Transform3D(0.98774, 0, 0.156111, 0, 1, 0, -0.156111, 0, 0.987739, 5.05615, 0, -4.25731)
+
+[node name="@Node3D@33214" type="Node3D" parent="Node3D"]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 7.82085, 0, 5)
+
+[node name="Node_instance_meshes_along_path" type="Node3D" parent="." node_paths=PackedStringArray("path", "road_path")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.111848)
+visible = false
+script = ExtResource("1_6h3hl")
+meshes = Array[ArrayMesh]([ExtResource("2_dam5r")])
+path = NodePath("../otherpath")
+road_path = NodePath("../road")
+instance_spacing = 1.0
+
+[node name="@MeshInstance3D@33215" type="MeshInstance3D" parent="Node_instance_meshes_along_path"]
+transform = Transform3D(0.977471, 0, -0.211072, 0, 1, 0, 0.211072, 0, 0.977471, 0, 0, 5)
+visibility_range_end = 200.0
+mesh = ExtResource("2_dam5r")
+
+[node name="@MeshInstance3D@33216" type="MeshInstance3D" parent="Node_instance_meshes_along_path"]
+transform = Transform3D(0.977604, 0, -0.210452, 0, 1, 0, 0.210452, 0, 0.977604, 1.00051, 0, 5)
+visibility_range_end = 200.0
+mesh = ExtResource("2_dam5r")
+
+[node name="@MeshInstance3D@33217" type="MeshInstance3D" parent="Node_instance_meshes_along_path"]
+transform = Transform3D(0.977595, 0, -0.210496, 0, 1, 0, 0.210496, 0, 0.977595, 1.9999, 0, 5)
+visibility_range_end = 200.0
+mesh = ExtResource("2_dam5r")
+
+[node name="@MeshInstance3D@33218" type="MeshInstance3D" parent="Node_instance_meshes_along_path"]
+transform = Transform3D(0.97758, 0, -0.210563, 0, 1, 0, 0.210563, 0, 0.97758, 3.0001, 0, 5)
+visibility_range_end = 200.0
+mesh = ExtResource("2_dam5r")
+
+[node name="@MeshInstance3D@33219" type="MeshInstance3D" parent="Node_instance_meshes_along_path"]
+transform = Transform3D(0.977494, 0, -0.210961, 0, 1, 0, 0.210961, 0, 0.977494, 3.9995, 0, 5)
+visibility_range_end = 200.0
+mesh = ExtResource("2_dam5r")
+
+[node name="@MeshInstance3D@33220" type="MeshInstance3D" parent="Node_instance_meshes_along_path"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 5)
+visibility_range_end = 200.0
+mesh = ExtResource("2_dam5r")
+
+[node name="@MeshInstance3D@33221" type="MeshInstance3D" parent="Node_instance_meshes_along_path"]
+transform = Transform3D(0.977494, 0, 0.210961, 0, 1, 0, -0.210961, 0, 0.977494, 6.00051, 0, 5)
+visibility_range_end = 200.0
+mesh = ExtResource("2_dam5r")
+
+[node name="@MeshInstance3D@33222" type="MeshInstance3D" parent="Node_instance_meshes_along_path"]
+transform = Transform3D(0.97758, 0, 0.210562, 0, 1, 0, -0.210562, 0, 0.97758, 6.9999, 0, 5)
+visibility_range_end = 200.0
+mesh = ExtResource("2_dam5r")
+
+[node name="@MeshInstance3D@33223" type="MeshInstance3D" parent="Node_instance_meshes_along_path"]
+transform = Transform3D(0.977595, 0, 0.210496, 0, 1, 0, -0.210496, 0, 0.977595, 8.0001, 0, 5)
+visibility_range_end = 200.0
+mesh = ExtResource("2_dam5r")
+
+[node name="@MeshInstance3D@33224" type="MeshInstance3D" parent="Node_instance_meshes_along_path"]
+transform = Transform3D(0.977604, 0, 0.210453, 0, 1, 0, -0.210453, 0, 0.977604, 8.9995, 0, 5)
+visibility_range_end = 200.0
+mesh = ExtResource("2_dam5r")
+
+[node name="road" type="Path3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.269035)
+curve = SubResource("Curve3D_fc23s")
+
+[node name="otherpath2" type="Path3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.269035)
+curve = SubResource("Curve3D_8y7ln")
+
+[node name="otherpath" type="Path3D" parent="."]
+curve = SubResource("Curve3D_dam5r")
+
+[connection signal="curve_changed" from="road" to="Node3D" method="_on_path_changed"]
+[connection signal="curve_changed" from="road" to="Node_instance_meshes_along_path" method="_on_path_changed"]
+[connection signal="curve_changed" from="otherpath2" to="Node3D" method="_on_path_changed"]
+[connection signal="curve_changed" from="otherpath2" to="Node_instance_meshes_along_path" method="_on_path_changed"]
+[connection signal="curve_changed" from="otherpath" to="Node3D" method="_on_path_changed"]
+[connection signal="curve_changed" from="otherpath" to="Node_instance_meshes_along_path" method="_on_path_changed"]

@@ -41,37 +41,41 @@ func slide_score() -> void:
 	
 	tween = get_tree().create_tween() 	
 	tween.parallel().tween_property(label_skid_slider,"modulate", opaque, 0.05).set_trans(Tween.EASE_IN)
-	tween.parallel().tween_property(label_skid_slider,"position", label_total_score.position, 0.5).set_trans(Tween.EASE_IN)	
+	#tween.parallel().tween_property(label_skid_slider,"position", label_total_score.position, 0.5).set_trans(Tween.EASE_IN)	
+	slide_label(label_skid_slider, label_total_score.position, 0.5)
 	tween.connect("finished", show_total_score)
 	
 func show_total_score()->void:
 	tween = get_tree().create_tween() 
 	tween.tween_property(label_total_score, "modulate", opaque, 0.1).set_trans(Tween.TRANS_LINEAR)
 	tween.tween_property(label_skid_slider, "modulate", transparent, 0.1).set_trans(Tween.TRANS_LINEAR)
-	tween.connect("finished", on_faded_in)
+	#tween.connect("finished", on_faded_in)
 
 func on_faded_in()->void:
 	tween = get_tree().create_tween() 
-	
 	tween.tween_property(label_total_score, "modulate", transparent, 1.0).set_trans(Tween.EASE_IN)
 
 
-func fade_label(label: Label, duration:float)->void:
+func fade_label(label: Label, fade_out:bool, duration:float)->void:
 	tween = get_tree().create_tween()
-	tween = tween.tween_property(label, "modulate", opaque, duration).set_trans(Tween.TRANS_LINEAR)
+	if fade_out:
+		tween = tween.tween_property(label, "modulate", transparent, duration).set_trans(Tween.TRANS_LINEAR)
+	else:
+		tween = tween.tween_property(label, "modulate", opaque, duration).set_trans(Tween.TRANS_LINEAR)
 	
-	
-	
-
+func slide_label(label:Label, target_position:Vector2, duration:float)->void:
+	tween = get_tree().create_tween() 		
+	tween.parallel().tween_property(label,"position", target_position, duration).set_trans(Tween.EASE_IN)	
 
 func _on_manager_skid_activated() -> void:
-	tween = get_tree().create_tween() 
-	tween.tween_property(label_skid_score, "modulate", opaque, 0.2).set_trans(Tween.TRANS_LINEAR)
+	fade_label(label_skid_score, false, 0.2)	
+	#tween = get_tree().create_tween() 
+	#tween.tween_property(label_skid_score, "modulate", opaque, 0.2).set_trans(Tween.TRANS_LINEAR)
 
 
 func _on_manager_skid_deactivated() -> void:
-	pass	
+	fade_label(label_skid_score, true, 0.2)	
 
 func _on_skid_ended() -> void:
-	tween = get_tree().create_tween() 
-	tween.tween_property(label_skid_score, "modulate", transparent, 0.2).set_trans(Tween.TRANS_LINEAR)
+	fade_label(label_skid_score, true, 0.2)	
+	
